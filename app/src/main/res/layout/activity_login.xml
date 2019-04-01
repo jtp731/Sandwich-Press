@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".login">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title2"
         android:layout_width="250dp"
         android:layout_height="87dp"
         android:layout_marginStart="8dp"
@@ -22,32 +22,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/loginButton"
+    <EditText
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="197dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="26dp"
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/signupButton"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="23dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title2" />
 
-    <Button
-        android:id="@+id/signupButton"
+    <EditText
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="165dp"
-        android:text="Signup"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="219dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
 </android.support.constraint.ConstraintLayout>
