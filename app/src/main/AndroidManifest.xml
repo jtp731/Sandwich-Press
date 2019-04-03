@@ -13,10 +13,6 @@
             android:label="Register"
             android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".login"
-            android:label="Login"
-            android:parentActivityName=".MainActivity">
-        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

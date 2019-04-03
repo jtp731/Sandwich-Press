@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,13 +15,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button login = findViewById(R.id.loginButton);
-        login.setOnClickListener(new View.OnClickListener() {
+        EditText email = findViewById(R.id.email);
+        final String emailAddress = email.getText().toString();
+
+        Button signup = findViewById(R.id.signup);
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent loginIntent;
-                loginIntent = new Intent(MainActivity.this, login.class);
-                startActivity(loginIntent);
+                Intent signupPage = new Intent(MainActivity.this, register.class);
+                signupPage.putExtra("usersEmail", emailAddress);
+                startActivity(signupPage);
             }
         });
     }
