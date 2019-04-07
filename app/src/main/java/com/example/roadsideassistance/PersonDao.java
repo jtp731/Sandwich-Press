@@ -15,5 +15,4 @@ public interface PersonDao {
     @Query("select * from person where username = :username")
     public List<Person> getUser(String username);
 
-
 }

@@ -10,6 +10,8 @@ public class Person {
     @PrimaryKey
     @NonNull
     public final String username;
+    public String password;
+    public String phonenumber;
     public String email;
     public String firstName;
     public String lastName;
@@ -20,8 +22,10 @@ public class Person {
     @Embedded
     public BankAccount bankAccount;
 
-    public Person(String username, String email, String firstName, String lastName) {
+    public Person(String username, String password, String phonenumber, String email, String firstName, String lastName) {
         this.username = username;
+        this.password = password;
+        this.phonenumber = phonenumber;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

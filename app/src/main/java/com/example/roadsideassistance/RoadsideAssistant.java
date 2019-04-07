@@ -16,8 +16,8 @@ public class RoadsideAssistant extends Person{
     @Ignore
     public List<Service> services;
 
-    public RoadsideAssistant(String username, String email, String firstName, String lastName, boolean canTow, float rating) {
-        super(username, email, firstName, lastName);
+    public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, boolean canTow, float rating) {
+        super(username, password, phonenumber, email, firstName, lastName);
         this.canTow = canTow;
         this.rating = rating;
     }

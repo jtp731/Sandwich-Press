@@ -16,8 +16,8 @@ public class Customer extends Person{
     @Ignore
     public List<Service> services;
 
-    public Customer(String username, String email, String firstName, String lastName) {
-        super(username, email, firstName, lastName);
+    public Customer(String username, String password, String phonenumber, String email, String firstName, String lastName) {
+        super(username, password, phonenumber, email, firstName, lastName);
     }
 }
 

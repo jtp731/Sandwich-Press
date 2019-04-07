@@ -6,8 +6,8 @@ import android.arch.persistence.room.Entity;
 public class Manager extends Person{
     public int accessLevel;
 
-    public Manager(String username, String email, String firstName, String lastName, int accessLevel) {
-        super(username, email, firstName, lastName);
+    public Manager(String username, String password, String phonenumber, String email, String firstName, String lastName, int accessLevel) {
+        super(username, password, phonenumber, email, firstName, lastName);
         this.accessLevel = accessLevel;
     }
 }
