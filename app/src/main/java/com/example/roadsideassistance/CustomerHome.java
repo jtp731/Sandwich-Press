@@ -40,6 +40,8 @@ public class CustomerHome extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
