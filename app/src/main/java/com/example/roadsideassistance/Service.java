@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.location.Location;
 
