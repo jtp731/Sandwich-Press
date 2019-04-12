@@ -13,6 +13,12 @@ public interface PersonDao {
     void addPerson(Person person);
 
     @Query("select * from person where username = :username")
-    public List<Person> getUser(String username);
+    List<Person> getUser(String username);
+
+    @Query("select streetnum, street, city, state from person where username = :username")
+    Address getAddress(String username);
+
+    @Query("select cardnum, expirydate from person where username = :username")
+    BankAccount getBankAccount(String username);
 
 }
