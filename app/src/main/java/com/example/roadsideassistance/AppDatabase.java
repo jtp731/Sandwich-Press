@@ -3,9 +3,12 @@ package com.example.roadsideassistance;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-@Database(entities = {Person.class}, version = 16, exportSchema = false)
+@Database(entities = {Person.class, Service.class, RoadsideAssistant.class, Customer.class, Car.class}, version = 16, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 

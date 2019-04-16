@@ -1,5 +1,8 @@
 package com.example.roadsideassistance;
 
+import android.arch.persistence.room.TypeConverter;
+
+import java.text.DateFormat;
 import java.util.Date;
 
 public class BankAccount {
@@ -10,4 +13,6 @@ public class BankAccount {
         this.cardNum = cardNum;
         this.expiryDate = expiryDate;
     }
+
+
 }

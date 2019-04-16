@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -31,6 +32,7 @@ public class Person {
         this.lastName = lastName;
     }
 
+    @Ignore
     public Person(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount) {
         this.username = username;
         this.password = password;

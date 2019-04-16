@@ -14,7 +14,7 @@ public interface ServiceDao {
     @Insert(onConflict = OnConflictStrategy.FAIL)
     void addService(Service service);
 
-    @Query("select * from service where cutomer_username = :username")
+    @Query("select * from service where customer_username = :username")
     List<Service> getServicesForCustomer(String username);
 
     @Query("select * from service where roadside_assistant_username = :username")
@@ -24,8 +24,8 @@ public interface ServiceDao {
     List<Service> getNewServiceRequest();
 
     //Might need to change this to get locations in a radius better
-    @Query("select * from service where roadside_assistant_username = null AND (location >= :minLocation AND location <= :maxLocation)")
-    List<Service> getNewServiceRequest(Location minLocation, Location maxLocation);
+    @Query("select * from service where roadside_assistant_username = null AND (latitude >= :minLatitude AND latitude <= :maxLatitude)")
+    List<Service> getNewServiceRequest(double minLatitude, double maxLatitude);
 
     @Delete
     void deleteService(Service service);
