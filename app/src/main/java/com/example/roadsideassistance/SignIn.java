@@ -21,8 +21,8 @@ public class SignIn extends AppCompatActivity {
         database = AppDatabase.getDatabase(getApplicationContext());
 
         //For deleting the database and recreating when the database schema has been changed
-        //this.deleteDatabase("appdatabase");
-        //database = AppDatabase.getDatabase(getApplicationContext());
+        this.deleteDatabase("appdatabase");
+        database = AppDatabase.getDatabase(getApplicationContext());
 
         Button signup = findViewById(R.id.newSignup);
         signup.setOnClickListener(new View.OnClickListener() {

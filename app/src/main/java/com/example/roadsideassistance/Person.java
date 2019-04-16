@@ -46,6 +46,8 @@ public class Person implements Parcelable {
         out.writeString(email);
         out.writeString(firstName);
         out.writeString(lastName);
+        out.writeParcelable(address, 0);
+        out.writeParcelable(bankAccount, 0);
     }
 
     public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
@@ -65,5 +67,7 @@ public class Person implements Parcelable {
         this.email = in.readString();
         this.firstName = in.readString();
         this.lastName = in.readString();
+        this.address = in.readParcelable(Address.class.getClassLoader());
+        this.bankAccount = in.readParcelable(BankAccount.class.getClassLoader());
     }
 }
