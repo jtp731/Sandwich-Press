@@ -5,11 +5,12 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {Person.class}, version = 16, exportSchema = false)
+@Database(entities = {Person.class, RoadsideAssistant.class}, version = 16, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public abstract PersonDao personDao();
+    public abstract RoadsideAssistantDao roadsideAssistantDao();
 
     public static AppDatabase getDatabase(Context context) {
         if(INSTANCE == null) {

@@ -21,4 +21,10 @@ public class RoadsideAssistant extends Person{
         this.canTow = canTow;
         this.rating = rating;
     }
+
+    @Ignore
+    public RoadsideAssistant(Person person, boolean canTow) {
+        super(person);
+        this.canTow = canTow;
+    }
 }

@@ -48,21 +48,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Customer" />
+            android:text="Customer"
+            android:onClick="setToCustomer"/>
 
         <RadioButton
             android:id="@+id/raodsideRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Roadside Assistant" />
+            android:text="Roadside Assistant"
+            android:onClick="setToRoadsideAssistant"/>
 
         <RadioButton
             android:id="@+id/managerRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Manager" />
+            android:text="Manager"
+            android:onClick="setToManager"/>
     </RadioGroup>
 
     <Button

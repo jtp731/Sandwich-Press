@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
@@ -69,5 +70,17 @@ public class Person implements Parcelable {
         this.lastName = in.readString();
         this.address = in.readParcelable(Address.class.getClassLoader());
         this.bankAccount = in.readParcelable(BankAccount.class.getClassLoader());
+    }
+
+    @Ignore
+    public Person(Person person) {
+        this.username = person.username;
+        this.password = person.password;
+        this.phonenumber = person.phonenumber;
+        this.email = person.email;
+        this.firstName = person.firstName;
+        this.lastName = person.lastName;
+        this.address = person.address;
+        this.bankAccount = person.bankAccount;
     }
 }
