@@ -28,12 +28,17 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Customer
-                //if (Person is Customer){
-                    Intent login = new Intent(MainActivity.this, CustomerHome.class);
-                    startActivity(login);
+                // Customer
+                // if (Person is Customer){
+     //               Intent login = new Intent(MainActivity.this, CustomerHome.class);
+     //               startActivity(login);
+                // } elseif (Person is roadside assistant){
+                    Intent login = new Intent(MainActivity.this, AssistantHome.class);
+                     startActivity(login);
+                // } elseif (Person is manager){
+    //                Intent login = new Intent(MainActivity.this, ManagerHome.class);
+    //                startActivity(login);
                 // }
-                //elseif (Person is roadside assistant)
             }
         });
     }

@@ -21,12 +21,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Customer Home"
-            tools:layout_editor_absoluteX="167dp"
-            tools:layout_editor_absoluteY="172dp" />
+            android:text="Manager Home"
+            tools:layout_editor_absoluteX="159dp"
+            tools:layout_editor_absoluteY="236dp" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/customermenu"
+        app:menu="@menu/managermenu"
         app:headerLayout="@layout/nav_header"/>
 
 </android.support.v4.widget.DrawerLayout>
