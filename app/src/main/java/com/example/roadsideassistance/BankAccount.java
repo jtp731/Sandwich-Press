@@ -1,5 +1,6 @@
 package com.example.roadsideassistance;
 
+import android.arch.persistence.room.TypeConverter;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;

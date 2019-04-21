@@ -35,6 +35,17 @@ public class Person implements Parcelable {
         this.lastName = lastName;
     }
 
+    @Ignore
+    public Person(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount) {
+        this.username = username;
+        this.password = password;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.bankAccount = bankAccount;
+
     @Override
     public int describeContents() {
         return 0;
