@@ -14,7 +14,7 @@ public interface PersonDao {
     void addPerson(Person person);
 
     @Query("select * from person where username = :username")
-    List<Person> getUser(String username);
+    Person getUser(String username);
 
     @Query("select streetnum, street, city, state from person where username = :username")
     Address getAddress(String username);
@@ -24,4 +24,10 @@ public interface PersonDao {
 
     @Delete
     void deleteUser(Person person);
+
+    @Query("select * from person where email = :email")
+    Person getUserByEmail(String email);
+
+    @Query("select count(*) from person where email = :email and password = :password")
+    int checkUser(String email, String password);
 }

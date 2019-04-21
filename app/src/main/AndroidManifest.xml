@@ -12,9 +12,17 @@
         android:theme="@style/AppTheme">
         <activity android:name=".register"
             android:label="Register"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".SignIn">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".registerAddress"
+            android:label="Register Address"
+            android:parentActivityName=".register">
+        </activity>
+        <activity android:name=".registerBankAccount"
+            android:label="Register Bank Account"
+            android:parentActivityName=".registerAddress">
+        </activity>
+        <activity android:name=".SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

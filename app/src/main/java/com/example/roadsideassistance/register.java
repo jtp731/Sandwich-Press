@@ -104,9 +104,12 @@ public class register extends AppCompatActivity {
         }
 
         if(canCreateUser) {
-            database.personDao().addPerson(new Person(username, password, phonenumber, email, firstName, lastName));
+            //database.personDao().addPerson(new Person(username, password, phonenumber, email, firstName, lastName));
             Toast.makeText(this, "Creating new user", Toast.LENGTH_LONG).show();
-            //new intent for getting address
+   
+            Intent signupAddress = new Intent(register.this, registerAddress.class);
+            signupAddress.putExtra("Person", new Person(username, password, phonenumber, email, firstName, lastName));
+            startActivity(signupAddress);
         }
     }
 
@@ -125,8 +128,8 @@ public class register extends AppCompatActivity {
     }
 
     boolean userExists(String username) {
-        List<Person> people = database.personDao().getUser(username);
-        if(people.size() > 0)
+        Person person = database.personDao().getUser(username);
+        if(person != null)
             return true;
         return false;
     }
