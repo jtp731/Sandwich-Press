@@ -106,7 +106,7 @@ public class register extends AppCompatActivity {
         if(canCreateUser) {
             //database.personDao().addPerson(new Person(username, password, phonenumber, email, firstName, lastName));
             Toast.makeText(this, "Creating new user", Toast.LENGTH_LONG).show();
-            //return results
+   
             Intent signupAddress = new Intent(register.this, registerAddress.class);
             signupAddress.putExtra("Person", new Person(username, password, phonenumber, email, firstName, lastName));
             startActivity(signupAddress);
