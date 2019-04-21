@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,27 +45,20 @@
 
         <RadioButton
             android:id="@+id/customerRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Customer"
-            android:onClick="setToCustomer"/>
+            android:onClick="setToCustomer"
+            android:text="Customer" />
 
         <RadioButton
             android:id="@+id/raodsideRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Roadside Assistant"
-            android:onClick="setToRoadsideAssistant"/>
+            android:onClick="setToRoadsideAssistant"
+            android:text="Roadside Assistant" />
 
-        <RadioButton
-            android:id="@+id/managerRadio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Manager"
-            android:onClick="setToManager"/>
     </RadioGroup>
 
     <Button
