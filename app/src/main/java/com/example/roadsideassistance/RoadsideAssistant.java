@@ -5,7 +5,7 @@ import android.arch.persistence.room.Ignore;
 
 import java.util.List;
 
-@Entity
+@Entity(inheritSuperIndices = true)
 public class RoadsideAssistant extends Person{
     boolean canTow;
     float rating;

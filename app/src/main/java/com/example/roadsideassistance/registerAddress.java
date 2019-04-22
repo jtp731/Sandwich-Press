@@ -44,5 +44,6 @@ public class registerAddress extends AppCompatActivity {
         Intent bankAccountIntent = new Intent(registerAddress.this, registerBankAccount.class);
         bankAccountIntent.putExtra("Person", person);
         startActivity(bankAccountIntent);
+        finish();
     }
 }

@@ -45,6 +45,7 @@ public class Person implements Parcelable {
         this.lastName = lastName;
         this.address = address;
         this.bankAccount = bankAccount;
+    }
 
     @Override
     public int describeContents() {

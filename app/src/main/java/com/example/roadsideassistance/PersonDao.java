@@ -19,7 +19,7 @@ public interface PersonDao {
     @Query("select streetnum, street, city, state from person where username = :username")
     Address getAddress(String username);
 
-    @Query("select cardnum, expirydate from person where username = :username")
+    @Query("select cardnum, expirydate, balance from person where username = :username")
     BankAccount getBankAccount(String username);
 
     @Delete

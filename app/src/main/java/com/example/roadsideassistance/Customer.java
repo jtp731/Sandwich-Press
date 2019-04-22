@@ -5,7 +5,7 @@ import android.arch.persistence.room.Ignore;
 
 import java.util.List;
 
-@Entity
+@Entity(inheritSuperIndices = true)
 public class Customer extends Person{
     @Ignore
     public List<Car> cars;

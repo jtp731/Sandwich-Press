@@ -38,5 +38,6 @@ public class registerRoadside extends AppCompatActivity {
     public void finishRegister(View view) {
         RoadsideAssistant roadsideAssistant = new RoadsideAssistant(person, canTow);
         database.roadsideAssistantDao().addRoadsideAssistant(roadsideAssistant);
+        finish();
     }
 }

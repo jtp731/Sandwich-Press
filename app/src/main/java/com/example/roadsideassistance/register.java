@@ -110,6 +110,7 @@ public class register extends AppCompatActivity {
             Intent signupAddress = new Intent(register.this, registerAddress.class);
             signupAddress.putExtra("Person", new Person(username, password, phonenumber, email, firstName, lastName));
             startActivity(signupAddress);
+            finish();
         }
     }
 
