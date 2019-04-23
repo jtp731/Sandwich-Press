@@ -18,12 +18,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class RoadsideServiceSelect extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap map;
     private Location currLocation = null;
+    private double radius = 10;
+    public LatLng diffLatLang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.getUiSettings().setRotateGesturesEnabled(false);
 
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Task<Location> locationResult = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
@@ -44,11 +48,19 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                 @Override
                 public void onComplete(@NonNull Task<Location> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "Task good", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Task good", Toast.LENGTH_LONG).show();
                         currLocation = task.getResult();
                         if (currLocation != null) {
                             LatLng currentPosition = new LatLng(currLocation.getLatitude(), currLocation.getLongitude());
-                            map.moveCamera(CameraUpdateFactory.newLatLng(currentPosition));
+                            LatLng diffLatLng = LatitudeLongitude.getDifferences(currentPosition.latitude, currentPosition.longitude, radius);
+
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10));
+
+                            map.addMarker(new MarkerOptions().position(currentPosition));
+                            map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude - diffLatLng.latitude, currentPosition.longitude - diffLatLng.longitude)));
+                            map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude + diffLatLng.latitude, currentPosition.longitude + diffLatLng.longitude)));
+                            map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude + diffLatLng.latitude, currentPosition.longitude - diffLatLng.longitude)));
+                            map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude - diffLatLng.latitude, currentPosition.longitude + diffLatLng.longitude)));
                         }
                     }
                 }
