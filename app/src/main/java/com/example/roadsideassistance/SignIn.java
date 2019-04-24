@@ -20,10 +20,10 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         database = AppDatabase.getDatabase(getApplicationContext());
 
-        //For deleting the database and recreating when the database schema has been changed
+/*        //For deleting the database and recreating when the database schema has been changed
         this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
-
+*/
         Button signup = findViewById(R.id.newSignup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +53,9 @@ public class SignIn extends AppCompatActivity {
             person = database.personDao().getUserByEmail(email);
             String userString = "User: " + person.username;
             Toast.makeText(this, userString, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(SignIn.this, CustomerHome.class);
+            intent.putExtra("Username", person.username);
+            startActivity(intent);
         }
     }
 }

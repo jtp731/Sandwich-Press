@@ -12,15 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
-public class ManageCars extends AppCompatActivity {
+public class AddCar extends AppCompatActivity {
 
+    private AppDatabase database;
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_cars);
+        database = AppDatabase.getDatabase(getApplicationContext());
 
         Button addCar = findViewById(R.id.newCar);
 
@@ -42,10 +45,10 @@ public class ManageCars extends AppCompatActivity {
                         int id = menuItem.getItemId();
 
                         if (id == R.id.home) {
-                            Intent intent = new Intent(ManageCars.this, CustomerHome.class);
+                            Intent intent = new Intent(AddCar.this, CustomerHome.class);
                             startActivity(intent);
                         } else if (id == R.id.userAccount) {
-                            Intent intent = new Intent(ManageCars.this, CustomerAccount.class);
+                            Intent intent = new Intent(AddCar.this, CustomerAccount.class);
                             startActivity(intent);
                         }
 
@@ -55,13 +58,19 @@ public class ManageCars extends AppCompatActivity {
 
         navigationView.getMenu().getItem(1).setChecked(true);
 
-        addCar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ManageCars.this, AddCar.class);
-                startActivity(intent);
-            }
-        });
+        EditText input = findViewById(R.id.carMake);
+        String make = input.getText().toString();
+
+        input = findViewById(R.id.carModel);
+        String model = input.getText().toString();
+
+        input = findViewById(R.id.carColour);
+        String colour = input.getText().toString();
+
+        input = findViewById(R.id.plateNum);
+        String plate = input.getText().toString();
+
+
     }
 
     @Override

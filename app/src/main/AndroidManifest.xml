@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.roadsideassistance">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".UpdateBilling"></activity>
+        <activity
+            android:name=".AddCar"
+            android:label="@string/title_activity_add_car"
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".UpdateBilling" />
         <activity android:name=".UpdateSubscription" />
         <activity android:name=".ManageCars" />
         <activity android:name=".CustomerAccount" />
@@ -20,16 +25,15 @@
         <activity
             android:name=".register"
             android:label="Register"
-            android:parentActivityName=".SignIn">
-        </activity>
-        <activity android:name=".registerAddress"
+            android:parentActivityName=".SignIn"></activity>
+        <activity
+            android:name=".registerAddress"
             android:label="Register Address"
-            android:parentActivityName=".register">
-        </activity>
-        <activity android:name=".registerBankAccount"
+            android:parentActivityName=".register"></activity>
+        <activity
+            android:name=".registerBankAccount"
             android:label="Register Bank Account"
-            android:parentActivityName=".registerAddress">
-        </activity>
+            android:parentActivityName=".registerAddress"></activity>
         <activity android:name=".SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

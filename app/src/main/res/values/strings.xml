@@ -10,4 +10,5 @@
         <item>WA</item>
         <item>TAS</item>
     </string-array>
+    <string name="title_activity_add_car">AddCar</string>
 </resources>

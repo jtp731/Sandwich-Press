@@ -20,31 +20,38 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="395dp"
-            android:layout_height="576dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/newCar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"></LinearLayout>
-
-        <Button
-            android:id="@+id/newCar"
-            android:layout_width="300dp"
+        <EditText
+            android:id="@+id/carMake"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="56dp"
-            android:layout_marginBottom="16dp"
-            android:text="Add Car"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginTop="42dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Car Make"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:layout_editor_absoluteX="98dp" />
+
+        <EditText
+            android:id="@+id/carModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Car Model"
+            app:layout_constraintTop_toBottomOf="@+id/carMake"
+            tools:layout_editor_absoluteX="97dp" />
+
+        <EditText
+            android:id="@+id/plateNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Plate Number"
+            app:layout_constraintTop_toBottomOf="@+id/carModel"
+            tools:layout_editor_absoluteX="98dp" />
 
     </android.support.constraint.ConstraintLayout>
 
