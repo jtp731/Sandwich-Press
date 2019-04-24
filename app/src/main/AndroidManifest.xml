@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.roadsideassistance">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,8 +20,17 @@
         <activity
             android:name=".register"
             android:label="Register"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:parentActivityName=".SignIn">
+        </activity>
+        <activity android:name=".registerAddress"
+            android:label="Register Address"
+            android:parentActivityName=".register">
+        </activity>
+        <activity android:name=".registerBankAccount"
+            android:label="Register Bank Account"
+            android:parentActivityName=".registerAddress">
+        </activity>
+        <activity android:name=".SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,7 +5,7 @@ import android.arch.persistence.room.Ignore;
 
 import java.util.List;
 
-@Entity
+@Entity(inheritSuperIndices = true)
 public class RoadsideAssistant extends Person{
     boolean canTow;
     float rating;
@@ -20,5 +20,11 @@ public class RoadsideAssistant extends Person{
         super(username, password, phonenumber, email, firstName, lastName);
         this.canTow = canTow;
         this.rating = rating;
+    }
+
+    @Ignore
+    public RoadsideAssistant(Person person, boolean canTow) {
+        super(person);
+        this.canTow = canTow;
     }
 }

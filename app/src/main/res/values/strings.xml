@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Roadside Assistance</string>
+    <string-array name="states">
+        <item>NSW</item>
+        <item>QLD</item>
+        <item>VIC</item>
+        <item>ACT</item>
+        <item>NT</item>
+        <item>SA</item>
+        <item>WA</item>
+        <item>TAS</item>
+    </string-array>
 </resources>
