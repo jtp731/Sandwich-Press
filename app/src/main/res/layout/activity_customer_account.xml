@@ -21,16 +21,40 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/requestAssist"
+            android:id="@+id/manageCars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="119dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginBottom="16dp"
-            android:text="Request Assistance"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="161dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="162dp"
+            android:text="Manage My Cars"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <Button
+            android:id="@+id/updateBilling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="161dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="162dp"
+            android:text="Update Biilling Information"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/manageCars" />
+
+        <Button
+            android:id="@+id/updateSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="161dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="162dp"
+            android:text="Update Subscription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateBilling" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -8,17 +8,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-public class CustomerHome extends AppCompatActivity {
+public class UpdateBilling extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_home);
+        setContentView(R.layout.activity_update_billing);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,8 +38,11 @@ public class CustomerHome extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         int id = menuItem.getItemId();
 
-                        if (id == R.id.userAccount) {
-                            Intent intent = new Intent(CustomerHome.this, CustomerAccount.class);
+                        if (id == R.id.home) {
+                            Intent intent = new Intent(UpdateBilling.this, CustomerHome.class);
+                            startActivity(intent);
+                        } else if (id == R.id.userAccount) {
+                            Intent intent = new Intent(UpdateBilling.this, CustomerAccount.class);
                             startActivity(intent);
                         }
 
@@ -46,7 +50,7 @@ public class CustomerHome extends AppCompatActivity {
                     }
                 });
 
-        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     @Override

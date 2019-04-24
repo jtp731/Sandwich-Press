@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".AssistantHome"></activity>
+        <activity android:name=".UpdateBilling"></activity>
+        <activity android:name=".UpdateSubscription" />
+        <activity android:name=".ManageCars" />
+        <activity android:name=".CustomerAccount" />
+        <activity android:name=".AssistantHome" />
         <activity android:name=".ManagerHome" />
         <activity android:name=".CustomerHome" />
         <activity

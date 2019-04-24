@@ -10,15 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 
-public class CustomerHome extends AppCompatActivity {
+public class CustomerAccount extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_home);
+        setContentView(R.layout.activity_customer_account);
+
+        Button manageCars = findViewById(R.id.manageCars);
+        Button updateBilling = findViewById(R.id.updateBilling);
+        Button updateSub = findViewById(R.id.updateSub);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,8 +43,8 @@ public class CustomerHome extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         int id = menuItem.getItemId();
 
-                        if (id == R.id.userAccount) {
-                            Intent intent = new Intent(CustomerHome.this, CustomerAccount.class);
+                        if (id == R.id.home) {
+                            Intent intent = new Intent(CustomerAccount.this, CustomerHome.class);
                             startActivity(intent);
                         }
 
@@ -46,7 +52,31 @@ public class CustomerHome extends AppCompatActivity {
                     }
                 });
 
-        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().getItem(1).setChecked(true);
+
+        manageCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerAccount.this, ManageCars.class);
+                startActivity(intent);
+            }
+        });
+
+        updateBilling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerAccount.this, UpdateBilling.class);
+                startActivity(intent);
+            }
+        });
+
+        updateSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerAccount.this, UpdateSubscription.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
