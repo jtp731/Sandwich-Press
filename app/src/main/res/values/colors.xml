@@ -3,5 +3,7 @@
     <color name="colorPrimary">#0077ff</color>//008577
     <color name="colorPrimaryDark">#0053B3</color>//00574B
     <color name="colorAccent">#FFA300</color>//D81B60
+    <color name="mapRadius">#ff0053B3</color>
+    <color name="mapFill">#220077ff</color>
     <color name="errorText">#FF2828</color>
 </resources>

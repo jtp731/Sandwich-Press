@@ -39,6 +39,7 @@ public class Car {
 
     public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
         this.customer_username = customer_username;
+        this.plateNum = plateNum;
         this.model = model;
         this.manufacturer = manufacturer;
         this.colour = colour;

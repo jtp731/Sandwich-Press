@@ -18,6 +18,9 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ServiceDao serviceDao();
     public abstract RoadsideAssistantDao roadsideAssistantDao();
 
+    //test dao
+    public abstract TestDao testDao();
+
 
     public static AppDatabase getDatabase(Context context) {
         if(INSTANCE == null) {

@@ -20,12 +20,11 @@ public interface ServiceDao {
     @Query("select * from service where roadside_assistant_username = :username")
     List<Service> getServicesFromRoadsideAssistant(String username);
 
-    @Query("select * from service where roadside_assistant_username = NULL")
-    List<Service> getNewServiceRequest();
+    @Query("select * from service where roadside_assistant_username not in (select username from roadsideassistant)")
+    List<Service> getNewServiceRequests();
 
-    //Might need to change this to get locations in a radius better
-    @Query("select * from service where roadside_assistant_username = null AND (latitude >= :minLatitude AND latitude <= :maxLatitude)")
-    List<Service> getNewServiceRequest(double minLatitude, double maxLatitude);
+    @Query("select * from service where (roadside_assistant_username not in (select username from roadsideassistant)) AND (latitude >= :minLatitude AND latitude <= :maxLatitude) AND (longitude >= :minLongitude AND longitude <= :maxLongitude)")
+    List<Service> getNewServiceRequests(double minLatitude, double maxLatitude, double minLongitude, double maxLongitude);
 
     @Delete
     void deleteService(Service service);
