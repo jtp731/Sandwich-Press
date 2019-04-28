@@ -3,7 +3,6 @@ package com.example.roadsideassistance;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
@@ -30,6 +29,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract PersonDao personDao();
     public abstract ServiceDao serviceDao();
     public abstract RoadsideAssistantDao roadsideAssistantDao();
+    public abstract InsertDao userDao();
 
 
     public static AppDatabase getDatabase(Context context) {
