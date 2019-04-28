@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -10,10 +11,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +27,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.Date;
@@ -50,6 +54,8 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         database.testDao().addCustomer(new Customer("cust1", "123", "33334444", "cust1@email", "customer", "one"));
         database.testDao().addCar(new Car("cust1", "11ss33", "model", "manufacturer", "green", new Date()));
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.84, 151.2093));
+        database.serviceDao().addService(new Service("cust1", "11ss33", -33.85, 151.2090));
+        database.serviceDao().addService(new Service("cust1", "11ss33", -33.83, 151.2094));
         //End
         /*
         //Test getting services
@@ -105,10 +111,13 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                             services = servicesInArea;
 
                             LinearLayout servicesListLayout = findViewById(R.id.roadsideServicesSelectList);
-                            LayoutInflater inflater = LayoutInflater.from();
                             for(Service service: services) {
                                 map.addMarker(new MarkerOptions().position(new LatLng(service.latitude, service.longitude)));
-                                //servicesListLayout.addView(new TextView(this, ));
+                                TextView addedTextView = new TextView(getContext());
+                                addedTextView.setText(service.toString());
+                                addedTextView.setPadding(0,10,0,10);
+                                addedTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                                servicesListLayout.addView(addedTextView);
                             }
 
                             //List<Service> servicesInRadius;
@@ -121,5 +130,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         }
         else
             Toast.makeText(this, "not permitted", Toast.LENGTH_LONG).show();
+    }
+
+    //Used to get context while in callback
+    public Context getContext() {
+        return (Context)this;
     }
 }

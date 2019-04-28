@@ -64,13 +64,17 @@ public class Service {
             roadside_assistant_username = null;
         }
 
-        //@Ignore
         public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
             this.latitude = latitude;
             this.longitude = longitude;
-            time = new Date();
+            time = new Date(2019, 01, (int)(Math.random()*20));
             cost = 0;
         }
+
+    @Override
+    public String toString() {
+            return ("User: " + customer_username + " Plate Number: " + car_plateNum);
+    }
 }
