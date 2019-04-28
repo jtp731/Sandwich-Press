@@ -1,5 +1,6 @@
 package com.example.roadsideassistance;
 
+import android.arch.persistence.room.Database;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,10 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class ManageCars extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+    AppDatabase database;
+    Car car = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,14 @@ public class ManageCars extends AppCompatActivity {
         setContentView(R.layout.activity_manage_cars);
 
         Button addCar = findViewById(R.id.newCar);
+        EditText carDatabase = findViewById(R.id.dataCar);
+        database = AppDatabase.getDatabase(getApplicationContext());
+
+        String username = null;
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            username = extra.getString("Username");
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -31,6 +44,21 @@ public class ManageCars extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        car = database.carDao().getCars(username);
+        if (car != null){
+            carDatabase.setText(car.manufacturer);
+        }
+
+        final String finalUsername = username;
+        addCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManageCars.this, AddCar.class);
+                intent.putExtra("Username", finalUsername);
+                startActivity(intent);
+            }
+        });
 
         NavigationView navigationView = findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(
@@ -54,14 +82,6 @@ public class ManageCars extends AppCompatActivity {
                 });
 
         navigationView.getMenu().getItem(1).setChecked(true);
-
-        addCar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ManageCars.this, AddCar.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

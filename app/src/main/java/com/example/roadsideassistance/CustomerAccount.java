@@ -22,6 +22,13 @@ public class CustomerAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_account);
 
+        String username = null;
+
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            username = extra.getString("Username");
+        }
+
         Button manageCars = findViewById(R.id.manageCars);
         Button updateBilling = findViewById(R.id.updateBilling);
         Button updateSub = findViewById(R.id.updateSub);
@@ -35,6 +42,7 @@ public class CustomerAccount extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.navigation);
+        final String finalUsername = username;
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -45,6 +53,7 @@ public class CustomerAccount extends AppCompatActivity {
 
                         if (id == R.id.home) {
                             Intent intent = new Intent(CustomerAccount.this, CustomerHome.class);
+                            intent.putExtra("Username", finalUsername);
                             startActivity(intent);
                         }
 
@@ -58,6 +67,7 @@ public class CustomerAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerAccount.this, ManageCars.class);
+                intent.putExtra("Username", finalUsername);
                 startActivity(intent);
             }
         });
@@ -66,6 +76,7 @@ public class CustomerAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerAccount.this, UpdateBilling.class);
+                intent.putExtra("Username", finalUsername);
                 startActivity(intent);
             }
         });
@@ -74,6 +85,7 @@ public class CustomerAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerAccount.this, UpdateSubscription.class);
+                intent.putExtra("Username", finalUsername);
                 startActivity(intent);
             }
         });

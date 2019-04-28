@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 public class CustomerHome extends AppCompatActivity {
 
@@ -20,6 +21,12 @@ public class CustomerHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_home);
 
+        String username = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            username = extras.getString("Username");
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -29,6 +36,7 @@ public class CustomerHome extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.navigation);
+        final String finalUsername = username;
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -39,6 +47,7 @@ public class CustomerHome extends AppCompatActivity {
 
                         if (id == R.id.userAccount) {
                             Intent intent = new Intent(CustomerHome.this, CustomerAccount.class);
+                            intent.putExtra("Username", finalUsername);
                             startActivity(intent);
                         }
 

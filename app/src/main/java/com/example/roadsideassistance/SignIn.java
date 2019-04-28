@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+
 
 public class SignIn extends AppCompatActivity {
     Person person = null;
@@ -20,13 +24,12 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         database = AppDatabase.getDatabase(getApplicationContext());
 
-/*        //For deleting the database and recreating when the database schema has been changed
+        //For deleting the database and recreating when the database schema has been changed
         this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
-*/
 
         //Add Test roadside assistant
-        //database.personDao().addPerson(new Person("road1", "123", "44443333", "road1@email", "John", "Doe"));
+        database.personDao().addPerson(new Person("cust1", "123", "44443333", "cust1@email", "John", "Doe"));
         database.userDao().addRoadsideAssistant(new RoadsideAssistant("road1", "123", "44443333", "road1@email", "John", "Doe", true, 50f));
 
         Button signup = findViewById(R.id.newSignup);

@@ -14,6 +14,9 @@ This is a Dao this is the interface used by the database to access the info
 
 @Dao
 public interface PersonDao {
+    @Insert(onConflict = OnConflictStrategy.FAIL)
+    void addPerson(Person person);
+
     //This is a Query it will run the SQL query in the brackets
     //the :username is the parameter username in the function
     @Query("select * from person where username = :username")

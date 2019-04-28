@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Date;
+
 public class AddCar extends AppCompatActivity {
 
     private AppDatabase database;
@@ -22,10 +24,8 @@ public class AddCar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_cars);
+        setContentView(R.layout.activity_add_car);
         database = AppDatabase.getDatabase(getApplicationContext());
-
-        Button addCar = findViewById(R.id.newCar);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,20 +57,37 @@ public class AddCar extends AppCompatActivity {
                 });
 
         navigationView.getMenu().getItem(1).setChecked(true);
+    }
+
+    public void AddCar(View view){
+        String username = null;
+
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            username = extra.getString("Username");
+        }
 
         EditText input = findViewById(R.id.carMake);
-        String make = input.getText().toString();
+        final String make = input.getText().toString();
 
         input = findViewById(R.id.carModel);
-        String model = input.getText().toString();
+        final String model = input.getText().toString();
 
         input = findViewById(R.id.carColour);
-        String colour = input.getText().toString();
+        final String colour = input.getText().toString();
 
         input = findViewById(R.id.plateNum);
-        String plate = input.getText().toString();
+        final String plate = input.getText().toString();
 
+        input = findViewById(R.id.renewal);
+        final Date renewal = (Date) input.getText();
 
+        Car car = new Car(username, make, model, colour, plate, renewal);
+        database.carDao().addCar(car);
+
+        Intent intent = new Intent(AddCar.this, ManageCars.class);
+        intent.putExtra("Username", username);
+        startActivity(intent);
     }
 
     @Override
