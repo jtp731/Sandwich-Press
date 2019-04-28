@@ -8,26 +8,32 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+/*
+This is a Dao this is the interface used by the database to access the info
+ */
+
 @Dao
 public interface PersonDao {
-    @Insert(onConflict = OnConflictStrategy.FAIL)
-    void addPerson(Person person);
-
+    //This is a Query it will run the SQL query in the brackets
+    //the :username is the parameter username in the function
     @Query("select * from person where username = :username")
-    Person getUser(String username);
+    abstract Person getUser(String username);
 
     @Query("select streetnum, street, city, state from person where username = :username")
-    Address getAddress(String username);
+    abstract Address getAddress(String username);
 
     @Query("select cardnum, expirydate, balance from person where username = :username")
-    BankAccount getBankAccount(String username);
+    abstract BankAccount getBankAccount(String username);
 
+    //This is the delete statement it will delete the person the database.
+    //Currently the database is set to cascade on delete so all info linked to the person
+    //in the database will also be deleted
     @Delete
-    void deleteUser(Person person);
+    abstract void deleteUser(Person person);
 
     @Query("select * from person where email = :email")
-    Person getUserByEmail(String email);
+    abstract Person getUserByEmail(String email);
 
     @Query("select count(*) from person where email = :email and password = :password")
-    int checkUser(String email, String password);
+    abstract int checkUser(String email, String password);
 }

@@ -24,6 +24,11 @@ public class SignIn extends AppCompatActivity {
         this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
 */
+
+        //Add Test roadside assistant
+        //database.personDao().addPerson(new Person("road1", "123", "44443333", "road1@email", "John", "Doe"));
+        database.userDao().addRoadsideAssistant(new RoadsideAssistant("road1", "123", "44443333", "road1@email", "John", "Doe", true, 50f));
+
         Button signup = findViewById(R.id.newSignup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +56,15 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(this, "Bad password email combo", Toast.LENGTH_LONG).show();
         else {
             person = database.personDao().getUserByEmail(email);
-            String userString = "User: " + person.username;
-            Toast.makeText(this, userString, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(SignIn.this, CustomerHome.class);
             intent.putExtra("Username", person.username);
             startActivity(intent);
+            /*8
+            if(database.roadsideAssistantDao().roadsideAssistantExists(email))
+                Toast.makeText(this, "Roadside exists", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(this, "Roadside does not exists", Toast.LENGTH_LONG).show();
+               */
         }
     }
 }

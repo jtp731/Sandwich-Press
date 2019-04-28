@@ -9,18 +9,24 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+/*
+This is a normal class with database annotations added to it
+ */
+
+//This makes the class a table in the database, with the indices section making an index on email and making them unique
 @Entity(indices = {@Index(value = "email", unique = true)})
 public class Person implements Parcelable {
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey//This declares the variable username as the primary key of the table
+    @NonNull//This makes it so that username cannot be null
     public final String username;
+
     public String password;
     public String phonenumber;
     public String email;
     public String firstName;
     public String lastName;
 
-    @Embedded
+    @Embedded//This makes the address and embedded part of the person table meaning all the variables in address are in the person table
     public Address address;
 
     @Embedded
@@ -35,7 +41,7 @@ public class Person implements Parcelable {
         this.lastName = lastName;
     }
 
-    @Ignore
+    @Ignore//This means that the database will ignore this function when trying to insert a person. Can be used on variables so they aren't added to the table
     public Person(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount) {
         this.username = username;
         this.password = password;
@@ -47,11 +53,13 @@ public class Person implements Parcelable {
         this.bankAccount = bankAccount;
     }
 
+    //Used by parcelable
     @Override
     public int describeContents() {
         return 0;
     }
 
+    //Parcels the current object to be parceled
     public void writeToParcel(Parcel out, int flags) {
         out.writeString(username);
         out.writeString(password);
@@ -63,6 +71,7 @@ public class Person implements Parcelable {
         out.writeParcelable(bankAccount, 0);
     }
 
+    //Used by parcelable
     public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
         public Person createFromParcel(Parcel in) {
             return new Person(in);
@@ -73,6 +82,7 @@ public class Person implements Parcelable {
         }
     };
 
+    //Constructs a person given a parcel
     private Person(Parcel in) {
         this.username = in.readString();
         this.password = in.readString();
