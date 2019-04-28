@@ -32,14 +32,13 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 public class RoadsideServiceSelect extends FragmentActivity implements OnMapReadyCallback {
     public AppDatabase database;
     private GoogleMap map;
     private Location currLocation = null;
     private double radius = 10;
-    public LatLng diffLatLang;
-    private List<Service> services;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         database.testDao().addCar(new Car("cust1", "11ss33", "model", "manufacturer", "green", new Date()));
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.84, 151.2093));
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.85, 151.2090));
-        database.serviceDao().addService(new Service("cust1", "11ss33", -33.83, 151.2094));
+        database.serviceDao().addService(new Service("cust1", "11ss33", -33.81, 151.12));
         //End
         /*
         //Test getting services
@@ -108,19 +107,21 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                                     currentPosition.longitude - diffLatLng.longitude,
                                     currentPosition.longitude + diffLatLng.longitude);
 
-                            services = servicesInArea;
+                            Vector<Service> servicesInRadius = new Vector<>();
+                            for (int i = 0; i < servicesInArea.size(); i++) {
+                                if (LatitudeLongitude.distance(currentPosition, new LatLng(servicesInArea.get(i).latitude, servicesInArea.get(i).longitude)) <= radius)
+                                    servicesInRadius.add(servicesInArea.get(i));
+                            }
 
                             LinearLayout servicesListLayout = findViewById(R.id.roadsideServicesSelectList);
-                            for(Service service: services) {
+                            for(Service service: servicesInRadius) {
                                 map.addMarker(new MarkerOptions().position(new LatLng(service.latitude, service.longitude)));
                                 TextView addedTextView = new TextView(getContext());
-                                addedTextView.setText(service.toString());
+                                addedTextView.setText(service.toString() + " Dist = " + (int)LatitudeLongitude.distance(currentPosition, new LatLng(service.latitude, service.longitude)));
                                 addedTextView.setPadding(0,10,0,10);
                                 addedTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
                                 servicesListLayout.addView(addedTextView);
                             }
-
-                            //List<Service> servicesInRadius;
                         }
                     }
                 }
