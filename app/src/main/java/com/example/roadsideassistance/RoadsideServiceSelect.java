@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,21 +36,29 @@ import java.util.List;
 import java.util.Vector;
 
 public class RoadsideServiceSelect extends FragmentActivity implements OnMapReadyCallback {
+    RoadsideAssistant roadsideAssistant;
+
     public AppDatabase database;
     private GoogleMap map;
     private Location currLocation = null;
     private double radius = 10;
+    private int selectedServiceIndex = 0;
+    private  Vector<Service> servicesInRadius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roadside_service_select);
 
+        //get Roadside assistant
+        //roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
+
         //delete database before use
         this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
 
         //Test services
+        database.testDao().addRoadsideAssistant(new RoadsideAssistant("", "123", "00009999", "road1@email", "road", "one", true, 0));
         database.testDao().addCustomer(new Customer("cust1", "123", "33334444", "cust1@email", "customer", "one"));
         database.testDao().addCar(new Car("cust1", "11ss33", "model", "manufacturer", "green", new Date()));
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.84, 151.2093));
@@ -107,19 +116,32 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                                     currentPosition.longitude - diffLatLng.longitude,
                                     currentPosition.longitude + diffLatLng.longitude);
 
-                            Vector<Service> servicesInRadius = new Vector<>();
+                           servicesInRadius = new Vector<>();
                             for (int i = 0; i < servicesInArea.size(); i++) {
                                 if (LatitudeLongitude.distance(currentPosition, new LatLng(servicesInArea.get(i).latitude, servicesInArea.get(i).longitude)) <= radius)
                                     servicesInRadius.add(servicesInArea.get(i));
                             }
 
-                            LinearLayout servicesListLayout = findViewById(R.id.roadsideServicesSelectList);
-                            for(Service service: servicesInRadius) {
-                                map.addMarker(new MarkerOptions().position(new LatLng(service.latitude, service.longitude)));
-                                TextView addedTextView = new TextView(getContext());
-                                addedTextView.setText(service.toString() + " Dist = " + (int)LatitudeLongitude.distance(currentPosition, new LatLng(service.latitude, service.longitude)));
+                            final LinearLayout servicesListLayout = findViewById(R.id.roadsideServicesSelectList);
+                            for(int i = 0; i < servicesInRadius.size(); i++) {
+                                map.addMarker(new MarkerOptions().position(new LatLng(servicesInRadius.get(i).latitude, servicesInRadius.get(i).longitude)));
+                                final TextView addedTextView = new TextView(getContext());
+                                addedTextView.setText(servicesInRadius.get(i).toString() +
+                                        " Dist = " + (int)LatitudeLongitude.distance(currentPosition, new LatLng(servicesInRadius.get(i).latitude, servicesInRadius.get(i).longitude)));
+                                final int currIndex = i;
+                                addedTextView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        selectedServiceIndex = currIndex;
+                                        for(int j = 0; j < servicesListLayout.getChildCount(); j++) {
+                                            servicesListLayout.getChildAt(j).setBackgroundColor(getResources().getColor(R.color.unselectedListItem));
+                                        }
+                                        addedTextView.setBackgroundColor(getResources().getColor(R.color.selectedListItem));
+                                    }
+                                });
                                 addedTextView.setPadding(0,10,0,10);
                                 addedTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
                                 servicesListLayout.addView(addedTextView);
                             }
                         }
@@ -133,8 +155,18 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
             Toast.makeText(this, "not permitted", Toast.LENGTH_LONG).show();
     }
 
+    public void onClick(View view) {
+        Toast.makeText(this, "Selected service = " + servicesInRadius.get(selectedServiceIndex).toString(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, RoadsideSelectServiceCost.class);
+        intent.putExtra("Service", servicesInRadius.get(selectedServiceIndex));
+        //intent.putExtra("RoadsideAssistant", roadsideAssistant);
+        startActivity(intent);
+    }
+
     //Used to get context while in callback
     public Context getContext() {
         return (Context)this;
     }
+
+
 }

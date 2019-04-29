@@ -6,4 +6,7 @@
     <color name="mapRadius">#ff0053B3</color>
     <color name="mapFill">#220077ff</color>
     <color name="errorText">#FF2828</color>
+    <color name="radiusSpinner">#BBBBBB</color>
+    <color name="selectedListItem">#aaaaaa</color>
+    <color name="unselectedListItem">#ffffff</color>
 </resources>

@@ -27,6 +27,9 @@
         <activity android:name=".SignIn">
 
         </activity>
+        <activity android:name=".RoadsideSelectServiceCost">
+
+        </activity>
         <activity android:name=".RoadsideServiceSelect"
             android:label="Service Select">
             <intent-filter>

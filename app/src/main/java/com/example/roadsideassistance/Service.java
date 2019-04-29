@@ -7,8 +7,11 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.location.Location;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Spinner;
 
 import java.util.Date;
 
@@ -26,16 +29,18 @@ import java.util.Date;
                     childColumns = "car_plateNum",
                     onDelete = ForeignKey.CASCADE),
         },
-        primaryKeys = {"customer_username", "car_plateNum", "time"},
+        primaryKeys = {"roadside_assistant_username", "customer_username", "car_plateNum", "time"},
         indices = {@Index(value = {"customer_username", "car_plateNum", "time"}), @Index(value = {"roadside_assistant_username"}), @Index(value = "car_plateNum")}
 )
-public class Service {
+public class Service implements Parcelable {
         public float cost;
         @NonNull
         public Date time;
         public double latitude;
         public double longitude;
+        public int status;
 
+        @NonNull
         public String roadside_assistant_username;
         @NonNull
         public String customer_username;
@@ -43,7 +48,7 @@ public class Service {
         public String car_plateNum;
 
         @Ignore
-        public Service(RoadsideAssistant roadsideAssistant, Customer customer, Car car, float cost, Date time, double latitude, double longitude) {
+        public Service(RoadsideAssistant roadsideAssistant, Customer customer, Car car, float cost, Date time, double latitude, double longitude, int status) {
             this.roadside_assistant_username = roadsideAssistant.username;
             this.customer_username = customer.username;
             this.car_plateNum = car.plateNum;
@@ -51,6 +56,7 @@ public class Service {
             this.time = time;
             this.latitude = latitude;
             this.longitude = longitude;
+            this.status = status;
         }
 
         @Ignore
@@ -62,6 +68,7 @@ public class Service {
             time = new Date();
             cost = 0;
             roadside_assistant_username = null;
+            status = 0;
         }
 
         public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
@@ -69,12 +76,51 @@ public class Service {
             this.car_plateNum = car_plateNum;
             this.latitude = latitude;
             this.longitude = longitude;
+            roadside_assistant_username = "";
             time = new Date(2019, 01, (int)(Math.random()*20));
             cost = 0;
+            status = 0;
         }
 
     @Override
     public String toString() {
             return ("User: " + customer_username + " Plate Number: " + car_plateNum);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeFloat(cost);
+        out.writeString(time.toString());
+        out.writeDouble(latitude);
+        out.writeDouble(longitude);
+        out.writeInt(status);
+        out.writeString(customer_username);
+        out.writeString(roadside_assistant_username);
+        out.writeString(car_plateNum);
+    }
+
+    public static final Parcelable.Creator<Service> CREATOR = new Parcelable.Creator<Service>() {
+        public Service createFromParcel(Parcel in) {
+            return new Service(in);
+        }
+
+        public Service[] newArray(int size) {
+            return new Service[size];
+        }
+    };
+
+    private Service(Parcel in) {
+        this.cost = in.readFloat();
+        this.time = new Date(in.readString());
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
+        this.status = in.readInt();
+        this.customer_username = in.readString();
+        this.roadside_assistant_username = in.readString();
+        this.car_plateNum = in.readString();
     }
 }
