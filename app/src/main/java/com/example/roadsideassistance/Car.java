@@ -26,10 +26,10 @@ public class Car {
     public String model;
     public String manufacturer;
     public String colour;
-    public Date renewalDate;
+    public String renewalDate;
 
     @Ignore
-    public Car(String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
+    public Car(String plateNum, String model, String manufacturer, String colour, String renewalDate) {
         this.plateNum = plateNum;
         this.model = model;
         this.manufacturer = manufacturer;
@@ -37,7 +37,7 @@ public class Car {
         this.renewalDate = renewalDate;
     }
 
-    public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
+    public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, String renewalDate) {
         this.customer_username = customer_username;
         this.plateNum = plateNum;
         this.model = model;

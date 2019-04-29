@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Date;
 
 
@@ -37,7 +35,7 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent signupPage = new Intent(SignIn.this, register.class);
-                 startActivity(signupPage);
+                startActivity(signupPage);
             }
         });
     }

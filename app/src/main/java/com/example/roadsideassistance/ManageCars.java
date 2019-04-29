@@ -20,6 +20,7 @@ public class ManageCars extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     AppDatabase database;
+    String numCars;
     Car car = null;
 
     @Override
@@ -28,7 +29,7 @@ public class ManageCars extends AppCompatActivity {
         setContentView(R.layout.activity_manage_cars);
 
         Button addCar = findViewById(R.id.newCar);
-        EditText carDatabase = findViewById(R.id.dataCar);
+
         database = AppDatabase.getDatabase(getApplicationContext());
 
         String username = null;
@@ -45,10 +46,10 @@ public class ManageCars extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
+
         car = database.carDao().getCars(username);
-        if (car != null){
-            carDatabase.setText(car.manufacturer);
-        }
+        numCars = database.carDao().countCars(username).toString();
+        Toast.makeText(this, numCars, Toast.LENGTH_LONG).show();
 
         final String finalUsername = username;
         addCar.setOnClickListener(new View.OnClickListener() {

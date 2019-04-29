@@ -26,6 +26,11 @@ public class AddCar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
         database = AppDatabase.getDatabase(getApplicationContext());
+        findViewById(R.id.makeError).setVisibility(View.GONE);
+        findViewById(R.id.modelError).setVisibility(View.GONE);
+        findViewById(R.id.plateError).setVisibility(View.GONE);
+        findViewById(R.id.colourError).setVisibility(View.GONE);
+        findViewById(R.id.renewalError).setVisibility(View.GONE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,6 +66,13 @@ public class AddCar extends AppCompatActivity {
 
     public void AddCar(View view){
         String username = null;
+        Boolean empty = false;
+        String make = null;
+        String model = null;
+        String colour = null;
+        String plate = null;
+        String renewal = null;
+
 
         Bundle extra = getIntent().getExtras();
         if (extra != null){
@@ -68,26 +80,49 @@ public class AddCar extends AppCompatActivity {
         }
 
         EditText input = findViewById(R.id.carMake);
-        final String make = input.getText().toString();
+        if (input != null) {
+            make = input.getText().toString();
+        } else {
+            empty = true;
+            findViewById(R.id.makeError).setVisibility(View.GONE);
+        }
 
         input = findViewById(R.id.carModel);
-        final String model = input.getText().toString();
+        if (input != null) {
+            model = input.getText().toString();
+        } else {
+            empty = true;
+            findViewById(R.id.modelError).setVisibility(View.GONE);
+        }
 
         input = findViewById(R.id.carColour);
-        final String colour = input.getText().toString();
+        if (input != null) {
+            colour = input.getText().toString();
+        } else {
+            empty = true;
+            findViewById(R.id.colourError).setVisibility(View.GONE);
+        }
 
         input = findViewById(R.id.plateNum);
-        final String plate = input.getText().toString();
+        if (input != null) {
+            plate = input.getText().toString();
+        } else {
+            empty = true;
+            findViewById(R.id.plateError).setVisibility(View.GONE);
+        }
 
         input = findViewById(R.id.renewal);
-        final Date renewal = (Date) input.getText();
+        if (input != null) {
+            renewal = input.getText().toString();
+        } else {
+            empty = true;
+            findViewById(R.id.renewalError).setVisibility(View.GONE);
+        }
 
-        Car car = new Car(username, make, model, colour, plate, renewal);
-        database.carDao().addCar(car);
-
-        Intent intent = new Intent(AddCar.this, ManageCars.class);
-        intent.putExtra("Username", username);
-        startActivity(intent);
+        if (empty == false) {
+            Car car = new Car(username, plate, model, make, colour, renewal);
+            database.carDao().addCar(car);
+        }
     }
 
     @Override
