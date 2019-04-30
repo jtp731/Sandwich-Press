@@ -71,6 +71,18 @@ public class Service implements Parcelable {
             status = 0;
         }
 
+        @Ignore
+        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, Date time, float cost, int status) {
+            this.customer_username = customer_username;
+            this.car_plateNum = car_plateNum;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.roadside_assistant_username = roadside_assistant_username;
+            this.time = time;
+            this.cost = cost;
+            this.status = status;
+        }
+
         public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;

@@ -27,8 +27,8 @@
         <activity android:name=".SignIn">
 
         </activity>
-        <activity android:name=".RoadsideSelectServiceCost">
-
+        <activity android:name=".RoadsideSelectServiceCost"
+            android:label="Set Cost">
         </activity>
         <activity android:name=".RoadsideServiceSelect"
             android:label="Service Select">

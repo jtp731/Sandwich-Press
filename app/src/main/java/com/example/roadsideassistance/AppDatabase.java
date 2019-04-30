@@ -17,6 +17,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract PersonDao personDao();
     public abstract ServiceDao serviceDao();
     public abstract RoadsideAssistantDao roadsideAssistantDao();
+    public abstract CarDao carDao();
 
     //test dao
     public abstract TestDao testDao();

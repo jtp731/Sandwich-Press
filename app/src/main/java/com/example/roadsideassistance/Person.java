@@ -73,7 +73,7 @@ public class Person implements Parcelable {
         }
     };
 
-    private Person(Parcel in) {
+    protected Person(Parcel in) {
         this.username = in.readString();
         this.password = in.readString();
         this.phonenumber = in.readString();
