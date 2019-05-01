@@ -64,8 +64,10 @@ public class SignIn extends AppCompatActivity {
             if(database.roadsideAssistantDao().roadsideAssistantExists(email)) {
                 Toast.makeText(this, "Roadside exists", Toast.LENGTH_LONG).show();
                 RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistant(email);
-                System.out.print(roadsideAssistant.toString());
-                Toast.makeText(this, roadsideAssistant.toString(), Toast.LENGTH_LONG).show();
+                //System.out.print(roadsideAssistant.toString());
+                //Toast.makeText(this, roadsideAssistant.toString(), Toast.LENGTH_LONG).show();
+                roadsideAssistant.services = database.roadsideAssistantDao().getAllRoadsideServices(roadsideAssistant.username);
+                roadsideAssistant.reviews = database.roadsideAssistantDao().getAllRoadsideReviews(roadsideAssistant.username);
             }
             else
                 Toast.makeText(this, "Roadside does not exists", Toast.LENGTH_LONG).show();

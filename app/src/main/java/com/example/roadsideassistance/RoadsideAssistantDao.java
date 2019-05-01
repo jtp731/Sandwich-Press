@@ -5,6 +5,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Room;
 
+import java.util.List;
+
 @Dao
 public interface RoadsideAssistantDao {
     @Query("select case when exists(select * from roadsideassistant where email = :email) then 1 else 0 end")
@@ -12,4 +14,10 @@ public interface RoadsideAssistantDao {
 
     @Query("select * from roadsideassistant where email = :email")
     RoadsideAssistant getRoadsideAssistant(String email);
+
+    @Query("select * from service where roadside_assistant_username = :username")
+    List<Service> getAllRoadsideServices(String username);
+
+    @Query("select * from review where roadside_assistant_username = :username")
+    List<Review> getAllRoadsideReviews(String username);
 }
