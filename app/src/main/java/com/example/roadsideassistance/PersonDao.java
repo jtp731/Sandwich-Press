@@ -22,7 +22,7 @@ public interface PersonDao {
     @Query("select streetnum, street, city, state from person where username = :username")
     abstract Address getAddress(String username);
 
-    @Query("select cardnum, expirydate, balance from person where username = :username")
+    @Query("select cardnum, expirydate from person where username = :username")
     abstract BankAccount getBankAccount(String username);
 
     //This is the delete statement it will delete the person the database.

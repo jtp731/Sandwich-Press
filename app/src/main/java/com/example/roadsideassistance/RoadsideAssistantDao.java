@@ -9,4 +9,7 @@ import android.arch.persistence.room.Room;
 public interface RoadsideAssistantDao {
     @Query("select case when exists(select * from roadsideassistant where email = :email) then 1 else 0 end")
     abstract boolean roadsideAssistantExists(String email);
+
+    @Query("select * from roadsideassistant where email = :email")
+    RoadsideAssistant getRoadsideAssistant(String email);
 }

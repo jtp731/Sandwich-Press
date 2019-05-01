@@ -105,4 +105,17 @@ public class Person implements Parcelable {
         this.address = person.address;
         this.bankAccount = person.bankAccount;
     }
+
+    public String toString() {
+        String string = "Username = " + username +
+                ", Password = " + password +
+                ", phonenumber = " + phonenumber +
+                ", email = " + email +
+                ", firstname = " + firstName +
+                ", lastname = " + lastName
+                + address.toString() + " "
+                + bankAccount.toString();
+
+        return string;
+    }
 }

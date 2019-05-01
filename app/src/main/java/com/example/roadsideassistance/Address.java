@@ -44,4 +44,8 @@ public class Address implements Parcelable {
         this.city = in.readString();
         this.state = in.readString();
     }
+
+    public String toString() {
+        return "StreetNum = " + streetNum + ", Street = " + street + ", city = " + city + ", state = " + state;
+    }
 }

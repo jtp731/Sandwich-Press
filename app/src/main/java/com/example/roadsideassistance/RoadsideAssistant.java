@@ -27,4 +27,9 @@ public class RoadsideAssistant extends Person{
         super(person);
         this.canTow = canTow;
     }
+
+    public String toString() {
+        String string = super.toString() + ", CanTow = " + canTow + ", Rating = " + rating;
+        return string;
+    }
 }

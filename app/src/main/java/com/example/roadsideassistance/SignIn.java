@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 
 public class SignIn extends AppCompatActivity {
     Person person = null;
@@ -39,7 +41,7 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void SignIn(View view) {
-        Toast.makeText(this, "Test", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, Calendar.getInstance().toString(), Toast.LENGTH_LONG).show();
         EditText input = findViewById(R.id.email);
         if(input.getText().toString() == null || input.getText().toString().trim() == "")
             Toast.makeText(this, "Email Error", Toast.LENGTH_LONG).show();
@@ -59,10 +61,15 @@ public class SignIn extends AppCompatActivity {
             String userString = "User: " + person.username;
             Toast.makeText(this, userString, Toast.LENGTH_LONG).show();
             */
-            if(database.roadsideAssistantDao().roadsideAssistantExists(email))
+            if(database.roadsideAssistantDao().roadsideAssistantExists(email)) {
                 Toast.makeText(this, "Roadside exists", Toast.LENGTH_LONG).show();
+                RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistant(email);
+                System.out.print(roadsideAssistant.toString());
+                Toast.makeText(this, roadsideAssistant.toString(), Toast.LENGTH_LONG).show();
+            }
             else
                 Toast.makeText(this, "Roadside does not exists", Toast.LENGTH_LONG).show();
+
         }
     }
 }
