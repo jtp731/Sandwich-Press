@@ -18,7 +18,7 @@ this will give you a person object using the SQL query
  */
 
 //The below is where the classes are added to make them part of the database
-@Database(entities = {Person.class, Service.class, RoadsideAssistant.class, Customer.class, Car.class}, version = 16, exportSchema = false)
+@Database(entities = {Person.class, Service.class, RoadsideAssistant.class, Customer.class, Manager.class, Car.class}, version = 16, exportSchema = false)
 //This is the type converter class that currently changes date to a string so that is can be stored in the database
 @TypeConverters({Converters.class})
 

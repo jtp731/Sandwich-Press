@@ -36,7 +36,7 @@ public class registerBankAccount extends AppCompatActivity {
     public void onClick(View view) {
         if(verify()) {
             if (currentPersonType == CUSTOMER) {
-                database.personDao().addPerson(person);
+                database.userDao().addPerson(person);
                 //return to login
                 finish();
             }
