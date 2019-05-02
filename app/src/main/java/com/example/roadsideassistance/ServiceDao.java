@@ -7,6 +7,7 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Delete;
 import android.location.Location;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao

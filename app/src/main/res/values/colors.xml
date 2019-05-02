@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#0053B3</color>//00574B
     <color name="colorAccent">#FFA300</color>//D81B60
     <color name="errorText">#FF2828</color>
+    <color name="selectedListItem">#aaaaaa</color>
+    <color name="unselectedListItem">#ffffff</color>
 </resources>
