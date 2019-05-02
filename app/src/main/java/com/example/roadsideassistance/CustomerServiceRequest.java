@@ -70,10 +70,10 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                 Service newService = new Service("",
                                         customer.username,
                                         customer.cars.get(carSpinner.getSelectedItemPosition()).plateNum,
-                                        new Date(),
                                         currLocation.getLatitude(),
                                         currLocation.getLongitude(),
                                         0f,
+                                        new Date(),
                                         0);
                                 database.serviceDao().addService(newService);
                                 customer.services.add(newService);
