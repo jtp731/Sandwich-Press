@@ -1,11 +1,20 @@
 package com.example.roadsideassistance;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,7 +58,31 @@ public class CustomerServiceRequest extends AppCompatActivity {
 
     public void requestService(View view) {
         if (customer.cars.size() > 0) {
-
+            if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                Task<Location> locationResult = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
+                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        if (task.isSuccessful()) {
+                            Location currLocation = task.getResult();
+                            if(currLocation != null) {
+                                Service newService = new Service("",
+                                        customer.username,
+                                        customer.cars.get(carSpinner.getSelectedItemPosition()).plateNum,
+                                        currLocation.getLatitude(),
+                                        currLocation.getLongitude(),
+                                        0f,
+                                        0);
+                                database.serviceDao().addService(newService);
+                                customer.services.add(newService);
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                Toast.makeText(this, "GPS not permitted", Toast.LENGTH_LONG).show();
+            }
         }
         else {
             Toast.makeText(this, "You don't have any cars", Toast.LENGTH_LONG).show();

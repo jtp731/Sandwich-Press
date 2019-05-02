@@ -31,11 +31,11 @@ public class Service {
         public float cost;
         @NonNull
         public Date time;
-        @Ignore
-        public Location location;
         public double latitude;
         public double longitude;
+        int status;
 
+        //For Database access
         public String roadside_assistant_username;
         @NonNull
         public String customer_username;
@@ -47,16 +47,16 @@ public class Service {
             this.roadside_assistant_username = roadsideAssistant.username;
             this.customer_username = customer.username;
             this.car_plateNum = car.plateNum;
+            this.latitude = location.getLatitude();
+            this.longitude = location.getLongitude();
             this.cost = cost;
             this.time = time;
-            this.location = location;
         }
 
         @Ignore
         public Service(Customer customer, Car car, Location location) {
             this.customer_username = customer.username;
             this.car_plateNum = car.plateNum;
-            this.location = location;
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             time = new Date();
@@ -64,15 +64,24 @@ public class Service {
             roadside_assistant_username = null;
         }
 
+        @Ignore
         public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
             this.latitude = latitude;
             this.longitude = longitude;
-            location.setLatitude(latitude);
-            location.setLongitude(longitude);
             time = new Date();
             cost = 0;
             roadside_assistant_username = null;
+        }
+
+        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, float cost, int status) {
+            this.roadside_assistant_username = roadside_assistant_username;
+            this.customer_username = customer_username;
+            this.car_plateNum = car_plateNum;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.cost = cost;
+            this.status = status;
         }
 }
