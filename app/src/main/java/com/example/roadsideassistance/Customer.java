@@ -43,5 +43,18 @@ public class Customer extends Person{
         }
         return activeServices;
     }
+
+    @Ignore
+    public boolean carCoveredBySubscription(String plateNumber) {
+        boolean covered = false;
+        if (cars.size() > 0) {
+            for (int i = 0; i < cars.size(); i++) {
+                if(cars.get(i).plateNum.equals(plateNumber))
+                    if (cars.get(i).renewalDate != null)
+                        covered = true;
+            }
+        }
+        return covered;
+    }
 }
 
