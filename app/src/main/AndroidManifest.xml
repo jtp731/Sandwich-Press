@@ -23,6 +23,9 @@
             android:parentActivityName=".registerAddress">
         </activity>
         <activity android:name=".SignIn">
+
+        </activity>
+        <activity android:name=".CustomerServiceRequest">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
