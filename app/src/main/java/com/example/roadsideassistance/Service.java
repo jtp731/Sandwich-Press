@@ -75,10 +75,11 @@ public class Service {
             roadside_assistant_username = null;
         }
 
-        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, float cost, int status) {
+        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, Date time, double latitude, double longitude, float cost, int status) {
             this.roadside_assistant_username = roadside_assistant_username;
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
+            this.time = time;
             this.latitude = latitude;
             this.longitude = longitude;
             this.cost = cost;

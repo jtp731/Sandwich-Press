@@ -31,6 +31,7 @@ public class CustomerServiceRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_service_request);
+        database = AppDatabase.getDatabase(this);
 
         customer = new Customer("cust1", "123", "33334444", "cust1@email", "jane", "doe");
         List<Car> cars = new ArrayList<>();
@@ -69,6 +70,7 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                 Service newService = new Service("",
                                         customer.username,
                                         customer.cars.get(carSpinner.getSelectedItemPosition()).plateNum,
+                                        new Date(),
                                         currLocation.getLatitude(),
                                         currLocation.getLongitude(),
                                         0f,
