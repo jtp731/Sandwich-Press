@@ -4,6 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 @Entity(foreignKeys = {
         @ForeignKey(entity = RoadsideAssistant.class,
@@ -17,7 +18,9 @@ import android.os.Parcelable;
         },
         primaryKeys = {"roadside_assistant_username", "customer_username"})
 public class Review implements Parcelable {
+    @NonNull
     public String roadside_assistant_username;
+    @NonNull
     public String customer_username;
     public float rating;
     public String review;
@@ -53,7 +56,7 @@ public class Review implements Parcelable {
         }
     };
 
-    //Constructs a person given a parcel
+    //Constructs a review given a parcel
     private Review(Parcel in) {
         this.roadside_assistant_username = in.readString();
         this.customer_username = in.readString();

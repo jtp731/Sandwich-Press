@@ -33,6 +33,7 @@
             android:label="Register Roadside">
 
         </activity>
+        <activity android:name=".RoadsideMainPage"></activity>
     </application>
 
 </manifest>
