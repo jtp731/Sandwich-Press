@@ -32,6 +32,9 @@ public interface ServiceDao {
     @Query("select * from service where roadside_assistant_username <> '' and customer_username = :customer_username and car_plateNum = :plateNum and time = :time")
     ArrayList<Service> getServiceOffers(String customer_username, String plateNum, Date time);
 
+    @Query("delete from service where customer_username = :customer_username and car_plateNum = :plateNum and time = :time")
+    void deleteService(String customer_username, String plateNum, Date time);
+
     @Delete
     void deleteService(Service service);
 }

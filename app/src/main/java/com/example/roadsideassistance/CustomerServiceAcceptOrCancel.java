@@ -56,4 +56,18 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
             serviceOffersLayout.addView(noOffersTextView);
         }
     }
+
+    public void deleteService(View view) {
+        customer.services.remove(activeService);
+        database.serviceDao().deleteService(activeService.customer_username, activeService.car_plateNum, activeService.time);
+        finish();
+    }
+
+    public void acceptOffer(View view) {
+        if (selectedOfferIndex > 0) {
+            //Update customer list
+            //Update database
+            finish();
+        }
+    }
 }
