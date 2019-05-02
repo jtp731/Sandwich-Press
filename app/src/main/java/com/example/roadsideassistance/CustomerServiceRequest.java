@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,17 +31,28 @@ public class CustomerServiceRequest extends AppCompatActivity {
         cars.add(new Car("44ss33", "Jaguar", "thing", "green", new Date()));
         customer.cars = cars;
         carSpinner = findViewById(R.id.carSpinner);
-        Vector<String> carsAsString = new Vector<>();
-        Car currCar;
-        for(int i = 0; i < customer.cars.size(); i++) {
-            currCar = customer.cars.get(i);
-            carsAsString.add("Plate: " + currCar.plateNum + " Make: " + currCar.manufacturer + " Model: " + currCar.model);
+
+        if(customer.cars.size() > 0) {
+            Vector<String> carsAsString = new Vector<>();
+            Car currCar;
+            for (int i = 0; i < customer.cars.size(); i++) {
+                currCar = customer.cars.get(i);
+                carsAsString.add("Plate: " + currCar.plateNum + " Make: " + currCar.manufacturer + " Model: " + currCar.model);
+            }
+            carStrings = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, carsAsString);
+            carSpinner.setAdapter(carStrings);
         }
-        carStrings = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, carsAsString);
-        carSpinner.setAdapter(carStrings);
+        else {
+            //Error
+        }
     }
 
     public void requestService(View view) {
+        if (customer.cars.size() > 0) {
 
+        }
+        else {
+            Toast.makeText(this, "You don't have any cars", Toast.LENGTH_LONG).show();
+        }
     }
 }
