@@ -65,8 +65,11 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
 
     public void acceptOffer(View view) {
         if (selectedOfferIndex > 0) {
+            Service service = serviceOffers.get(selectedOfferIndex);
             //Update customer list
+            //Set services with "" roadside username or actual roadside username status to 1
             //Update database
+            database.serviceDao().updateServiceStatus(service.roadside_assistant_username, service.customer_username, service.car_plateNum, service.time, 1);
             finish();
         }
     }
