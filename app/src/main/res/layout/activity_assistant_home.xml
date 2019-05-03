@@ -20,13 +20,29 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
+        <Button
+            android:id="@+id/button_avail_jobs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Assistant Home"
-            tools:layout_editor_absoluteX="187dp"
-            tools:layout_editor_absoluteY="262dp" />
+            android:text="Available Jobs"
+            tools:layout_editor_absoluteX="137dp"
+            tools:layout_editor_absoluteY="222dp" />
+
+        <Button
+            android:id="@+id/button_current_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Job"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="341dp" />
+
+        <Button
+            android:id="@+id/button_assistant_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Settings"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="466dp" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView

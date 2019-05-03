@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".CurrentJob"></activity>
+        <activity android:name=".AvailableJobSelection" />
+        <activity android:name=".AvailableJobs" />
         <activity
             android:name=".AddCar"
             android:label="@string/title_activity_add_car"
