@@ -5,6 +5,7 @@ import android.arch.persistence.room.Ignore;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(inheritSuperIndices = true)
@@ -37,6 +38,7 @@ public class RoadsideAssistant extends Person {
 
     public void writeToParcel(Parcel out, int flags) {
         super.writeToParcel(out, flags);
+        out.writeInt(canTow ? 1:0);
     }
 
     public static final Parcelable.Creator<RoadsideAssistant> CREATOR = new Parcelable.Creator<RoadsideAssistant>() {
@@ -51,5 +53,17 @@ public class RoadsideAssistant extends Person {
 
     private RoadsideAssistant(Parcel in) {
         super(in);
+        this.canTow = in.readInt() == 1;
+    }
+
+    public ArrayList<Service> getActiveServices() {
+        ArrayList<Service> activeServices = null;
+        if(services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).status == 1)
+                    activeServices.add(services.get(i));
+            }
+        }
+        return activeServices;
     }
 }
