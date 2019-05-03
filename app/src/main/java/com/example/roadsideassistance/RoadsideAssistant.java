@@ -66,4 +66,19 @@ public class RoadsideAssistant extends Person {
         }
         return activeServices;
     }
+
+    public void removeService(Service service) {
+        if(services != null && services.size() > 0) {
+            services.remove(service);
+        }
+    }
+
+    public void updateService(Service service, int status) {
+        if(services != null && services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).customer_username.equals(service.customer_username) && services.get(i).car_plateNum.equals(service.car_plateNum) && services.get(i).time.equals(service.time))
+                    services.get(i).status = status;
+            }
+        }
+    }
 }

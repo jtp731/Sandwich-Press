@@ -7,6 +7,7 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Delete;
 import android.location.Location;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -25,6 +26,15 @@ public interface ServiceDao {
 
     @Query("select * from service where (roadside_assistant_username = '') AND (latitude >= :minLatitude AND latitude <= :maxLatitude) AND (longitude >= :minLongitude AND longitude <= :maxLongitude)")
     List<Service> getNewServiceRequests(double minLatitude, double maxLatitude, double minLongitude, double maxLongitude);
+
+    @Query("update service set status = 0 where roadside_assistant_username = '' and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
+    void setServiceToOpen(String custUsername, String plateNum, Date time);
+
+    @Query("update service set status = :status where roadside_assistant_username = :roadsideUsername and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
+    void updateService(String roadsideUsername, String custUsername, String plateNum, Date time, int status);
+
+    @Query("delete from service where roadside_assistant_username <> :roadsideUsername and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
+    void deleteServicesNotEqual(String roadsideUsername, String custUsername, String plateNum, Date time);
 
     @Delete
     void deleteService(Service service);

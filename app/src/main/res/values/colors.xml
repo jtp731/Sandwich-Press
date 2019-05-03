@@ -9,4 +9,6 @@
     <color name="radiusSpinner">#BBBBBB</color>
     <color name="selectedListItem">#aaaaaa</color>
     <color name="unselectedListItem">#ffffff</color>
+    <color name="cancelButton">#BF0A00</color>
+    <color name="white">#FFFFFF</color>
 </resources>
