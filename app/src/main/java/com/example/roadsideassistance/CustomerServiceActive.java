@@ -46,6 +46,7 @@ public class CustomerServiceActive extends AppCompatActivity {
         else {
             TextView noServicesText = new TextView(this);
             noServicesText.setText("NO ACTIVE SERVICES");
+            servicesLayout.addView(noServicesText);
         }
     }
 
