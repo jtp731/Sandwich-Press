@@ -6,14 +6,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
     AppDatabase database;
     Customer customer;
     Service activeService;
     int selectedOfferIndex = -1;
-    ArrayList<Service> serviceOffers;
+    List<Service> serviceOffers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

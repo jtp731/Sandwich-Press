@@ -52,9 +52,10 @@ public class CustomerServiceActive extends AppCompatActivity {
 
     public void selectServiceButton(View view) {
         if(selectedServiceIndex >= 0) {
-            Intent intent = new Intent();
+            Intent intent = new Intent(this, CustomerServiceAcceptOrCancel.class);
             intent.putExtra("Customer", customer);
             intent.putExtra("Service", activeServices.get(selectedServiceIndex));
+            startActivity(intent);
         }
     }
 }
