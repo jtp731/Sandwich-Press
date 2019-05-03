@@ -56,5 +56,17 @@ public class Customer extends Person{
         }
         return covered;
     }
+
+    @Ignore
+    public void updateServiceToAccepted(Service service) {
+        if(services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                Service currService = services.get(i);
+                if ((currService.roadside_assistant_username.equals("") || currService.roadside_assistant_username.equals(service.roadside_assistant_username)) &&
+                    currService.car_plateNum.equals(service.car_plateNum) && currService.time.equals(service.time))
+                    services.get(i).status = 1;
+            }
+        }
+    }
 }
 
