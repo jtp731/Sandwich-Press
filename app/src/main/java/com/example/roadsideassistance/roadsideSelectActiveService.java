@@ -1,5 +1,6 @@
 package com.example.roadsideassistance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -48,6 +49,11 @@ public class roadsideSelectActiveService extends AppCompatActivity {
     }
 
     public void roadsideSelectActiveService(View view) {
-
+        if (selectedActiveServiceIndex >= 0) {
+            Intent intent = new Intent(this, roadsideSelectedActiveService.class);
+            intent.putExtra("Roadside", roadsideAssistant);
+            intent.putExtra("Service", activeServices.get(selectedActiveServiceIndex));
+            startActivity(intent);
+        }
     }
 }
