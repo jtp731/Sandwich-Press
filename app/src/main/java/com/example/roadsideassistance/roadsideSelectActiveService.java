@@ -50,7 +50,7 @@ public class roadsideSelectActiveService extends AppCompatActivity {
 
     public void roadsideSelectActiveService(View view) {
         if (selectedActiveServiceIndex >= 0) {
-            Intent intent = new Intent(this, roadsideSelectedActiveService.class);
+            Intent intent = new Intent(this, RoadsideSelectedActiveService.class);
             intent.putExtra("Roadside", roadsideAssistant);
             intent.putExtra("Service", activeServices.get(selectedActiveServiceIndex));
             startActivity(intent);
