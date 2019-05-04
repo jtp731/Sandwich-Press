@@ -17,23 +17,29 @@ public interface PersonDao {
     //This is a Query it will run the SQL query in the brackets
     //the :username is the parameter username in the function
     @Query("select * from person where username = :username")
-    abstract Person getUser(String username);
+    Person getUser(String username);
 
     @Query("select streetnum, street, city, state from person where username = :username")
-    abstract Address getAddress(String username);
+    Address getAddress(String username);
 
     @Query("select cardnum, expirydate from person where username = :username")
-    abstract BankAccount getBankAccount(String username);
+    BankAccount getBankAccount(String username);
 
     //This is the delete statement it will delete the person the database.
     //Currently the database is set to cascade on delete so all info linked to the person
     //in the database will also be deleted
     @Delete
-    abstract void deleteUser(Person person);
+    void deleteUser(Person person);
 
     @Query("select * from person where email = :email")
-    abstract Person getUserByEmail(String email);
+    Person getUserByEmail(String email);
 
     @Query("select count(*) from person where email = :email and password = :password")
-    abstract int checkUser(String email, String password);
+    int checkUser(String email, String password);
+
+    @Query("select case when exists(select * from person where username = :username) then 1 else 0 end")
+    boolean usernameTaken(String username);
+
+    @Query("select case when exists(select * from person where email = :email) then 1 else 0 end")
+    boolean emailTaken(String email);
 }
