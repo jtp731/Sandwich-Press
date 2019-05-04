@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RoadsideSelectServiceCost extends AppCompatActivity {
     AppDatabase database;
@@ -75,15 +76,17 @@ public class RoadsideSelectServiceCost extends AppCompatActivity {
     }
 
     public void submitPay(View view) {
+        //Toast.makeText(this, "" + roadsideAssistant.username, Toast.LENGTH_LONG).show();
         TextView costText = findViewById(R.id.roadsideCustomerCostText);
-        float cost = Float.parseFloat(costText.getText().toString());
-        if(cost < 10) {
-            //Error
-        }
-        else {
-            database.serviceDao().addService(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status));
-            roadsideAssistant.services.add(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status));
-            finish();
+        if(!costText.getText().toString().trim().equals("")) {
+            float cost = Float.parseFloat(costText.getText().toString());
+            if (cost < 10) {
+                //Error
+            } else {
+                database.serviceDao().addService(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status));
+                roadsideAssistant.services.add(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status));
+                finish();
+            }
         }
     }
 }

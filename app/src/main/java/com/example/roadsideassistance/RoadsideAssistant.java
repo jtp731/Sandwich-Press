@@ -23,6 +23,8 @@ public class RoadsideAssistant extends Person {
         super(username, password, phonenumber, email, firstName, lastName);
         this.canTow = canTow;
         this.rating = rating;
+        reviews = new ArrayList<>();
+        services = new ArrayList<>();
     }
 
     @Ignore
@@ -39,6 +41,9 @@ public class RoadsideAssistant extends Person {
     public void writeToParcel(Parcel out, int flags) {
         super.writeToParcel(out, flags);
         out.writeInt(canTow ? 1:0);
+        out.writeFloat(rating);
+        out.writeList(services);
+        out.writeList(reviews);
     }
 
     public static final Parcelable.Creator<RoadsideAssistant> CREATOR = new Parcelable.Creator<RoadsideAssistant>() {
@@ -54,6 +59,11 @@ public class RoadsideAssistant extends Person {
     private RoadsideAssistant(Parcel in) {
         super(in);
         this.canTow = in.readInt() == 1;
+        this.rating = in.readFloat();
+        services = new ArrayList<>();
+        in.readList(services, Service.class.getClassLoader());
+        reviews = new ArrayList<>();
+        in.readList(reviews, Review.class.getClassLoader());
     }
 
     public ArrayList<Service> getActiveServices() {
