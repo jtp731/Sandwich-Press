@@ -1,10 +1,12 @@
 package com.example.roadsideassistance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
         customer = getIntent().getParcelableExtra("Customer");
         activeService = getIntent().getParcelableExtra("Service");
         serviceOffers = database.serviceDao().getServiceOffers(activeService.customer_username, activeService.car_plateNum, activeService.time);
+        TextView serviceDescription = findViewById(R.id.customerSelectedServiceDescription);
+        serviceDescription.setText(activeService.toString());
 
         final LinearLayout serviceOffersLayout = findViewById(R.id.customerServiceOffersLayout);
         boolean coveredBySubscription = customer.carCoveredBySubscription(activeService.car_plateNum);
@@ -58,7 +62,9 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
     }
 
     public void deleteService(View view) {
-        customer.services.remove(activeService);
+        System.out.println("Before " + customer.services.size());
+        customer.removeService(activeService);
+        System.out.println(" After " + customer.services.size());
         database.serviceDao().deleteService(activeService.customer_username, activeService.car_plateNum, activeService.time);
         finish();
     }
@@ -72,5 +78,13 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
             database.serviceDao().updateServiceStatus(service.roadside_assistant_username, service.customer_username, service.car_plateNum, service.time, 1);
             finish();
         }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

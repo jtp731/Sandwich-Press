@@ -1,5 +1,6 @@
 package com.example.roadsideassistance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -54,5 +55,13 @@ public class CustomerServiceFinish extends AppCompatActivity {
         }
         else
             Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

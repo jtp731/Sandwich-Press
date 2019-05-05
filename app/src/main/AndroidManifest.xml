@@ -50,6 +50,7 @@
         <activity android:name=".CustomerMainPage"></activity>
         <activity android:name=".CustomerServiceActive"></activity>
         <activity android:name=".CustomerServiceFinishedSelect"></activity>
+        <activity android:name=".CustomerServiceAcceptOrCancel"></activity>
     </application>
 
 </manifest>

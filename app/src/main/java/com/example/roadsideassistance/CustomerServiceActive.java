@@ -21,9 +21,40 @@ public class CustomerServiceActive extends AppCompatActivity {
         setContentView(R.layout.activity_customer_service_active);
 
         customer = getIntent().getParcelableExtra("Customer");
+        createList();
+    }
+
+    public void selectServiceButton(View view) {
+        if(selectedServiceIndex >= 0) {
+            Intent intent = new Intent(this, CustomerServiceAcceptOrCancel.class);
+            intent.putExtra("Customer", customer);
+            intent.putExtra("Service", activeServices.get(selectedServiceIndex));
+            startActivityForResult(intent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            customer = data.getParcelableExtra("Customer");
+            createList();
+            //finish();
+        }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
+    }
+
+    private void createList() {
         activeServices = customer.getActiveServices();
 
         final LinearLayout servicesLayout = findViewById(R.id.customerActiveServicesLayout);
+        servicesLayout.removeViews(0, servicesLayout.getChildCount());
         if (activeServices.size() > 0) {
             for (int i = 0; i < activeServices.size(); i++) {
                 final int currIndex = i;
@@ -48,15 +79,6 @@ public class CustomerServiceActive extends AppCompatActivity {
             noServicesText.setText("NO ACTIVE SERVICES");
             servicesLayout.addView(noServicesText);
             findViewById(R.id.customerSelectActiveServiceButton).setVisibility(View.GONE);
-        }
-    }
-
-    public void selectServiceButton(View view) {
-        if(selectedServiceIndex >= 0) {
-            Intent intent = new Intent(this, CustomerServiceAcceptOrCancel.class);
-            intent.putExtra("Customer", customer);
-            intent.putExtra("Service", activeServices.get(selectedServiceIndex));
-            startActivity(intent);
         }
     }
 }

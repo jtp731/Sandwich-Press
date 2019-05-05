@@ -146,6 +146,21 @@ public class Customer extends Person{
     }
 
     @Ignore
+    public void removeService(Service service) {
+        if(services.size() > 0) {
+            Service currService;
+            int serviceToDelete = -1;
+            for (int i = 0; i < services.size(); i++) {
+                currService = services.get(i);
+                if(currService.car_plateNum.equals(service.car_plateNum) && currService.time.equals(service.time))
+                    serviceToDelete = i;
+            }
+            if (serviceToDelete >= 0)
+                services.remove(serviceToDelete);
+        }
+    }
+
+    @Ignore
     public boolean removeCost(float cost) {
         return bankAccount.tryPay();
     }

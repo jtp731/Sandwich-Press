@@ -1,6 +1,8 @@
 package com.example.roadsideassistance;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -83,8 +85,14 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                         new Date(),
                                         0f,
                                         0);
-                                database.serviceDao().addService(newService);
-                                customer.services.add(newService);
+                                if(database.serviceDao().serviceExists(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)){
+                                    Toast.makeText(getContext(), "You already have a service for this car", Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                    database.serviceDao().addService(newService);
+                                    customer.services.add(newService);
+                                    finish();
+                                }
                             }
                         }
                     }
@@ -97,5 +105,17 @@ public class CustomerServiceRequest extends AppCompatActivity {
         else {
             Toast.makeText(this, "You don't have any cars", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

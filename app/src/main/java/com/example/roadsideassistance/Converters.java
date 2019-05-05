@@ -8,16 +8,11 @@ import java.util.Date;
 public class Converters {
     @TypeConverter
     public Date dateFromString(String date) {
-        try {
-            return DateFormat.getDateInstance().parse(date);
-        }
-        catch (java.text.ParseException e){
-            return new Date(0);
-        }
+        return new Date(date);
     }
 
     @TypeConverter
     public String dateToString(Date date) {
-        return DateFormat.getDateInstance().format(date);
+        return date.toString();
     }
 }

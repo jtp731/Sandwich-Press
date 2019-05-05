@@ -19,6 +19,36 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_service_finished_select);
         customer = getIntent().getParcelableExtra("Customer");
+
+        createList();
+    }
+
+    public void selectFinishedServiceButton(View view) {
+        if(selectedFinishedServiceIndex >= 0) {
+            Intent intent = new Intent(this, CustomerServiceFinish.class);
+            intent.putExtra("Customer", customer);
+            intent.putExtra("Service", finishedServices.get(selectedFinishedServiceIndex));
+            startActivityForResult(intent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            customer = data.getParcelableExtra("Customer");
+            finish();
+        }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
+    }
+
+    private void createList() {
         finishedServices = customer.getFinishedServices();
 
         final LinearLayout servicesLayout = findViewById(R.id.customerFinishedServicesLayout);
@@ -45,16 +75,6 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
             noServicesText.setText("NO FINISHED SERVICES");
             servicesLayout.addView(noServicesText);
             findViewById(R.id.customerSelectFinishedServiceButton).setVisibility(View.GONE);
-        }
-    }
-
-    public void selectFinishedServiceButton(View view) {
-        if(selectedFinishedServiceIndex >= 0) {
-            Intent intent = new Intent(this, CustomerServiceFinish.class);
-            intent.putExtra("Customer", customer);
-            intent.putExtra("Service", finishedServices.get(selectedFinishedServiceIndex));
-            startActivity(intent);
-            finish();
         }
     }
 }
