@@ -1,5 +1,6 @@
 package com.example.roadsideassistance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -42,5 +43,13 @@ public class RoadsideSelectedActiveService extends AppCompatActivity {
         roadsideAssistant.updateService(activeService, 2);
         database.serviceDao().updateService(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time, 2);
         database.serviceDao().deleteServicesNotEqual(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time);
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Roadside", roadsideAssistant);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

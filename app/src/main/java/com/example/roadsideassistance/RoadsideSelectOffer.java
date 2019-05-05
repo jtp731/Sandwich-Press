@@ -53,7 +53,14 @@ public class RoadsideSelectOffer extends AppCompatActivity {
             Intent intent = new Intent(this, RoadsideSelectedOffer.class);
             intent.putExtra("Roadside", roadsideAssistant);
             intent.putExtra("Offer", offerList.get(selectedOfferIndex));
-            startActivity(intent);
+            startActivityForResult(intent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            roadsideAssistant = data.getParcelableExtra("Roadside");
         }
     }
 }

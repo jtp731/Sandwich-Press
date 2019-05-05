@@ -56,7 +56,14 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
             Intent intent = new Intent(this, RoadsideSelectedActiveService.class);
             intent.putExtra("Roadside", roadsideAssistant);
             intent.putExtra("Service", activeServices.get(selectedActiveServiceIndex));
-            startActivity(intent);
+            startActivityForResult(intent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            roadsideAssistant = data.getParcelableExtra("Roadside");
         }
     }
 }

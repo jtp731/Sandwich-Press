@@ -195,7 +195,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         intent.putExtra("Service", servicesInRadius.get(selectedServiceIndex));
         intent.putExtra("RoadsideAssistant", roadsideAssistant);
         intent.putExtra("Distance", serviceDistances.get(selectedServiceIndex));
-        startActivity(intent);
+        startActivityForResult(intent,1 );
     }
 
     //Used to get context while in callback
@@ -203,5 +203,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         return (Context)this;
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            roadsideAssistant = data.getParcelableExtra("Roadside");
+        }
+    }
 }
