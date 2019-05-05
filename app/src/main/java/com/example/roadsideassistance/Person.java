@@ -19,7 +19,6 @@ public class Person implements Parcelable {
     @PrimaryKey//This declares the variable username as the primary key of the table
     @NonNull//This makes it so that username cannot be null
     public final String username;
-
     public String password;
     public String phonenumber;
     public String email;

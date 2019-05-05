@@ -24,6 +24,8 @@ public class RoadsideAssistant extends Person{
         super(username, password, phonenumber, email, firstName, lastName);
         this.canTow = canTow;
         this.rating = rating;
+        reviews = new ArrayList<>();
+        services = new ArrayList<>();
     }
 
     @Ignore
@@ -56,6 +58,8 @@ public class RoadsideAssistant extends Person{
 
     public void writeToParcel(Parcel out, int flags) {
         super.writeToParcel(out, flags);
+        out.writeInt(canTow ? 1:0);
+        out.writeFloat(rating);
         out.writeList(services);
         out.writeList(reviews);
     }
@@ -72,9 +76,48 @@ public class RoadsideAssistant extends Person{
 
     private RoadsideAssistant(Parcel in) {
         super(in);
-        services = new ArrayList<Service>();
+        this.canTow = in.readInt() == 1;
+        this.rating = in.readFloat();
+        services = new ArrayList<>();
         in.readList(services, Service.class.getClassLoader());
-        reviews = new ArrayList<Review>();
+        reviews = new ArrayList<>();
         in.readList(reviews, Review.class.getClassLoader());
+    }
+
+    public ArrayList<Service> getActiveServices() {
+        ArrayList<Service> activeServices = null;
+        if(services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).status == 1)
+                    activeServices.add(services.get(i));
+            }
+        }
+        return activeServices;
+    }
+
+    public void removeService(Service service) {
+        if(services != null && services.size() > 0) {
+            services.remove(service);
+        }
+    }
+
+    public void updateService(Service service, int status) {
+        if(services != null && services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).customer_username.equals(service.customer_username) && services.get(i).car_plateNum.equals(service.car_plateNum) && services.get(i).time.equals(service.time))
+                    services.get(i).status = status;
+            }
+        }
+    }
+
+    public ArrayList<Service> getCurrentOffers() {
+        ArrayList<Service> offers = null;
+        if(services != null && services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).status == 0)
+                    offers.add(services.get(i));
+            }
+        }
+        return offers;
     }
 }

@@ -3,7 +3,10 @@
     <color name="colorPrimary">#0077FF</color>//008577
     <color name="colorPrimaryDark">#0053B3</color>//00574B
     <color name="colorAccent">#FFA300</color>//D81B60
+    <color name="mapRadius">#ff0053B3</color>
+    <color name="mapFill">#220077ff</color>
     <color name="errorText">#FF2828</color>
+    <color name="radiusSpinner">#BBBBBB</color>
     <color name="selectedListItem">#aaaaaa</color>
     <color name="unselectedListItem">#ffffff</color>
     <color name="cancelButton">#BF0A00</color>

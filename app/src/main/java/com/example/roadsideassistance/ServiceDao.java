@@ -22,12 +22,20 @@ public interface ServiceDao {
     @Query("select * from service where roadside_assistant_username = :username")
     List<Service> getServicesFromRoadsideAssistant(String username);
 
-    @Query("select * from service where roadside_assistant_username = NULL")
-    List<Service> getNewServiceRequest();
+    @Query("select * from service where roadside_assistant_username = ('')")
+    List<Service> getNewServiceRequests();
 
-    //Might need to change this to get locations in a radius better
-    @Query("select * from service where roadside_assistant_username = null AND (latitude >= :minLatitude AND latitude <= :maxLatitude)")
-    List<Service> getNewServiceRequest(double minLatitude, double maxLatitude);
+    @Query("select * from service where (roadside_assistant_username = '') AND (latitude >= :minLatitude AND latitude <= :maxLatitude) AND (longitude >= :minLongitude AND longitude <= :maxLongitude)")
+    List<Service> getNewServiceRequests(double minLatitude, double maxLatitude, double minLongitude, double maxLongitude);
+
+    @Query("update service set status = 0 where roadside_assistant_username = '' and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
+    void setServiceToOpen(String custUsername, String plateNum, Date time);
+
+    @Query("update service set status = :status where roadside_assistant_username = :roadsideUsername and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
+    void updateService(String roadsideUsername, String custUsername, String plateNum, Date time, int status);
+
+    @Query("delete from service where roadside_assistant_username <> :roadsideUsername and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
+    void deleteServicesNotEqual(String roadsideUsername, String custUsername, String plateNum, Date time);
 
     @Query("select * from service where roadside_assistant_username <> '' and customer_username = :customer_username and car_plateNum = :plateNum and time = :time")
     List<Service> getServiceOffers(String customer_username, String plateNum, Date time);
