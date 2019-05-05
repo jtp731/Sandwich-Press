@@ -44,6 +44,7 @@ public class RoadsideSelectOffer extends AppCompatActivity {
             TextView noOffersMadeTextView = new TextView(this);
             noOffersMadeTextView.setText("No Offers have been made");
             offersLayout.addView(noOffersMadeTextView);
+            findViewById(R.id.roadsideSelectOfferButton).setVisibility(View.GONE);
         }
     }
 

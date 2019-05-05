@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class roadsideSelectActiveService extends AppCompatActivity {
+public class RoadsideSelectActiveService extends AppCompatActivity {
     RoadsideAssistant roadsideAssistant;
     int selectedActiveServiceIndex = -1;
     ArrayList<Service> activeServices;
@@ -23,6 +24,7 @@ public class roadsideSelectActiveService extends AppCompatActivity {
         activeServices = roadsideAssistant.getActiveServices();
 
         final LinearLayout activeServicesLayout = findViewById(R.id.roadsideActiveSelectLayout);
+        //Toast.makeText(this, "" + activeServices.size(), Toast.LENGTH_LONG).show();
         if (activeServices != null && activeServices.size() > 0) {
             for (int i = 0; i < activeServices.size(); i++) {
                 final int currIndex = i;
@@ -45,6 +47,7 @@ public class roadsideSelectActiveService extends AppCompatActivity {
             TextView noActiveServices = new TextView(this);
             noActiveServices.setText("No Active Services");
             activeServicesLayout.addView(noActiveServices);
+            findViewById(R.id.roadsideSelectActiveServiceButton).setVisibility(View.GONE);
         }
     }
 

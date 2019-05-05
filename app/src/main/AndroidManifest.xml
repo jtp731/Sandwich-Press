@@ -44,6 +44,9 @@
 
         </activity>
         <activity android:name=".RoadsideMainPage"></activity>
+        <activity android:name=".RoadsideSelectOffer"></activity>
+        <activity android:name=".RoadsideSelectedActiveService"></activity>
+        <activity android:name=".RoadsideSelectActiveService"></activity>
     </application>
 
 </manifest>
