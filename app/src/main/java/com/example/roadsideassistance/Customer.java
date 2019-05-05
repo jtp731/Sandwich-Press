@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Query;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -42,6 +43,16 @@ public class Customer extends Person{
                 activeServices.add(services.get(i));
         }
         return activeServices;
+    }
+
+    @Ignore
+    public ArrayList<Service> getFinishedServices() {
+        ArrayList<Service> finishedServices = new ArrayList<>();
+        for(int i = 0; i < services.size(); i++) {
+            if(!services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 2)
+                finishedServices.add(services.get(i));
+        }
+        return finishedServices;
     }
 
     @Ignore
