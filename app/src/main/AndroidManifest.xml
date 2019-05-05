@@ -25,9 +25,10 @@
             android:parentActivityName=".registerAddress">
         </activity>
         <activity android:name=".SignIn">
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".CustomerServiceRequest">
 
@@ -37,8 +38,6 @@
         </activity>
         <activity android:name=".RoadsideServiceSelect"
             android:label="Service Select">
-            <intent-filter>
-                          </intent-filter>
         </activity>
         <activity android:name=".registerRoadside"
             android:label="Register Roadside">

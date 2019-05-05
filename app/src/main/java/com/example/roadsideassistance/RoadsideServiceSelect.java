@@ -60,6 +60,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         database = AppDatabase.getDatabase(getApplicationContext());
 
         //Test services
+        /*
         database.testDao().addRoadsideAssistant(new RoadsideAssistant("", "123", "00009999", "road1@email", "road", "one", true, 0));
         database.testDao().addRoadsideAssistant(new RoadsideAssistant("road1", "123", "00009998", "road2@email", "road", "two", true, 0));
         database.testDao().addCustomer(new Customer("cust1", "123", "33334444", "cust1@email", "customer", "one"));
@@ -67,6 +68,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.84, 151.2093));
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.85, 151.2090));
         database.serviceDao().addService(new Service("cust1", "11ss33", -33.81, 151.12));
+        */
         //End
         /*
         //Test getting services

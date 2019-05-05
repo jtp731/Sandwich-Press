@@ -72,8 +72,8 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                         customer.cars.get(carSpinner.getSelectedItemPosition()).plateNum,
                                         currLocation.getLatitude(),
                                         currLocation.getLongitude(),
-                                        0f,
                                         new Date(),
+                                        0f,
                                         0);
                                 database.serviceDao().addService(newService);
                                 customer.services.add(newService);

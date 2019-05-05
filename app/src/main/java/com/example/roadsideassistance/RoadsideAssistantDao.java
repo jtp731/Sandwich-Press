@@ -20,4 +20,7 @@ public interface RoadsideAssistantDao {
 
     @Query("select * from review where roadside_assistant_username = :username")
     List<Review> getAllRoadsideReviews(String username);
+
+    @Query("select case when exists(select * from roadsideassistant where username = '') then 1 else 0 end")
+    boolean baseRoadsideExists();
 }
