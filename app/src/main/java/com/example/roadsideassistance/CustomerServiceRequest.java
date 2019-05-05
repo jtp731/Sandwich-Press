@@ -33,6 +33,8 @@ public class CustomerServiceRequest extends AppCompatActivity {
         setContentView(R.layout.activity_customer_service_request);
         database = AppDatabase.getDatabase(this);
 
+        customer = getIntent().getParcelableExtra("Customer");
+        /*
         customer = new Customer("cust1", "123", "33334444", "cust1@email", "jane", "doe");
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("11ss33", "Mazda", "3", "green", new Date()));
@@ -40,6 +42,7 @@ public class CustomerServiceRequest extends AppCompatActivity {
         cars.add(new Car("33ss33", "BMW", "m3", "green", new Date()));
         cars.add(new Car("44ss33", "Jaguar", "thing", "green", new Date()));
         customer.cars = cars;
+        */
         carSpinner = findViewById(R.id.carSpinner);
 
         if(customer.cars.size() > 0) {
@@ -54,6 +57,11 @@ public class CustomerServiceRequest extends AppCompatActivity {
         }
         else {
             //Error
+            Vector<String> errorArray = new Vector<>();
+            errorArray.add("No Cars Available");
+            carStrings = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, errorArray);
+            carSpinner.setAdapter(carStrings);
+            findViewById(R.id.customerRequestServiceButton).setVisibility(View.GONE);
         }
     }
 

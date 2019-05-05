@@ -25,6 +25,13 @@ public class Customer extends Person{
         super(username, password, phonenumber, email, firstName, lastName);
     }
 
+    public Customer(Person person) {
+        super(person);
+        cars = new ArrayList<>();
+        reviews = new ArrayList<>();
+        services = new ArrayList<>();
+    }
+
     @Override
     public int describeContents() {
         return 0;

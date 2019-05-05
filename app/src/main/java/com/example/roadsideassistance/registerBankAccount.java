@@ -52,7 +52,7 @@ public class registerBankAccount extends AppCompatActivity {
             Date expiryDate = new Date(year, month-1, 1);
             person.bankAccount = new BankAccount(cardNum, expiryDate);
             if (currentPersonType == CUSTOMER) {
-                database.userDao().addCustomer((Customer) person);
+                database.userDao().addCustomer(new Customer(person));
                 //return to login
                 finish();
             }

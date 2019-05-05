@@ -44,6 +44,7 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
             TextView noServicesText = new TextView(this);
             noServicesText.setText("NO FINISHED SERVICES");
             servicesLayout.addView(noServicesText);
+            findViewById(R.id.customerSelectFinishedServiceButton).setVisibility(View.GONE);
         }
     }
 
