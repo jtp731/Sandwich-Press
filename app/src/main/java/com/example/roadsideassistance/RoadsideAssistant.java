@@ -27,4 +27,9 @@ public class RoadsideAssistant extends Person{
         super(person);
         this.canTow = canTow;
     }
+
+    @Ignore
+    public boolean addPay(float pay) {
+        return bankAccount.tryPay();
+    }
 }

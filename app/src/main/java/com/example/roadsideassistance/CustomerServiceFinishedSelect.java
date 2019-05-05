@@ -47,12 +47,13 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
         }
     }
 
-    public void selectServiceButton(View view) {
+    public void selectFinishedServiceButton(View view) {
         if(selectedFinishedServiceIndex >= 0) {
             Intent intent = new Intent(this, CustomerServiceFinish.class);
             intent.putExtra("Customer", customer);
             intent.putExtra("Service", finishedServices.get(selectedFinishedServiceIndex));
             startActivity(intent);
+            finish();
         }
     }
 }

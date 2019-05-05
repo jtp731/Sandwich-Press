@@ -79,5 +79,34 @@ public class Customer extends Person{
             }
         }
     }
+
+    @Ignore
+    public void finishService(Service service) {
+        if(services.size() > 0) {
+            ArrayList<Service> servicesToDelete = new ArrayList<>();
+            for (int i = 0; i < services.size(); i++) {
+                Service currService = services.get(i);
+                if(currService.car_plateNum.equals(service.car_plateNum) && currService.time.equals(service.time)) {
+                    if(currService.roadside_assistant_username.equals(service.roadside_assistant_username)) {
+                        if (this.carCoveredBySubscription(service.car_plateNum))
+                            services.get(i).status = 4;
+                        else
+                            services.get(i).status = 3;
+                    }
+                    else
+                        servicesToDelete.add(currService);
+                }
+            }
+            if (servicesToDelete.size() > 0) {
+                for(int i = 0; i < servicesToDelete.size(); i++)
+                    services.remove(servicesToDelete.get(i));
+            }
+        }
+    }
+
+    @Ignore
+    public boolean removeCost(float cost) {
+        return bankAccount.tryPay();
+    }
 }
 
