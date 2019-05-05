@@ -28,8 +28,8 @@ public class SignIn extends AppCompatActivity {
         }
 
         //For deleting the database and recreating when the database schema has been changed
-        //this.deleteDatabase("appdatabase");
-        //database = AppDatabase.getDatabase(getApplicationContext());
+      //  this.deleteDatabase("appdatabase");
+      //  database = AppDatabase.getDatabase(getApplicationContext());
 
         //Add Test roadside assistant
         //database.personDao().addPerson(new Person("road1", "123", "44443333", "road1@email", "John", "Doe"));

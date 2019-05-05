@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerMainPage"></activity>
+        <activity android:name=".CustomerSettings"></activity>
+        <activity android:name=".CustomerMainPage" />
         <activity android:name=".ManagerMainPage" />
         <activity android:name=".RoadsideMainPage" />
 
