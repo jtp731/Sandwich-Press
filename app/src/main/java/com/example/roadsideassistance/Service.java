@@ -66,37 +66,40 @@ public class Service implements Parcelable{
             this.status = status;
         }
 
-        @Ignore
-        public Service(Customer customer, Car car, Location location) {
-            this.customer_username = customer.username;
-            this.car_plateNum = car.plateNum;
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            time = new Date();
-            cost = 0;
-            roadside_assistant_username = null;
-        }
+    @Ignore
+    public Service(Customer customer, Car car, Location location) {
+        this.customer_username = customer.username;
+        this.car_plateNum = car.plateNum;
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+        time = new Date();
+        cost = 0;
+        roadside_assistant_username = "";
+        status = 0;
+    }
 
-        @Ignore
-        public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
-            this.customer_username = customer_username;
-            this.car_plateNum = car_plateNum;
-            this.latitude = latitude;
-            this.longitude = longitude;
-            time = new Date();
-            cost = 0;
-            roadside_assistant_username = null;
-        }
+    @Ignore
+    public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
+        this.customer_username = customer_username;
+        this.car_plateNum = car_plateNum;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        time = new Date();
+        cost = 0;
+        roadside_assistant_username = "";
+        status = 0;
+    }
 
-        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, float cost, Date time) {
-            this.roadside_assistant_username = roadside_assistant_username;
-            this.customer_username = customer_username;
-            this.car_plateNum = car_plateNum;
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.cost = cost;
-            this.time = time;
-        }
+    public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, float cost, Date time, int status) {
+        this.roadside_assistant_username = roadside_assistant_username;
+        this.customer_username = customer_username;
+        this.car_plateNum = car_plateNum;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.cost = cost;
+        this.time = time;
+        this.status = status;
+    }
 
     @Override
     public int describeContents() {

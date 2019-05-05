@@ -50,4 +50,19 @@ public class BankAccount implements Parcelable {
     public String toString() {
         return "cardnum = " + cardNum + ", expirydate = " + expiryDate.toString();
     }
+
+    public static boolean tryPay() {
+        if(Math.random() > 0.5)
+            return true;
+        return false;
+    }
+
+    public static boolean pay(RoadsideAssistant roadsideAssistant, Customer customer, String carPlateNum, float cost) {
+        boolean successful = true;
+        float pay = cost;//Change this based on pay to cost conversion;
+        successful = roadsideAssistant.addPay(pay);
+        if(!customer.carCoveredBySubscription(carPlateNum))
+            successful = customer.removeCost(cost);
+        return successful;
+    }
 }

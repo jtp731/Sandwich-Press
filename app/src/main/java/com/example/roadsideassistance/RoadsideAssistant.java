@@ -32,6 +32,11 @@ public class RoadsideAssistant extends Person{
         this.canTow = canTow;
     }
 
+    @Ignore
+    public boolean addPay(float pay) {
+        return bankAccount.tryPay();
+    }
+
     public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount, boolean canTow, float rating) {
         super(username, password, phonenumber, email, firstName, lastName, address, bankAccount);
         this.canTow = canTow;
