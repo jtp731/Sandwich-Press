@@ -39,14 +39,8 @@ public class RoadsideSelectedActiveService extends AppCompatActivity {
     }
 
     public void finishService(View view) {
-        if (car.renewalDate != null) {
-            roadsideAssistant.updateService(activeService, 3);
-            database.serviceDao().updateService(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time, 3);
-            database.serviceDao().deleteServicesNotEqual(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time);
-        } else {
-            roadsideAssistant.updateService(activeService, 2);
-            database.serviceDao().updateService(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time, 3);
-            database.serviceDao().deleteServicesNotEqual(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time);
-        }
+        roadsideAssistant.updateService(activeService, 2);
+        database.serviceDao().updateService(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time, 2);
+        database.serviceDao().deleteServicesNotEqual(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time);
     }
 }
