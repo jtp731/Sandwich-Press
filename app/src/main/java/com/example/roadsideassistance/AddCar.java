@@ -26,7 +26,6 @@ public class AddCar extends AppCompatActivity {
         findViewById(R.id.modelError).setVisibility(View.GONE);
         findViewById(R.id.plateError).setVisibility(View.GONE);
         findViewById(R.id.colourError).setVisibility(View.GONE);
-        findViewById(R.id.renewalError).setVisibility(View.GONE);
 
         customer = getIntent().getParcelableExtra("Customer");
 
@@ -40,7 +39,6 @@ public class AddCar extends AppCompatActivity {
         String model = null;
         String colour = null;
         String plate = null;
-        String renewal = null;
         Date renewalDate = new Date();
         customer = getIntent().getParcelableExtra("Customer");
 
@@ -50,55 +48,46 @@ public class AddCar extends AppCompatActivity {
         }
 
         EditText input = findViewById(R.id.carMake);
-        if (input != null) {
+        if (!input.getText().toString().trim().isEmpty()) {
             make = input.getText().toString();
+            findViewById(R.id.makeError).setVisibility(View.GONE);
         } else {
             empty = true;
-            findViewById(R.id.makeError).setVisibility(View.GONE);
+            findViewById(R.id.makeError).setVisibility(View.VISIBLE);
         }
 
         input = findViewById(R.id.carModel);
-        if (input != null) {
+        if (!input.getText().toString().trim().isEmpty()) {
             model = input.getText().toString();
+            findViewById(R.id.modelError).setVisibility(View.GONE);
         } else {
             empty = true;
-            findViewById(R.id.modelError).setVisibility(View.GONE);
+            findViewById(R.id.modelError).setVisibility(View.VISIBLE);
         }
 
         input = findViewById(R.id.carColour);
-        if (input != null) {
+        if (!input.getText().toString().trim().isEmpty()) {
             colour = input.getText().toString();
+            findViewById(R.id.colourError).setVisibility(View.GONE);
         } else {
             empty = true;
-            findViewById(R.id.colourError).setVisibility(View.GONE);
+            findViewById(R.id.colourError).setVisibility(View.VISIBLE);
         }
 
         input = findViewById(R.id.plateNum);
-        if (input != null) {
+        if (!input.getText().toString().trim().isEmpty()) {
             plate = input.getText().toString();
+            findViewById(R.id.plateError).setVisibility(View.GONE);
         } else {
             empty = true;
             findViewById(R.id.plateError).setVisibility(View.VISIBLE);
-        }
-
-        input = findViewById(R.id.renewal);
-        if (input != null) {
-            renewal = input.getText().toString();
-            try {
-                renewalDate = new SimpleDateFormat("dd/MM/yyyy").parse(renewal);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        } else {
-            empty = true;
-            findViewById(R.id.renewalError).setVisibility(View.GONE);
         }
 
         if (empty == false) {
             Car car = new Car(username, plate, model, make, colour, renewalDate);
             database.carDao().addCar(car);
             customer.cars.add(car);
-            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Successfully added car", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(AddCar.this, ManageCars.class);
             intent.putExtra("Customer", customer);

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddCar"></activity>
+        <activity android:name=".CustomerEditCar"></activity>
+        <activity android:name=".AddCar" />
         <activity android:name=".UpdateSubscription" />
         <activity android:name=".UpdateBilling" />
         <activity android:name=".ManageCars" />

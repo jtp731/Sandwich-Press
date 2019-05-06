@@ -41,6 +41,17 @@ public class ManageCars extends AppCompatActivity {
             carList.setAdapter(adapter);
         }
 
+        carList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ManageCars.this, CustomerEditCar.class);
+                intent.putExtra("Customer", customer);
+                intent.putExtra("Car", customer.cars.get(position));
+                intent.putExtra("Position", position);
+                startActivity(intent);
+            }
+        });
+
         addCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

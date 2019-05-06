@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddCar">
+    tools:context=".CustomerEditCar">
 
     <EditText
         android:id="@+id/carMake"
@@ -63,18 +63,18 @@
         app:layout_constraintTop_toBottomOf="@+id/plateError" />
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/editButton"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="99dp"
-        android:onClick="AddCar"
-        android:text="Add Car"
+        android:onClick="EditCar"
+        android:text="Edit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/colourError" />
+        app:layout_constraintTop_toBottomOf="@+id/subscription" />
 
     <TextView
         android:id="@+id/makeError"
@@ -124,4 +124,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carColour" />
 
+    <TextView
+        android:id="@+id/subscription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="99dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colourError" />
+
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="99dp"
+        android:onClick="RemoveCar"
+        android:text="Remove Car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editButton" />
 </android.support.constraint.ConstraintLayout>
