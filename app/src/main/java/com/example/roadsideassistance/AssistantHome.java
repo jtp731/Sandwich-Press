@@ -15,19 +15,24 @@ import android.widget.Button;
 
 public class AssistantHome extends AppCompatActivity {
 
-    private DrawerLayout drawerLayout;
+    RoadsideAssistant roadsideAssistant;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assistant_home);
 
+        roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
+
 
 
        Button availJobs = findViewById(R.id.button_avail_jobs);
         availJobs.setOnClickListener(new View.OnClickListener() {
            public void onClick(View v) {
-                startActivity(new Intent(AssistantHome.this, RoadsideSelectActiveService.class));
+               Intent intent = new Intent(AssistantHome.this, RoadsideSelectActiveService.class);
+                intent.putExtra("Roadside", roadsideAssistant);
+                startActivity(intent);
             }
         });
     }
