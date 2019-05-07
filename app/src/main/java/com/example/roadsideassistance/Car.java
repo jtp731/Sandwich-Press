@@ -29,10 +29,10 @@ public class Car implements Parcelable {
     public String model;
     public String manufacturer;
     public String colour;
-    public String renewalDate;
+    public Date renewalDate;
 
     @Ignore
-    public Car(String plateNum, String model, String manufacturer, String colour, String renewalDate) {
+    public Car(String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
         this.plateNum = plateNum;
         this.model = model;
         this.manufacturer = manufacturer;
@@ -40,7 +40,7 @@ public class Car implements Parcelable {
         this.renewalDate = renewalDate;
     }
 
-    public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, String renewalDate) {
+    public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
         this.customer_username = customer_username;
         this.plateNum = plateNum;
         this.model = model;

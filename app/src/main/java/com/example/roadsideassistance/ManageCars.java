@@ -1,97 +1,73 @@
 package com.example.roadsideassistance;
 
-import android.arch.persistence.room.Database;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class ManageCars extends AppCompatActivity {
 
-    private DrawerLayout drawerLayout;
-    AppDatabase database;
-    String numCars;
-    Car car = null;
+    Customer customer;
+    Button addCar;
+    Button home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_cars);
 
-        Button addCar = findViewById(R.id.newCar);
+        customer = getIntent().getParcelableExtra("Customer");
+        ArrayAdapter<String> carNames;
+        addCar = findViewById(R.id.addCar);
+        home = findViewById(R.id.home);
 
-        database = AppDatabase.getDatabase(getApplicationContext());
-
-        String username = null;
-        Bundle extra = getIntent().getExtras();
-        if (extra != null){
-            username = extra.getString("Username");
+        final ListView carList = findViewById(R.id.car);
+        if (customer.cars.size() > 0){
+            Vector<String> carsAsString = new Vector<>();
+            Car currCar;
+            for (int i = 0; i < customer.cars.size(); i++) {
+                currCar = customer.cars.get(i);
+                carsAsString.add(currCar.manufacturer + " " + currCar.model + "  " + currCar.plateNum);
+            }
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, carsAsString);
+            carList.setAdapter(adapter);
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-
-
-        car = database.carDao().getCars(username);
-        numCars = database.carDao().countCars(username).toString();
-        Toast.makeText(this, numCars, Toast.LENGTH_LONG).show();
-
-        final String finalUsername = username;
-        addCar.setOnClickListener(new View.OnClickListener() {
+        carList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ManageCars.this, AddCar.class);
-                intent.putExtra("Username", finalUsername);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ManageCars.this, CustomerEditCar.class);
+                intent.putExtra("Customer", customer);
+                intent.putExtra("Car", customer.cars.get(position));
+                intent.putExtra("Position", position);
                 startActivity(intent);
             }
         });
 
-        NavigationView navigationView = findViewById(R.id.navigation);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        drawerLayout.closeDrawers();
-                        int id = menuItem.getItemId();
+        addCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManageCars.this, AddCar.class);
+                intent.putExtra("Customer", customer);
+                startActivity(intent);
+            }
+        });
 
-                        if (id == R.id.home) {
-                            Intent intent = new Intent(ManageCars.this, CustomerHome.class);
-                            startActivity(intent);
-                        } else if (id == R.id.userAccount) {
-                            Intent intent = new Intent(ManageCars.this, CustomerAccount.class);
-                            startActivity(intent);
-                        }
-
-                        return true;
-                    }
-                });
-
-        navigationView.getMenu().getItem(1).setChecked(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManageCars.this, CustomerMainPage.class);
+                intent.putExtra("Customer", customer);
+                startActivity(intent);
+            }
+        });
     }
 }
