@@ -16,25 +16,39 @@
             android:id="@+id/button_avail_jobs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="222dp"
+            android:layout_marginEnd="138dp"
+            android:layout_marginBottom="71dp"
             android:text="Available Jobs"
-            tools:layout_editor_absoluteX="137dp"
-            tools:layout_editor_absoluteY="222dp" />
+            app:layout_constraintBottom_toTopOf="@+id/button_current_job"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button_current_job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="71dp"
+            android:layout_marginEnd="147dp"
             android:text="Current Job"
-            tools:layout_editor_absoluteX="147dp"
-            tools:layout_editor_absoluteY="341dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_avail_jobs" />
 
         <Button
             android:id="@+id/button_assistant_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="126dp"
+            android:layout_marginTop="77dp"
+            android:layout_marginEnd="126dp"
             android:text="Account Settings"
-            tools:layout_editor_absoluteX="126dp"
-            tools:layout_editor_absoluteY="466dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_current_job" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v4.widget.DrawerLayout>
