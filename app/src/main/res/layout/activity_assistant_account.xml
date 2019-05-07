@@ -6,35 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".AssistantAccount">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button_assistant_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="154dp"
         android:text="My Details"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="108dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_assistant_pay_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="130dp"
         android:text="Payment History"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="198dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_assistant_details" />
 
     <Button
         android:id="@+id/button_assistant_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="126dp"
         android:text="Account Settings"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="292dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_assistant_pay_history" />
 </android.support.constraint.ConstraintLayout>

@@ -6,70 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".AssistantPriceSettings">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar7"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="70dp"
         android:text="Callout Fee ($):"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="93dp" />
+        app:layout_constraintEnd_toStartOf="@+id/editText3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="40dp"
         android:text="Replace Battery ($):"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="157dp" />
+        app:layout_constraintEnd_toStartOf="@+id/editText4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="86dp"
         android:text="Flat Tyre ($):"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="219dp" />
+        app:layout_constraintEnd_toStartOf="@+id/editText11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <Button
         android:id="@+id/button_save_prices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="389dp"
+        android:layout_marginEnd="183dp"
         android:text="Save"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="640dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText11" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="17dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="80dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="143dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <EditText
         android:id="@+id/editText11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="17dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="206dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 </android.support.constraint.ConstraintLayout>

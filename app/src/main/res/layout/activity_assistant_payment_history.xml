@@ -6,27 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".AssistantPaymentHistory">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar4"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="91dp"
         android:text="(List of jobs, clickable for more info)"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="160dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_generate_payment_report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="130dp"
         android:text="Generate Report"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="567dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 </android.support.constraint.ConstraintLayout>

@@ -35,6 +35,24 @@ public class AssistantHome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button currJob = findViewById(R.id.button_current_job);
+        currJob.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AssistantHome.this, CurrentJob.class);
+                intent.putExtra("Roadside", roadsideAssistant);
+                startActivity(intent);
+            }
+        });
+
+        Button assistAccount = findViewById(R.id.button_assistant_account);
+        assistAccount.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AssistantHome.this, AssistantAccount.class);
+                intent.putExtra("Roadside", roadsideAssistant);
+                startActivity(intent);
+            }
+        });
     }
 
 

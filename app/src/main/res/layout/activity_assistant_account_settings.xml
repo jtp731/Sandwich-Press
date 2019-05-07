@@ -6,52 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".AssistantAccountSettings">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar6"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="88dp"
         android:text="Range (Km):"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="82dp" />
+        app:layout_constraintEnd_toStartOf="@+id/assistant_range_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="170dp"
         android:text="Notifications (?)"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="127dp" />
+        app:layout_constraintEnd_toStartOf="@+id/switch1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="288dp"
-        tools:layout_editor_absoluteY="127dp" />
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/assistant_range_input" />
 
     <EditText
         android:id="@+id/assistant_range_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="17dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="70dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_assistant_price_set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="140dp"
         android:text="Price Settings"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="214dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assistant_range_input" />
 
 </android.support.constraint.ConstraintLayout>

@@ -65,6 +65,7 @@
         <activity android:name=".AvailableJobSelection" />
         <activity android:name=".AvailableJobs" />
         <activity android:name=".RoadsideSelectActiveService" />
+        <activity android:name=".AssistantPriceSettings" />
 
     </application>
 

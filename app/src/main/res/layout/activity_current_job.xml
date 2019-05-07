@@ -6,35 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".CurrentJob">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="175dp"
         android:text="(Job Info)"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="320dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_cancel_job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="152dp"
         android:text="Cancel Job"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="549dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
         android:id="@+id/button_finish_job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="157dp"
         android:text="Finish Job"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="618dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_cancel_job" />
 </android.support.constraint.ConstraintLayout>
