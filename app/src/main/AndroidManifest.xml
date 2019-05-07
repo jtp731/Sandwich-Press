@@ -55,6 +55,19 @@
         <activity
             android:name=".registerRoadside"
             android:label="Register Roadside" />
+
+        <activity android:name=".AssistantAccountSettings" />
+        <activity android:name=".AssistantPaymentReport" />
+        <activity android:name=".AssistantPaymentHistory" />
+        <activity android:name=".AssistantDetails" />
+        <activity android:name=".AssistantAccount" />
+        <activity android:name=".CurrentJob" />
+        <activity android:name=".AvailableJobSelection" />
+        <activity android:name=".AvailableJobs" />
+        <activity android:name=".CustomerAccount" />
+        <activity android:name=".ManagerHome" />
+        <activity android:name=".CustomerHome" />
+       
     </application>
 
 </manifest>
