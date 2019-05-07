@@ -19,7 +19,6 @@ public class Person implements Parcelable {
     @PrimaryKey//This declares the variable username as the primary key of the table
     @NonNull//This makes it so that username cannot be null
     public final String username;
-
     public String password;
     public String phonenumber;
     public String email;
@@ -83,7 +82,7 @@ public class Person implements Parcelable {
     };
 
     //Constructs a person given a parcel
-    private Person(Parcel in) {
+    protected Person(Parcel in) {
         this.username = in.readString();
         this.password = in.readString();
         this.phonenumber = in.readString();
@@ -104,5 +103,18 @@ public class Person implements Parcelable {
         this.lastName = person.lastName;
         this.address = person.address;
         this.bankAccount = person.bankAccount;
+    }
+
+    public String toString() {
+        String string = "Username = " + username +
+                ", Password = " + password +
+                ", phonenumber = " + phonenumber +
+                ", email = " + email +
+                ", firstname = " + firstName +
+                ", lastname = " + lastName
+                + address.toString() + " "
+                + bankAccount.toString();
+
+        return string;
     }
 }

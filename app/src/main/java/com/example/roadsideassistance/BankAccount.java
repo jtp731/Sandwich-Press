@@ -10,14 +10,12 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class BankAccount implements Parcelable {
-    public int cardNum;
+    public long cardNum;
     public Date expiryDate;
-    public float balance;
 
-    public BankAccount(int cardNum, Date expiryDate, float balance) {
+    public BankAccount(long cardNum, Date expiryDate) {
         this.cardNum = cardNum;
         this.expiryDate = expiryDate;
-        this.balance = balance;
     }
 
     public int describeContents() {
@@ -25,9 +23,8 @@ public class BankAccount implements Parcelable {
     }
 
     public void writeToParcel(Parcel out, int flag) {
-        out.writeInt(cardNum);
+        out.writeLong(cardNum);
         out.writeString(DateFormat.getDateInstance().format(expiryDate));
-        out.writeFloat(balance);
     }
 
     public static final Parcelable.Creator<BankAccount> CREATOR = new Parcelable.Creator<BankAccount>() {
@@ -41,13 +38,31 @@ public class BankAccount implements Parcelable {
     };
 
     private BankAccount(Parcel in) {
-        this.cardNum = in.readInt();
+        this.cardNum = in.readLong();
         try {
             this.expiryDate = DateFormat.getDateInstance().parse(in.readString());
         }
         catch (java.text.ParseException e) {
 
         }
-        this.balance = in.readFloat();
+    }
+
+    public String toString() {
+        return "cardnum = " + cardNum + ", expirydate = " + expiryDate.toString();
+    }
+
+    public static boolean tryPay() {
+        if(Math.random() > 0.5)
+            return true;
+        return false;
+    }
+
+    public static boolean pay(RoadsideAssistant roadsideAssistant, Customer customer, String carPlateNum, float cost) {
+        boolean successful = true;
+        float pay = cost;//Change this based on pay to cost conversion;
+        successful = roadsideAssistant.addPay(pay);
+        if(!customer.carCoveredBySubscription(carPlateNum))
+            successful = customer.removeCost(cost);
+        return successful;
     }
 }

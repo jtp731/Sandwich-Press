@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,8 +34,25 @@ public class registerBankAccount extends AppCompatActivity {
 
     public void onClick(View view) {
         if(verify()) {
+            EditText input = findViewById(R.id.newBankNum);
+            long cardNum = Long.parseLong(input.getText().toString().trim());
+
+            input = findViewById(R.id.newExpiryDateMonth);
+            int month = Integer.parseInt(input.getText().toString().trim());
+
+            input = findViewById(R.id.newExpiryDateYear);
+            int year = Integer.parseInt(input.getText().toString().trim());
+
+            Date currDate = new Date();
+            int currYear = currDate.getYear() + 1900;
+            currYear /= 100;
+            currYear *= 100;
+            year = (currYear + year) - 1900;
+
+            Date expiryDate = new Date(year, month-1, 1);
+            person.bankAccount = new BankAccount(cardNum, expiryDate);
             if (currentPersonType == CUSTOMER) {
-                database.personDao().addPerson(person);
+                database.userDao().addCustomer(new Customer(person));
                 //return to login
                 finish();
             }
@@ -46,6 +62,7 @@ public class registerBankAccount extends AppCompatActivity {
                 Intent roadsideIntent = new Intent(registerBankAccount.this, registerRoadside.class);
                 roadsideIntent.putExtra("Person", person);
                 startActivity(roadsideIntent);
+                finish();
             }
         }
     }
@@ -72,13 +89,17 @@ public class registerBankAccount extends AppCompatActivity {
         errorExpiryDate.setVisibility(View.GONE);
 
         String bankNumPattern = "^[0-9]{16}$";
-        String expiryDatePattern = "^[0-9]{1,2}/[0-9]{1,2}$";
+        String expiryDateMonthPattern = "^[0-1][0-9]$";
+        String expiryDateYearPattern = "^[0-9]{2}$";
 
         EditText input = findViewById(R.id.newBankNum);
         String bankNum = input.getText().toString().trim();
 
-        input = findViewById(R.id.newExpiryDate);
-        String expiryDate = input.getText().toString().trim();
+        input = findViewById(R.id.newExpiryDateMonth);
+        String expiryDateMonth = input.getText().toString().trim();
+
+        input = findViewById(R.id.newExpiryDateYear);
+        String expiryDateYear = input.getText().toString().trim();
 
         Pattern pattern = Pattern.compile(bankNumPattern);
         Matcher matcher = pattern.matcher(bankNum);
@@ -88,8 +109,16 @@ public class registerBankAccount extends AppCompatActivity {
             errorCardNum.setVisibility(View.VISIBLE);
         }
 
-        pattern = Pattern.compile(expiryDatePattern);
-        matcher = pattern.matcher(expiryDate);
+        pattern = Pattern.compile(expiryDateMonthPattern);
+        matcher = pattern.matcher(expiryDateMonth);
+        if (!matcher.matches()) {
+            good = false;
+            errorExpiryDate.setText("Invalid Date");
+            errorExpiryDate.setVisibility(View.VISIBLE);
+        }
+
+        pattern = Pattern.compile(expiryDateYearPattern);
+        matcher = pattern.matcher(expiryDateYear);
         if (!matcher.matches()) {
             good = false;
             errorExpiryDate.setText("Invalid Date");

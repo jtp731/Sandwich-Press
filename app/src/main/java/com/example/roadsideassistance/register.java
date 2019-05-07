@@ -86,8 +86,14 @@ public class register extends AppCompatActivity {
             //Toast.makeText(this, "email invalid", Toast.LENGTH_LONG).show();
             canCreateUser = false;
         }
+        else if(emailTaken(email)) {
+            error.setText("Email Already Used");
+            error.setVisibility(View.VISIBLE);
+
+            canCreateUser = false;
+        }
         else {
-            error.setVisibility(View.GONE);
+                error.setVisibility(View.GONE);
         }
 
         error = findViewById(R.id.newPhoneError);
@@ -121,6 +127,10 @@ public class register extends AppCompatActivity {
         return matcher.matches();
     }
 
+    boolean emailTaken(String email) {
+        return database.personDao().emailTaken(email);
+    }
+
     boolean validPhoneNumber(String phonenumber) {
         String patternString = "^[0-9]{8}$";
         Pattern pattern = Pattern.compile(patternString);
@@ -129,9 +139,6 @@ public class register extends AppCompatActivity {
     }
 
     boolean userExists(String username) {
-        Person person = database.personDao().getUser(username);
-        if(person != null)
-            return true;
-        return false;
+        return database.personDao().usernameTaken(username);
     }
 }

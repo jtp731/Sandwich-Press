@@ -2,7 +2,10 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(inheritSuperIndices = true)
@@ -16,15 +19,105 @@ public class RoadsideAssistant extends Person{
     @Ignore
     public List<Service> services;
 
+    @Ignore
     public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, boolean canTow, float rating) {
         super(username, password, phonenumber, email, firstName, lastName);
         this.canTow = canTow;
         this.rating = rating;
+        reviews = new ArrayList<>();
+        services = new ArrayList<>();
     }
 
     @Ignore
     public RoadsideAssistant(Person person, boolean canTow) {
         super(person);
         this.canTow = canTow;
+    }
+
+    @Ignore
+    public boolean addPay(float pay) {
+        return bankAccount.tryPay();
+    }
+
+    public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount, boolean canTow, float rating) {
+        super(username, password, phonenumber, email, firstName, lastName, address, bankAccount);
+        this.canTow = canTow;
+        this.rating = rating;
+
+    }
+
+    public String toString() {
+        String string = super.toString() + ", CanTow = " + canTow + ", Rating = " + rating;
+        return string;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        super.writeToParcel(out, flags);
+        out.writeInt(canTow ? 1:0);
+        out.writeFloat(rating);
+        out.writeList(services);
+        out.writeList(reviews);
+    }
+
+    public static final Parcelable.Creator<RoadsideAssistant> CREATOR = new Parcelable.Creator<RoadsideAssistant>() {
+        public RoadsideAssistant createFromParcel(Parcel in) {
+            return new RoadsideAssistant(in);
+        }
+
+        public RoadsideAssistant[] newArray(int size) {
+            return new RoadsideAssistant[size];
+        }
+    };
+
+    private RoadsideAssistant(Parcel in) {
+        super(in);
+        this.canTow = in.readInt() == 1;
+        this.rating = in.readFloat();
+        services = new ArrayList<>();
+        in.readList(services, Service.class.getClassLoader());
+        reviews = new ArrayList<>();
+        in.readList(reviews, Review.class.getClassLoader());
+    }
+
+    public ArrayList<Service> getActiveServices() {
+        ArrayList<Service> activeServices = null;
+        if(services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).status == 1)
+                    activeServices.add(services.get(i));
+            }
+        }
+        return activeServices;
+    }
+
+    public void removeService(Service service) {
+        if(services != null && services.size() > 0) {
+            services.remove(service);
+        }
+    }
+
+    public void updateService(Service service, int status) {
+        if(services != null && services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).customer_username.equals(service.customer_username) && services.get(i).car_plateNum.equals(service.car_plateNum) && services.get(i).time.equals(service.time))
+                    services.get(i).status = status;
+            }
+        }
+    }
+
+    public ArrayList<Service> getCurrentOffers() {
+        ArrayList<Service> offers = null;
+        if(services != null && services.size() > 0) {
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).status == 0)
+                    offers.add(services.get(i));
+            }
+        }
+        return offers;
     }
 }

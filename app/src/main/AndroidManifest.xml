@@ -2,54 +2,55 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.roadsideassistance">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".AssistantPriceSettings" />
-        <activity android:name=".AssistantAccountSettings" />
-        <activity android:name=".AssistantPaymentReport" />
-        <activity android:name=".AssistantPaymentHistory" />
-        <activity android:name=".AssistantDetails" />
-        <activity android:name=".AssistantAccount" />
-        <activity android:name=".CurrentJob" />
-        <activity android:name=".AvailableJobSelection" />
-        <activity android:name=".AvailableJobs" />
-        <activity
-            android:name=".AddCar"
-            android:label="@string/title_activity_add_car"
-            android:theme="@style/NoActionBar" />
-        <activity android:name=".UpdateBilling" />
-        <activity android:name=".UpdateSubscription" />
-        <activity android:name=".ManageCars" />
-        <activity android:name=".CustomerAccount" />
-        <activity android:name=".AssistantHome" />
-        <activity android:name=".ManagerHome" />
-        <activity android:name=".CustomerHome" />
-        <activity
-            android:name=".register"
+        android:theme="@style/AppTheme">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA-in11Fmc0iIfqij3F4oh94mqRx_VUamM"/>
+        <activity android:name=".register"
             android:label="Register"
-            android:parentActivityName=".SignIn" />
-        <activity
-            android:name=".registerAddress"
+            android:parentActivityName=".SignIn">
+        </activity>
+        <activity android:name=".registerAddress"
             android:label="Register Address"
-            android:parentActivityName=".register" />
-        <activity
-            android:name=".registerBankAccount"
+            android:parentActivityName=".register">
+        </activity>
+        <activity android:name=".registerBankAccount"
             android:label="Register Bank Account"
-            android:parentActivityName=".registerAddress" />
+            android:parentActivityName=".registerAddress">
+        </activity>
         <activity android:name=".SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CustomerServiceRequest">
+
+        </activity>
+        <activity android:name=".RoadsideSelectServiceCost"
+            android:label="Set Cost">
+        </activity>
+        <activity android:name=".RoadsideServiceSelect"
+            android:label="Service Select">
+        </activity>
+        <activity android:name=".registerRoadside"
+            android:label="Register Roadside">
+
+        </activity>
+        <activity android:name=".RoadsideMainPage"></activity>
+        <activity android:name=".RoadsideSelectOffer"></activity>
+        <activity android:name=".RoadsideSelectedActiveService"></activity>
+        <activity android:name=".RoadsideSelectActiveService"></activity>
+        <activity android:name=".CustomerMainPage"></activity>
+        <activity android:name=".CustomerServiceActive"></activity>
+        <activity android:name=".CustomerServiceFinishedSelect"></activity>
+        <activity android:name=".CustomerServiceAcceptOrCancel"></activity>
     </application>
 
 </manifest>
