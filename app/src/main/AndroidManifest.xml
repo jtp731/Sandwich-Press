@@ -64,9 +64,6 @@
         <activity android:name=".CurrentJob" />
         <activity android:name=".AvailableJobSelection" />
         <activity android:name=".AvailableJobs" />
-        <activity android:name=".CustomerAccount" />
-        <activity android:name=".ManagerHome" />
-        <activity android:name=".CustomerHome" />
         <activity android:name=".RoadsideSelectActiveService" />
 
     </application>
