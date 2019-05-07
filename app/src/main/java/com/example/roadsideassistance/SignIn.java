@@ -57,7 +57,7 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(this, "Bad password email combo", Toast.LENGTH_LONG).show();
         else {
             person = database.personDao().getUserByEmail(email);
-            Intent intent = new Intent(SignIn.this, CustomerHome.class);
+            Intent intent = new Intent(SignIn.this, AssistantHome2.class);
             intent.putExtra("Username", person.username);
             startActivity(intent);
             /*8

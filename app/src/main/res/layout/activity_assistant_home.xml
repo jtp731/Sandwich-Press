@@ -12,14 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/button_avail_jobs"
             android:layout_width="wrap_content"
@@ -44,13 +36,5 @@
             tools:layout_editor_absoluteX="126dp"
             tools:layout_editor_absoluteY="466dp" />
     </android.support.constraint.ConstraintLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/assistantmenu"
-        app:headerLayout="@layout/nav_header"/>
 
 </android.support.v4.widget.DrawerLayout>
