@@ -27,7 +27,7 @@ public class AssistantHome extends AppCompatActivity {
        Button availJobs = findViewById(R.id.button_avail_jobs);
         availJobs.setOnClickListener(new View.OnClickListener() {
            public void onClick(View v) {
-                startActivity(new Intent(AssistantHome.this, AvailableJobs.class));
+                startActivity(new Intent(AssistantHome.this, RoadsideSelectActiveService.class));
             }
         });
     }

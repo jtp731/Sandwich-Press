@@ -67,7 +67,8 @@
         <activity android:name=".CustomerAccount" />
         <activity android:name=".ManagerHome" />
         <activity android:name=".CustomerHome" />
-       
+        <activity android:name=".RoadsideSelectActiveService" />
+
     </application>
 
 </manifest>
