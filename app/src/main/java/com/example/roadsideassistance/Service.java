@@ -33,12 +33,17 @@ import java.util.Date;
         indices = {@Index(value = {"customer_username", "car_plateNum", "time"}), @Index(value = {"roadside_assistant_username"}), @Index(value = "car_plateNum")}
 )
 public class Service implements Parcelable {
+        //Filter Flags
+        public static final int FLAT_TYRE = 0b1;
+
         public float cost;
         @NonNull
         public Date time;
         public double latitude;
         public double longitude;
         public int status;
+        public int filter;
+        public String description;
 
         @NonNull
         public String roadside_assistant_username;
