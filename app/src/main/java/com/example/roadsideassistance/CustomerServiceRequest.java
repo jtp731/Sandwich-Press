@@ -84,15 +84,19 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                         currLocation.getLongitude(),
                                         new Date(),
                                         0f,
-                                        0);
-                                if(database.serviceDao().serviceExists(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)){
+                                        0,
+                                        (byte)0,
+                                        "");
+
+                                //check if a service like this exists
+                                if (database.serviceDao().serviceActive(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)) {
                                     Toast.makeText(getContext(), "You already have a service for this car", Toast.LENGTH_LONG).show();
-                                }
-                                else {
+                                } else {
                                     database.serviceDao().addService(newService);
                                     customer.services.add(newService);
                                     finish();
                                 }
+
                             }
                         }
                     }

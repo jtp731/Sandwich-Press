@@ -49,6 +49,10 @@ public interface ServiceDao {
     @Query("select case when exists(select * from service where roadside_assistant_username = :roadsideUsername and customer_username = :customerUsername and car_plateNum = :plateNum and time = :time) then 1 else 0 end")
     boolean serviceExists(String roadsideUsername, String customerUsername, String plateNum, Date time);
 
+    @Query("select case when exists(select * from service where roadside_assistant_username = :roadsideUsername and customer_username = :customerUsername and car_plateNum = :plateNum " +
+            "and (time = :time or status = 0 or status = 1 or status = 2)) then 1 else 0 end")
+    boolean serviceActive(String roadsideUsername, String customerUsername, String plateNum, Date time);
+
     @Delete
     void deleteService(Service service);
 }
