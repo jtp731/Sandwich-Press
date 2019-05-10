@@ -164,5 +164,19 @@ public class Customer extends Person{
     public boolean removeCost(float cost) {
         return bankAccount.tryPay();
     }
+
+    @Ignore
+    public void addReview(Review review) {
+        boolean hadPreviousReview = false;
+        for (int i = 0; i < reviews.size(); i++) {
+            if(reviews.get(i).roadside_assistant_username.equals(review.roadside_assistant_username)) {
+                hadPreviousReview = true;
+                reviews.get(i).rating = review.rating;
+                reviews.get(i).reviewText = review.reviewText;
+            }
+        }
+        if(!hadPreviousReview)
+            reviews.add(review);
+    }
 }
 

@@ -73,7 +73,7 @@ public class registerRoadside extends AppCompatActivity {
         companyError.setVisibility(View.GONE);
         abnError.setVisibility(View.GONE);
 
-        String licencePattern = "^MV(TC)|(RL)[0-9]{5}$";
+        String licencePattern = "^(MV)((TC)|(RL))[0-9]{5}$";
         String abnPattern = "^[0-9]{11}$";
 
         TextView input = findViewById(R.id.newLicenceNumber);

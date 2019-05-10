@@ -51,7 +51,11 @@ public class CustomerServiceFinish extends AppCompatActivity {
                 database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 4);
             else
                 database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 3);
-            finish();
+
+            Intent intent = new Intent(this, CustomerLeaveReview.class);
+            intent.putExtra("Customer", customer);
+            intent.putExtra("Service", selectedService);
+            startActivityForResult(intent, 1);
         }
         else
             Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show();
@@ -63,5 +67,13 @@ public class CustomerServiceFinish extends AppCompatActivity {
         data.putExtra("Customer", customer);
         setResult(RESULT_OK, data);
         super.finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            customer = data.getParcelableExtra("Customer");
+            //finish();
+        }
     }
 }

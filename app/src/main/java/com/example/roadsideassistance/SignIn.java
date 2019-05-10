@@ -24,7 +24,7 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         database = AppDatabase.getDatabase(getApplicationContext());
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
-            database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, false, 0));
+            database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
         }
 
         //For deleting the database and recreating when the database schema has been changed
