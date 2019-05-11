@@ -15,16 +15,12 @@ public class CustomerMainPage extends AppCompatActivity {
         setContentView(R.layout.activity_customer_main_page);
 
         customer = getIntent().getParcelableExtra("Customer");
-
-        //Toast.makeText(this, "" + roadsideAssistant.services.size(), Toast.LENGTH_SHORT).show();
     }
 
     public void toNewService(View view) {
         Intent intent = new Intent(this, CustomerServiceRequest.class);
         intent.putExtra("Customer", customer);
         startActivityForResult(intent, 1);
-
-        Toast.makeText(this, "" + customer.services.size(), Toast.LENGTH_LONG).show();
     }
 
     public void toCustServiceOffers(View view) {
@@ -39,10 +35,21 @@ public class CustomerMainPage extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void toManageCars(View view) {
+        Intent intent = new Intent(this, CustomerManageCars.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
                 customer = data.getParcelableExtra("Customer");
         }
+    }
+
+    public void logOut(View view){
+        Intent intent = new Intent(CustomerMainPage.this, SignIn.class);
+        startActivity(intent);
     }
 }
