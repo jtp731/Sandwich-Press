@@ -43,6 +43,7 @@ public class CustomerLeaveReview extends AppCompatActivity {
         Review review = new Review(service.roadside_assistant_username, service.customer_username, rating, reviewDescription);
 
         database.reviewDao().addReview(review);
+        database.roadsideAssistantDao().updateRating(service.roadside_assistant_username);
         customer.addReview(review);
 
         finish();

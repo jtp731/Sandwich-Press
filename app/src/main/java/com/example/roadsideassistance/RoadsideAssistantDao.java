@@ -26,4 +26,7 @@ public interface RoadsideAssistantDao {
 
     @Query("select case when exists(select * from roadsideassistant where username = '') then 1 else 0 end")
     boolean baseRoadsideExists();
+
+    @Query("update roadsideassistant set rating = (select AVG(rating) from review where roadside_assistant_username = :username) where username = :username")
+    void updateRating(String username);
 }
