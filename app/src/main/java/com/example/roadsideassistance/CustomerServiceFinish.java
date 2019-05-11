@@ -45,7 +45,7 @@ public class CustomerServiceFinish extends AppCompatActivity {
     }
 
     public void finishService(View view) {
-        if(customer.bankAccount.pay(database.roadsideAssistantDao().getRoadsideAssistant(selectedService.roadside_assistant_username), customer, selectedService.car_plateNum, selectedService.cost)) {
+        if(customer.bankAccount.pay(database.roadsideAssistantDao().getRoadsideAssistantByUsername(selectedService.roadside_assistant_username), customer, selectedService.car_plateNum, selectedService.cost)) {
             customer.finishService(selectedService);
             if(customer.carCoveredBySubscription(selectedService.car_plateNum))
                 database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 4);

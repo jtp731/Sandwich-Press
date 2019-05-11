@@ -27,6 +27,8 @@ public class SignIn extends AppCompatActivity {
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
         }
 
+        TestData.createTestData(this, 10, 10, 3, 10);
+
         //For deleting the database and recreating when the database schema has been changed
         //this.deleteDatabase("appdatabase");
         //database = AppDatabase.getDatabase(getApplicationContext());
@@ -78,7 +80,7 @@ public class SignIn extends AppCompatActivity {
             */
             if(database.roadsideAssistantDao().roadsideAssistantExists(email)) {
                 //Toast.makeText(this, "Roadside exists", Toast.LENGTH_LONG).show();
-                RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistant(email);
+                RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistantByEmail(email);
                 //System.out.print(roadsideAssistant.toString());
                 //Toast.makeText(this, roadsideAssistant.toString(), Toast.LENGTH_LONG).show();
                 roadsideAssistant.services = database.roadsideAssistantDao().getAllRoadsideServices(roadsideAssistant.username);

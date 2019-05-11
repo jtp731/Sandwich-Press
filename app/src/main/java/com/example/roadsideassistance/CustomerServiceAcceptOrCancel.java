@@ -35,7 +35,7 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
             for(int i = 0; i < serviceOffers.size(); i++) {
                 final int currIndex = i;
                 final TextView serviceOffer = new TextView(this);
-                RoadsideAssistant offerer = database.roadsideAssistantDao().getRoadsideAssistant(serviceOffers.get(i).roadside_assistant_username);
+                RoadsideAssistant offerer = database.roadsideAssistantDao().getRoadsideAssistantByUsername(serviceOffers.get(i).roadside_assistant_username);
                 String text = "Username: " + offerer.username + " Rating: " + offerer.rating;
                 if (!coveredBySubscription)
                     text += " Cost: " + serviceOffers.get(i).cost;
@@ -70,7 +70,7 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
     }
 
     public void acceptOffer(View view) {
-        if (selectedOfferIndex > 0) {
+        if (selectedOfferIndex >= 0) {
             Service service = serviceOffers.get(selectedOfferIndex);
             //Update customer list
             customer.updateServiceToAccepted(service);

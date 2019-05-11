@@ -53,10 +53,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
 
         //get Roadside assistant
         //roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
-        roadsideAssistant = new RoadsideAssistant("road1", "123", "55554444", "road1@email", "road", "one", "MVTC12345", "Roadside Company", 11111222223L, true, 0);
+        //roadsideAssistant = new RoadsideAssistant("road1", "123", "55554444", "road1@email", "road", "one", "MVTC12345", "Roadside Company", 11111222223L, true, 0);
 
         //delete database before use
-        this.deleteDatabase("appdatabase");
+        //this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
 
         //Test services
@@ -207,6 +207,15 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
             roadsideAssistant = data.getParcelableExtra("Roadside");
+            finish();
         }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Roadside", roadsideAssistant);
+        setResult(RESULT_OK);
+        super.finish();
     }
 }

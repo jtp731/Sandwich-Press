@@ -77,7 +77,6 @@ public class Service implements Parcelable {
             this.description = description;
         }
 
-        @Ignore
         public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, Date time, float cost, int status, byte filter, String description) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
@@ -91,6 +90,7 @@ public class Service implements Parcelable {
             this.description = description;
         }
 
+        @Ignore
         public Service(String customer_username, String car_plateNum, double latitude, double longitude, byte filter, String description) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
@@ -99,6 +99,20 @@ public class Service implements Parcelable {
             this.filter = filter;
             this.description = description;
             time = new Date();
+            cost = 0;
+            roadside_assistant_username = "";
+            status = 0;
+        }
+
+        @Ignore
+        public Service(String customer_username, String car_plateNum, double latitude, double longitude, Date date, byte filter, String description) {
+            this.customer_username = customer_username;
+            this.car_plateNum = car_plateNum;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.filter = filter;
+            this.description = description;
+            this.time = date;
             cost = 0;
             roadside_assistant_username = "";
             status = 0;

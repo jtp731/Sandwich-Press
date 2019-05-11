@@ -13,7 +13,10 @@ public interface RoadsideAssistantDao {
     boolean roadsideAssistantExists(String email);
 
     @Query("select * from roadsideassistant where email = :email")
-    RoadsideAssistant getRoadsideAssistant(String email);
+    RoadsideAssistant getRoadsideAssistantByEmail(String email);
+
+    @Query("select * from roadsideassistant where username = :username")
+    RoadsideAssistant getRoadsideAssistantByUsername(String username);
 
     @Query("select * from service where roadside_assistant_username = :username")
     List<Service> getAllRoadsideServices(String username);
