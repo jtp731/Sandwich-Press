@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 public class CustomerEditCar extends AppCompatActivity {
 
@@ -47,7 +50,18 @@ public class CustomerEditCar extends AppCompatActivity {
         model.setText(car.model);
         plateNum.setText(car.plateNum);
         colour.setText(car.colour);
-        sub.setText(car.renewalDate.toString());
+
+        String dateOutput = "";
+        Date today = new Date();
+        if (car.renewalDate.before(today)){
+            dateOutput = "Not subscribed";
+        } else if (car.renewalDate.after(today)){
+            dateOutput = DateFormat.format("dd-MMM-yyyy", car.renewalDate).toString();
+        }
+        sub.setText(dateOutput);
+
+        String date = DateFormat.format("dd-MM-yyyy", car.renewalDate).toString();
+        sub.setText(date);
     }
 
     public void EditCar(View view) {

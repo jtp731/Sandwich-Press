@@ -25,9 +25,8 @@ public class SignIn extends AppCompatActivity {
         database = AppDatabase.getDatabase(getApplicationContext());
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
+            TestData.createTestData(this, 10, 10, 3, 10);
         }
-
-        //TestData.createTestData(this, 10, 10, 3, 10);
 
         //For deleting the database and recreating when the database schema has been changed
         //this.deleteDatabase("appdatabase");

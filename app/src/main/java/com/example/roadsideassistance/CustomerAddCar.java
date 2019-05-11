@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,10 @@ public class CustomerAddCar extends AppCompatActivity {
 
     Customer customer;
     AppDatabase database;
+    RadioButton free;
+    RadioButton oneMonth;
+    RadioButton sixMonths;
+    RadioButton twelveMonths;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,28 @@ public class CustomerAddCar extends AppCompatActivity {
         } else {
             empty = true;
             findViewById(R.id.plateError).setVisibility(View.VISIBLE);
+        }
+
+        free = findViewById(R.id.radioFree);
+        oneMonth = findViewById(R.id.radioOne);
+        sixMonths = findViewById(R.id.radioSix);
+        twelveMonths = findViewById(R.id.radioTwelve);
+        Calendar calendar = Calendar.getInstance();
+
+        if (free.isChecked()){
+            renewalDate = new Date(0);
+        } else if (oneMonth.isChecked()){
+            calendar.setTime(new Date());
+            calendar.add(Calendar.MONTH, 1);
+            renewalDate = calendar.getTime();
+        } else if (sixMonths.isChecked()){
+            calendar.setTime(new Date());
+            calendar.add(Calendar.MONTH, 6);
+            renewalDate = calendar.getTime();
+        } else if (twelveMonths.isChecked()){
+            calendar.setTime(new Date());
+            calendar.add(Calendar.MONTH, 12);
+            renewalDate = calendar.getTime();
         }
 
         if (empty == false) {
