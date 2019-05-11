@@ -80,7 +80,7 @@ public class Customer extends Person{
     public ArrayList<Service> getServiceRequests() {
         ArrayList<Service> serviceRequests = new ArrayList<>();
         for(int i = 0; i < services.size(); i++) {
-            if (services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 0)
+            if (services.get(i).roadside_assistant_username.equals("") && services.get(i).status == Service.OPEN)
                 serviceRequests.add(services.get(i));
         }
         return serviceRequests;
@@ -90,7 +90,7 @@ public class Customer extends Person{
     public ArrayList<Service> getActiveServices() {
         ArrayList<Service> activeServices = new ArrayList<>();
         for(int i = 0; i < services.size(); i++) {
-            if(!services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 1)
+            if(!services.get(i).roadside_assistant_username.equals("") && services.get(i).status == Service.ACCEPTED)
                 activeServices.add(services.get(i));
         }
         return activeServices;
@@ -100,7 +100,7 @@ public class Customer extends Person{
     public ArrayList<Service> getFinishedServices() {
         ArrayList<Service> finishedServices = new ArrayList<>();
         for(int i = 0; i < services.size(); i++) {
-            if(!services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 2)
+            if(!services.get(i).roadside_assistant_username.equals("") && services.get(i).status == Service.FINISHED)
                 finishedServices.add(services.get(i));
         }
         return finishedServices;
@@ -126,7 +126,7 @@ public class Customer extends Person{
                 Service currService = services.get(i);
                 if ((currService.roadside_assistant_username.equals("") || currService.roadside_assistant_username.equals(service.roadside_assistant_username)) &&
                     currService.car_plateNum.equals(service.car_plateNum) && currService.time.equals(service.time))
-                    services.get(i).status = 1;
+                    services.get(i).status = Service.ACCEPTED;
             }
         }
     }
@@ -140,9 +140,9 @@ public class Customer extends Person{
                 if(currService.car_plateNum.equals(service.car_plateNum) && currService.time.equals(service.time)) {
                     if(currService.roadside_assistant_username.equals(service.roadside_assistant_username)) {
                         if (this.carCoveredBySubscription(service.car_plateNum))
-                            services.get(i).status = 4;
+                            services.get(i).status = Service.PAYED_WITH_SUB;
                         else
-                            services.get(i).status = 3;
+                            services.get(i).status = Service.PAYED_WITH_CARD;
                     }
                     else
                         servicesToDelete.add(currService);

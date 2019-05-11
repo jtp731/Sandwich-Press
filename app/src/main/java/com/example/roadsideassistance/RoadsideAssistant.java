@@ -108,7 +108,7 @@ public class RoadsideAssistant extends Person{
         ArrayList<Service> activeServices = new ArrayList<>();
         if(services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
-                if(services.get(i).status == 1)
+                if(services.get(i).status == Service.ACCEPTED)
                     activeServices.add(services.get(i));
             }
         }
@@ -137,7 +137,7 @@ public class RoadsideAssistant extends Person{
         ArrayList<Service> offers = new ArrayList<>();
         if(services != null && services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
-                if(services.get(i).status == 0)
+                if(services.get(i).status == Service.OPEN)
                     offers.add(services.get(i));
             }
         }

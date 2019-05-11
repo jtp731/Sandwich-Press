@@ -47,6 +47,18 @@ public class Service implements Parcelable {
         @Ignore
         public static final byte CAR_STUCK = 0b01000000;
 
+        //Service Status Constants
+        @Ignore
+        public static final int OPEN = 0;
+        @Ignore
+        public static final int ACCEPTED = 1;
+        @Ignore
+        public static final int FINISHED = 2;
+        @Ignore
+        public static final int PAYED_WITH_CARD = 3;
+        @Ignore
+        public static final int PAYED_WITH_SUB = 4;
+
         public float cost;
         @NonNull
         public Date time;

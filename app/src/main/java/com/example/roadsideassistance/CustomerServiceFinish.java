@@ -48,9 +48,9 @@ public class CustomerServiceFinish extends AppCompatActivity {
         if(customer.bankAccount.pay(database.roadsideAssistantDao().getRoadsideAssistantByUsername(selectedService.roadside_assistant_username), customer, selectedService.car_plateNum, selectedService.cost)) {
             customer.finishService(selectedService);
             if(customer.carCoveredBySubscription(selectedService.car_plateNum))
-                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 4);
+                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, Service.PAYED_WITH_SUB);
             else
-                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 3);
+                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, Service.PAYED_WITH_CARD);
 
             Intent intent = new Intent(this, CustomerLeaveReview.class);
             intent.putExtra("Customer", customer);
