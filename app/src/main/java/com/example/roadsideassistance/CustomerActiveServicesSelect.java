@@ -7,47 +7,24 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class CustomerServiceActive extends AppCompatActivity {
-    AppDatabase database;
+public class CustomerActiveServicesSelect extends AppCompatActivity {
     Customer customer;
+    AppDatabase database;
     int selectedServiceIndex = -1;
-    List<Service> activeServices;
+    ArrayList<Service> activeServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_service_active);
+        setContentView(R.layout.activity_customer_service_active_select);
+
+        database = AppDatabase.getDatabase(this);
 
         customer = getIntent().getParcelableExtra("Customer");
+
         createList();
-    }
-
-    public void selectServiceButton(View view) {
-        if(selectedServiceIndex >= 0) {
-            Intent intent = new Intent(this, CustomerServiceAcceptOrCancel.class);
-            intent.putExtra("Customer", customer);
-            intent.putExtra("Service", activeServices.get(selectedServiceIndex));
-            startActivityForResult(intent, 1);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK && requestCode == 1) {
-            customer = data.getParcelableExtra("Customer");
-            createList();
-            //finish();
-        }
-    }
-
-    @Override
-    public void finish() {
-        Intent data = new Intent();
-        data.putExtra("Customer", customer);
-        setResult(RESULT_OK, data);
-        super.finish();
     }
 
     private void createList() {
@@ -80,5 +57,31 @@ public class CustomerServiceActive extends AppCompatActivity {
             servicesLayout.addView(noServicesText);
             findViewById(R.id.customerSelectActiveServiceButton).setVisibility(View.GONE);
         }
+    }
+
+    public void selectActiveServiceButton(View view) {
+        if(selectedServiceIndex >= 0) {
+            Intent intent = new Intent(this, CustomerSelectedActiveService.class);
+            intent.putExtra("Customer", customer);
+            intent.putExtra("Service", activeServices.get(selectedServiceIndex));
+            startActivityForResult(intent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            customer = data.getParcelableExtra("Customer");
+            createList();
+            //finish();
+        }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

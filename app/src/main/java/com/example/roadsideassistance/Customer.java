@@ -77,10 +77,20 @@ public class Customer extends Person{
     }
 
     @Ignore
+    public ArrayList<Service> getServiceRequests() {
+        ArrayList<Service> serviceRequests = new ArrayList<>();
+        for(int i = 0; i < services.size(); i++) {
+            if (services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 0)
+                serviceRequests.add(services.get(i));
+        }
+        return serviceRequests;
+    }
+
+    @Ignore
     public ArrayList<Service> getActiveServices() {
         ArrayList<Service> activeServices = new ArrayList<>();
         for(int i = 0; i < services.size(); i++) {
-            if (services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 0)
+            if(!services.get(i).roadside_assistant_username.equals("") && services.get(i).status == 1)
                 activeServices.add(services.get(i));
         }
         return activeServices;

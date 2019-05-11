@@ -48,10 +48,12 @@
         <activity android:name=".RoadsideSelectedActiveService"></activity>
         <activity android:name=".RoadsideSelectActiveService"></activity>
         <activity android:name=".CustomerMainPage"></activity>
-        <activity android:name=".CustomerServiceActive"></activity>
+        <activity android:name=".CustomerServiceOffers"></activity>
         <activity android:name=".CustomerServiceFinishedSelect"></activity>
         <activity android:name=".CustomerServiceAcceptOrCancel"></activity>
         <activity android:name=".RoadsideSelectedOffer"></activity>
+        <activity android:name=".CustomerActiveServicesSelect"></activity>
+        <activity android:name=".CustomerSelectedActiveService"></activity>
     </application>
 
 </manifest>

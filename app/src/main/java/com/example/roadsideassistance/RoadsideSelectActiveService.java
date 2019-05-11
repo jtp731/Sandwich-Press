@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,7 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
         setContentView(R.layout.activity_roadside_select_active);
 
         roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+        createList();
     }
 
     private void createList() {
@@ -28,7 +28,7 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
 
         final LinearLayout activeServicesLayout = findViewById(R.id.roadsideActiveSelectLayout);
         activeServicesLayout.removeViews(0, activeServicesLayout.getChildCount());
-        //Toast.makeText(this, "" + activeServices.size(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "" + serviceOffers.size(), Toast.LENGTH_LONG).show();
         if (activeServices != null && activeServices.size() > 0) {
             for (int i = 0; i < activeServices.size(); i++) {
                 final int currIndex = i;
