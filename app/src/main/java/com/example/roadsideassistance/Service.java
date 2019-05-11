@@ -173,4 +173,16 @@ public class Service implements Parcelable {
     void setFlag(byte flag) {
         this.filter = (byte)(this.filter | flag);
     }
+
+    public boolean equals(Service service) {
+        if(
+                this.roadside_assistant_username.equals(service.roadside_assistant_username)
+                && this.customer_username.equals(service.customer_username)
+                && this.car_plateNum.equals(service.car_plateNum)
+                && this.time.equals(service.time)
+        )
+            return true;
+        return false;
+    }
+
 }

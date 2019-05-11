@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class RoadsideSelectOffer extends AppCompatActivity {
 
     private void createList() {
         offerList = roadsideAssistant.getCurrentOffers();
+        Toast.makeText(this, "" + offerList.size(), Toast.LENGTH_LONG).show();
 
         final LinearLayout offersLayout = findViewById(R.id.roadsideOfferLayout);
         offersLayout.removeViews(0, offersLayout.getChildCount());
