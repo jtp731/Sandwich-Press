@@ -52,7 +52,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         setContentView(R.layout.activity_roadside_service_select);
 
         //get Roadside assistant
-        //roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
+        roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+        //if(roadsideAssistant != null)
+            //System.out.println("Roadside is NULL");
+            //Toast.makeText(this, "Roadside is Not NULL", Toast.LENGTH_LONG).show();
         //roadsideAssistant = new RoadsideAssistant("road1", "123", "55554444", "road1@email", "road", "one", "MVTC12345", "Roadside Company", 11111222223L, true, 0);
 
         //delete database before use
@@ -129,7 +132,8 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                             //Get all services in radius from all services in the square area
                             if(servicesInArea.size() > 0) {
                                 for (int i = 0; i < servicesInArea.size(); i++) {
-                                    if (LatitudeLongitude.distance(currentPosition, new LatLng(servicesInArea.get(i).latitude, servicesInArea.get(i).longitude)) <= radius)
+                                    if ((LatitudeLongitude.distance(currentPosition, new LatLng(servicesInArea.get(i).latitude, servicesInArea.get(i).longitude)) <= radius)
+                                        && !database.serviceDao().madeOffer(roadsideAssistant.username, servicesInArea.get(i).customer_username, servicesInArea.get(i).car_plateNum, servicesInArea.get(i).time))
                                         servicesInRadius.add(servicesInArea.get(i));
                                 }
                             }
@@ -206,7 +210,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
-            roadsideAssistant = data.getParcelableExtra("Roadside");
+            roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             finish();
         }
     }
@@ -214,8 +218,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     @Override
     public void finish() {
         Intent data = new Intent();
+        //if(roadsideAssistant == null)
+            //Toast.makeText(this, "Roadside NULL", Toast.LENGTH_LONG).show();
         data.putExtra("Roadside", roadsideAssistant);
-        setResult(RESULT_OK);
+        setResult(RESULT_OK, data);
         super.finish();
     }
 }

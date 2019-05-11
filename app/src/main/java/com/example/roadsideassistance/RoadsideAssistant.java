@@ -131,7 +131,7 @@ public class RoadsideAssistant extends Person{
     }
 
     public ArrayList<Service> getCurrentOffers() {
-        ArrayList<Service> offers = null;
+        ArrayList<Service> offers = new ArrayList<>();
         if(services != null && services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
                 if(services.get(i).status == 0)

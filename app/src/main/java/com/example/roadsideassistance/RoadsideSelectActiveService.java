@@ -66,4 +66,12 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
             roadsideAssistant = data.getParcelableExtra("Roadside");
         }
     }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Roadside", roadsideAssistant);
+        setResult(RESULT_OK, data);
+        super.finish();
+    }
 }
