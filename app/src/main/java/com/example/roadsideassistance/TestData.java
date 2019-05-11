@@ -42,7 +42,7 @@ public class TestData {
                         "Model" + (j + 1),
                         "Manufacturer" + (j + 1),
                         "Colour" + (j + 1),
-                        new Date()
+                        new Date(0)
                 ));
             }
         }
