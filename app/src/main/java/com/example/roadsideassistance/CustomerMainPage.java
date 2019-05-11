@@ -24,7 +24,13 @@ public class CustomerMainPage extends AppCompatActivity {
     }
 
     public void toCustServiceOffers(View view) {
-        Intent intent = new Intent(this, CustomerServiceActive.class);
+        Intent intent = new Intent(this, CustomerServiceOffers.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
+    }
+
+    public void toActiveServices(View view) {
+        Intent intent = new Intent(this, CustomerActiveServicesSelect.class);
         intent.putExtra("Customer", customer);
         startActivityForResult(intent, 1);
     }

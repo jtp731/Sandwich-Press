@@ -84,8 +84,8 @@ public class RoadsideSelectServiceCost extends AppCompatActivity {
             if (cost < 10) {
                 //Error
             } else {
-                database.serviceDao().addService(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status));
-                roadsideAssistant.services.add(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status));
+                database.serviceDao().addService(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status, (byte)0, ""));
+                roadsideAssistant.services.add(new Service(roadsideAssistant.username, service.customer_username, service.car_plateNum, service.latitude, service.longitude, service.time, cost, service.status, (byte)0, ""));
                 finish();
             }
         }

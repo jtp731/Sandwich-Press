@@ -35,7 +35,7 @@ public class RoadsideSelectedOffer extends AppCompatActivity {
         displayLine.setText("Plate Number: " + serviceCar.plateNum);
 
         displayLine = findViewById(R.id.roadsideOfferPay);
-        displayLine.setText(String.format("Pay: $0.2f", offer.cost));//need to work out what the cost pay difference is
+        displayLine.setText(String.format("Pay: $%.2f", offer.cost));//need to work out what the cost pay difference is
     }
 
     public void cancelOffer(View view) {

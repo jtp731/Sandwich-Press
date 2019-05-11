@@ -25,8 +25,13 @@ public interface ServiceDao {
     @Query("select * from service where roadside_assistant_username = ('')")
     List<Service> getNewServiceRequests();
 
-    @Query("select * from service where (roadside_assistant_username = '') AND (latitude >= :minLatitude AND latitude <= :maxLatitude) AND (longitude >= :minLongitude AND longitude <= :maxLongitude)")
+    @Query("select * from service where (roadside_assistant_username = '')  AND (status = 0)" +
+            "AND (latitude >= :minLatitude AND latitude <= :maxLatitude) " +
+            "AND (longitude >= :minLongitude AND longitude <= :maxLongitude)")
     List<Service> getNewServiceRequests(double minLatitude, double maxLatitude, double minLongitude, double maxLongitude);
+
+    @Query("select case when exists(select * from service where roadside_assistant_username = :roadside_username and customer_username = :customer_username and car_plateNum = :plateNum and time = :time and status = 0) then 1 else 0 end")
+    boolean madeOffer(String roadside_username, String customer_username, String plateNum, Date time);
 
     @Query("update service set status = 0 where roadside_assistant_username = '' and customer_username = :custUsername and car_plateNum = :plateNum and time = :time")
     void setServiceToOpen(String custUsername, String plateNum, Date time);
@@ -46,8 +51,15 @@ public interface ServiceDao {
     @Query("delete from service where customer_username = :customer_username and car_plateNum = :plateNum and time = :time")
     void deleteService(String customer_username, String plateNum, Date time);
 
+    @Query("delete from service where roadside_assistant_username = :roadside_username and customer_username = :customer_username and car_plateNum = :plateNum and time = :time")
+    void deleteService(String roadside_username, String customer_username, String plateNum, Date time);
+
     @Query("select case when exists(select * from service where roadside_assistant_username = :roadsideUsername and customer_username = :customerUsername and car_plateNum = :plateNum and time = :time) then 1 else 0 end")
     boolean serviceExists(String roadsideUsername, String customerUsername, String plateNum, Date time);
+
+    @Query("select case when exists(select * from service where roadside_assistant_username = :roadsideUsername and customer_username = :customerUsername and car_plateNum = :plateNum " +
+            "and (time = :time or status = 0 or status = 1 or status = 2)) then 1 else 0 end")
+    boolean serviceActive(String roadsideUsername, String customerUsername, String plateNum, Date time);
 
     @Delete
     void deleteService(Service service);

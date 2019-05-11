@@ -80,6 +80,32 @@ public class CustomerServiceRequest extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Location currLocation = task.getResult();
                             if(currLocation != null) {
+                                Service newService = new Service("",
+                                        customer.username,
+                                        customer.cars.get(carSpinner.getSelectedItemPosition()).plateNum,
+                                        currLocation.getLatitude(),
+                                        currLocation.getLongitude(),
+                                        new Date(),
+                                        0f,
+                                        0,
+                                        (byte)0,
+                                        "");
+
+                                //check if a service like this exists
+                                if (database.serviceDao().serviceActive(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)) {
+                                    Toast.makeText(getContext(), "You already have a service for this car", Toast.LENGTH_LONG).show();
+                                } else {
+                                    database.serviceDao().addService(newService);
+                                    customer.services.add(newService);
+                                    finish();
+                                }
+
+                            }
+                        }
+                    }
+                });
+            }
+            else {
                                 if (!breakdown.isChecked() && !battery.isChecked() && !tyre.isChecked() && !keys.isChecked() && !fuel.isChecked() && !stuck.isChecked() && !other.isChecked()) {
                                     Toast.makeText(CustomerServiceRequest.this, "Please select a service option", Toast.LENGTH_LONG).show();
                                 } else if (other.isChecked() && description.length() == 0){

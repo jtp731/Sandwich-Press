@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,10 +20,15 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
         setContentView(R.layout.activity_roadside_select_active);
 
         roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+        createList();
+    }
+
+    private void createList() {
         activeServices = roadsideAssistant.getActiveServices();
 
         final LinearLayout activeServicesLayout = findViewById(R.id.roadsideActiveSelectLayout);
-        //Toast.makeText(this, "" + activeServices.size(), Toast.LENGTH_LONG).show();
+        activeServicesLayout.removeViews(0, activeServicesLayout.getChildCount());
+        //Toast.makeText(this, "" + serviceOffers.size(), Toast.LENGTH_LONG).show();
         if (activeServices != null && activeServices.size() > 0) {
             for (int i = 0; i < activeServices.size(); i++) {
                 final int currIndex = i;
@@ -64,6 +68,15 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
             roadsideAssistant = data.getParcelableExtra("Roadside");
+            createList();
         }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Roadside", roadsideAssistant);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

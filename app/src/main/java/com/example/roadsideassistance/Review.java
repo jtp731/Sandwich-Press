@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -16,20 +17,21 @@ import android.support.annotation.NonNull;
                 childColumns = "customer_username",
                 onDelete = ForeignKey.CASCADE)
         },
-        primaryKeys = {"roadside_assistant_username", "customer_username"})
+        primaryKeys = {"roadside_assistant_username", "customer_username"},
+indices = {@Index(value = "customer_username")})
 public class Review implements Parcelable {
     @NonNull
     public String roadside_assistant_username;
     @NonNull
     public String customer_username;
     public float rating;
-    public String review;
+    public String reviewText;
 
-    public Review(String roadside_assistant_username, String customer_username, float rating, String review) {
+    public Review(String roadside_assistant_username, String customer_username, float rating, String reviewText) {
         this.roadside_assistant_username = roadside_assistant_username;
         this.customer_username = customer_username;
         this.rating = rating;
-        this.review = review;
+        this.reviewText = reviewText;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class Review implements Parcelable {
         out.writeString(roadside_assistant_username);
         out.writeString(customer_username);
         out.writeFloat(rating);
-        out.writeString(review);
+        out.writeString(reviewText);
     }
 
     //Used by parcelable
@@ -56,11 +58,11 @@ public class Review implements Parcelable {
         }
     };
 
-    //Constructs a review given a parcel
+    //Constructs a reviewText given a parcel
     private Review(Parcel in) {
         this.roadside_assistant_username = in.readString();
         this.customer_username = in.readString();
         this.rating = in.readFloat();
-        this.review = in.readString();
+        this.reviewText = in.readString();
     }
 }

@@ -24,19 +24,22 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         database = AppDatabase.getDatabase(getApplicationContext());
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
-            database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", "", "", 0, false, 0));
+            database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
         }
 
+        //TestData.createTestData(this, 10, 10, 3, 10);
+
         //For deleting the database and recreating when the database schema has been changed
-    //    this.deleteDatabase("appdatabase");
-    //    database = AppDatabase.getDatabase(getApplicationContext());
+        //this.deleteDatabase("appdatabase");
+        //database = AppDatabase.getDatabase(getApplicationContext());
 
         //Add Test roadside assistant
-    //    database.userDao().addRoadsideAssistant(new RoadsideAssistant("road1", "123", "44443333", "road1@email", "John", "Doe", "", "", 0, true, 50f));
-    //    database.userDao().addRoadsideAssistant(new RoadsideAssistant(new Person("road2", "123", "44442222", "road2@email", "road", "two", new Address(10, "tree", "Fad", "NSW"), new BankAccount(1111222233334444L, new Date())), "", "", 0, true, 50f));
-    //    database.userDao().addCustomer(new Customer("cust1", "123", "22223333", "cust1@email", "cust", "one"));
-    //    database.carDao().addCar(new Car("cust1", "11ssdd", "3", "Mazda", "Grey", new Date()));
-    //    database.serviceDao().addService(new Service("road2", "cust1", "11ssdd", 55f, 151f, new Date(119, 11, 1), 0f, 0));
+        //database.personDao().addPerson(new Person("road1", "123", "44443333", "road1@email", "John", "Doe"));
+        //database.userDao().addRoadsideAssistant(new RoadsideAssistant("road1", "123", "44443333", "road1@email", "John", "Doe", true, 50f));
+        //database.userDao().addRoadsideAssistant(new RoadsideAssistant(new Person("road2", "123", "44442222", "road2@email", "road", "two", new Address(10, "tree", "Fad", "NSW"), new BankAccount(1111222233334444L, new Date())), true));
+        //database.userDao().addCustomer(new Customer("cust1", "123", "22223333", "cust1@email", "cust", "one"));
+        //database.carDao().addCar(new Car("cust1", "11ssdd", "model", "manu", "green", new Date()));
+        //database.serviceDao().addService(new Service("road2", "cust1", "11ssdd", 55f, 151f, new Date(119, 11, 1), 0f, 0));
 
         //End Test
         Button signup = findViewById(R.id.newSignup);
@@ -77,7 +80,7 @@ public class SignIn extends AppCompatActivity {
             */
             if(database.roadsideAssistantDao().roadsideAssistantExists(email)) {
                 //Toast.makeText(this, "Roadside exists", Toast.LENGTH_LONG).show();
-                RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistant(email);
+                RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistantByEmail(email);
                 //System.out.print(roadsideAssistant.toString());
                 //Toast.makeText(this, roadsideAssistant.toString(), Toast.LENGTH_LONG).show();
                 roadsideAssistant.services = database.roadsideAssistantDao().getAllRoadsideServices(roadsideAssistant.username);

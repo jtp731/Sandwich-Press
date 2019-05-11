@@ -33,12 +33,28 @@ import java.util.Date;
         indices = {@Index(value = {"customer_username", "car_plateNum", "time"}), @Index(value = {"roadside_assistant_username"}), @Index(value = "car_plateNum")}
 )
 public class Service implements Parcelable {
+        //Filter Flags
+        @Ignore
+        public static final byte FLAT_TYRE = 0b00000001;
+        @Ignore
+        public static final byte FLAT_BATTERY = 0b00000010;
+        @Ignore
+        public static final byte MECHANICAL_BREAKDOWN = 0b0000100;
+        @Ignore
+        public static final byte KEYS_IN_CAR = 0b00001000;
+        @Ignore
+        public static final byte OUT_OF_FUEL = 0b00100000;
+        @Ignore
+        public static final byte CAR_STUCK = 0b01000000;
+
         public float cost;
         @NonNull
         public Date time;
         public double latitude;
         public double longitude;
         public int status;
+        public byte filter;
+        public String description;
 
         @NonNull
         public String roadside_assistant_username;
@@ -48,7 +64,7 @@ public class Service implements Parcelable {
         public String car_plateNum;
 
         @Ignore
-        public Service(RoadsideAssistant roadsideAssistant, Customer customer, Car car, float cost, Date time, double latitude, double longitude, int status) {
+        public Service(RoadsideAssistant roadsideAssistant, Customer customer, Car car, float cost, Date time, double latitude, double longitude, int status, byte filter, String description) {
             this.roadside_assistant_username = roadsideAssistant.username;
             this.customer_username = customer.username;
             this.car_plateNum = car.plateNum;
@@ -57,22 +73,11 @@ public class Service implements Parcelable {
             this.latitude = latitude;
             this.longitude = longitude;
             this.status = status;
+            this.filter = filter;
+            this.description = description;
         }
 
-    @Ignore
-    public Service(Customer customer, Car car, Location location) {
-        this.customer_username = customer.username;
-        this.car_plateNum = car.plateNum;
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        time = new Date();
-        cost = 0;
-        roadside_assistant_username = "";
-        status = 0;
-    }
-
-        @Ignore
-        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, Date time, float cost, int status) {
+        public Service(String roadside_assistant_username, String customer_username, String car_plateNum, double latitude, double longitude, Date time, float cost, int status, byte filter, String description) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
             this.latitude = latitude;
@@ -81,14 +86,33 @@ public class Service implements Parcelable {
             this.time = time;
             this.cost = cost;
             this.status = status;
+            this.filter = filter;
+            this.description = description;
         }
 
-        public Service(String customer_username, String car_plateNum, double latitude, double longitude) {
+        @Ignore
+        public Service(String customer_username, String car_plateNum, double latitude, double longitude, byte filter, String description) {
             this.customer_username = customer_username;
             this.car_plateNum = car_plateNum;
             this.latitude = latitude;
             this.longitude = longitude;
+            this.filter = filter;
+            this.description = description;
             time = new Date();
+            cost = 0;
+            roadside_assistant_username = "";
+            status = 0;
+        }
+
+        @Ignore
+        public Service(String customer_username, String car_plateNum, double latitude, double longitude, Date date, byte filter, String description) {
+            this.customer_username = customer_username;
+            this.car_plateNum = car_plateNum;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.filter = filter;
+            this.description = description;
+            this.time = date;
             cost = 0;
             roadside_assistant_username = "";
             status = 0;
@@ -113,6 +137,8 @@ public class Service implements Parcelable {
         out.writeString(customer_username);
         out.writeString(roadside_assistant_username);
         out.writeString(car_plateNum);
+        out.writeByte(filter);
+        out.writeString(description);
     }
 
     public static final Parcelable.Creator<Service> CREATOR = new Parcelable.Creator<Service>() {
@@ -134,5 +160,29 @@ public class Service implements Parcelable {
         this.customer_username = in.readString();
         this.roadside_assistant_username = in.readString();
         this.car_plateNum = in.readString();
+        this.filter = in.readByte();
+        this.description = in.readString();
     }
+
+    boolean hasFlag(byte flag) {
+        if((this.filter & flag) >= 1)
+            return true;
+        return false;
+    }
+
+    void setFlag(byte flag) {
+        this.filter = (byte)(this.filter | flag);
+    }
+
+    public boolean equals(Service service) {
+        if(
+                this.roadside_assistant_username.equals(service.roadside_assistant_username)
+                && this.customer_username.equals(service.customer_username)
+                && this.car_plateNum.equals(service.car_plateNum)
+                && this.time.equals(service.time)
+        )
+            return true;
+        return false;
+    }
+
 }

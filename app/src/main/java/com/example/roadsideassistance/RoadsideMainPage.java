@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class RoadsideMainPage extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class RoadsideMainPage extends AppCompatActivity {
 
         roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
 
-        //Toast.makeText(this, "" + roadsideAssistant.services.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + roadsideAssistant.rating, Toast.LENGTH_SHORT).show();
     }
 
     public void toNewServices(View view) {

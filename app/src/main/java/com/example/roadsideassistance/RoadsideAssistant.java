@@ -105,7 +105,7 @@ public class RoadsideAssistant extends Person{
     }
 
     public ArrayList<Service> getActiveServices() {
-        ArrayList<Service> activeServices = null;
+        ArrayList<Service> activeServices = new ArrayList<>();
         if(services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
                 if(services.get(i).status == 1)
@@ -117,21 +117,24 @@ public class RoadsideAssistant extends Person{
 
     public void removeService(Service service) {
         if(services != null && services.size() > 0) {
-            services.remove(service);
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).equals(service))
+                    services.remove(i);
+            }
         }
     }
 
     public void updateService(Service service, int status) {
         if(services != null && services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
-                if(services.get(i).customer_username.equals(service.customer_username) && services.get(i).car_plateNum.equals(service.car_plateNum) && services.get(i).time.equals(service.time))
+                if(services.get(i).equals(service))
                     services.get(i).status = status;
             }
         }
     }
 
     public ArrayList<Service> getCurrentOffers() {
-        ArrayList<Service> offers = null;
+        ArrayList<Service> offers = new ArrayList<>();
         if(services != null && services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
                 if(services.get(i).status == 0)
