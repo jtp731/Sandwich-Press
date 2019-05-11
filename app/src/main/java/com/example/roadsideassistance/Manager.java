@@ -2,7 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 
-@Entity
+@Entity(inheritSuperIndices = true)
 public class Manager extends Person{
     public int accessLevel;
 

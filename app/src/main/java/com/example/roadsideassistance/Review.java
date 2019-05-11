@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -16,7 +17,8 @@ import android.support.annotation.NonNull;
                 childColumns = "customer_username",
                 onDelete = ForeignKey.CASCADE)
         },
-        primaryKeys = {"roadside_assistant_username", "customer_username"})
+        primaryKeys = {"roadside_assistant_username", "customer_username"},
+indices = {@Index(value = "customer_username")})
 public class Review implements Parcelable {
     @NonNull
     public String roadside_assistant_username;
