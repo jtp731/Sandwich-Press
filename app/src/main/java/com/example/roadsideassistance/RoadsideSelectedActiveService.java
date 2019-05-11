@@ -35,7 +35,7 @@ public class RoadsideSelectedActiveService extends AppCompatActivity {
     public void cancelService(View view) {
         roadsideAssistant.removeService(activeService);
         database.serviceDao().setServiceToOpen(activeService.customer_username, activeService.car_plateNum, activeService.time);
-        database.serviceDao().deleteService(activeService);
+        database.serviceDao().deleteService(activeService.roadside_assistant_username, activeService.customer_username, activeService.car_plateNum, activeService.time);
         finish();
     }
 

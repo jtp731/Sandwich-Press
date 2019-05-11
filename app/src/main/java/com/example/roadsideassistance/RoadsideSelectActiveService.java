@@ -21,9 +21,13 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
         setContentView(R.layout.activity_roadside_select_active);
 
         roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+    }
+
+    private void createList() {
         activeServices = roadsideAssistant.getActiveServices();
 
         final LinearLayout activeServicesLayout = findViewById(R.id.roadsideActiveSelectLayout);
+        activeServicesLayout.removeViews(0, activeServicesLayout.getChildCount());
         //Toast.makeText(this, "" + activeServices.size(), Toast.LENGTH_LONG).show();
         if (activeServices != null && activeServices.size() > 0) {
             for (int i = 0; i < activeServices.size(); i++) {
@@ -64,6 +68,7 @@ public class RoadsideSelectActiveService extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
             roadsideAssistant = data.getParcelableExtra("Roadside");
+            createList();
         }
     }
 
