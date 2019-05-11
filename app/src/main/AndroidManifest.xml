@@ -54,6 +54,8 @@
         <activity android:name=".RoadsideSelectedOffer"></activity>
         <activity android:name=".CustomerActiveServicesSelect"></activity>
         <activity android:name=".CustomerSelectedActiveService"></activity>
+        <activity android:name=".CustomerServiceFinish"></activity>
+        <activity android:name=".CustomerLeaveReview"></activity>
     </application>
 
 </manifest>

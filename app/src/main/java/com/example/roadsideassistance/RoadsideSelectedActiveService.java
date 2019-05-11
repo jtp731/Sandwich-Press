@@ -43,6 +43,7 @@ public class RoadsideSelectedActiveService extends AppCompatActivity {
         roadsideAssistant.updateService(activeService, 2);
         database.serviceDao().updateService(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time, 2);
         database.serviceDao().deleteServicesNotEqual(roadsideAssistant.username, activeService.customer_username, activeService.car_plateNum, activeService.time);
+        finish();
     }
 
     @Override

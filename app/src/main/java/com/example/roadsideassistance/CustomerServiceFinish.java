@@ -17,7 +17,7 @@ public class CustomerServiceFinish extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_service_finished_select);
+        setContentView(R.layout.activity_customer_selected_finished_service);
         database = AppDatabase.getDatabase(this);
 
         customer = getIntent().getParcelableExtra("Customer");
@@ -73,7 +73,7 @@ public class CustomerServiceFinish extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
             customer = data.getParcelableExtra("Customer");
-            //finish();
+            finish();
         }
     }
 }
