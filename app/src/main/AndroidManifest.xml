@@ -25,10 +25,7 @@
             android:parentActivityName=".registerAddress">
         </activity>
         <activity android:name=".SignIn">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".CustomerServiceRequest">
 
@@ -56,6 +53,12 @@
         <activity android:name=".CustomerSelectedActiveService"></activity>
         <activity android:name=".CustomerServiceFinish"></activity>
         <activity android:name=".CustomerLeaveReview"></activity>
+        <activity android:name=".ManagerSelectUserForReviews">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
