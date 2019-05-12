@@ -32,7 +32,26 @@ public class CustomerSelectedActiveService extends AppCompatActivity {
         line.setText("Car Plate Number: " + selectedService.car_plateNum);
 
         line = findViewById(R.id.customerSelectedActiveCost);
-        line.setText(String.format("Cost: $%.2f", selectedService.cost));
+        if(customer.carCoveredBySubscription(selectedService.car_plateNum))
+            line.setText("Covered By Subscription");
+        else
+            line.setText(String.format("Cost: $%.2f", selectedService.cost));
+
+        line = findViewById(R.id.description);
+        String description = "Description: " + selectedService.description + "\n";
+        if(selectedService.hasFlag(Service.CAR_STUCK))
+            description += "\nCar Stuck";
+        if(selectedService.hasFlag(Service.FLAT_BATTERY))
+            description += "\nFlat Battery";
+        if(selectedService.hasFlag(Service.FLAT_TYRE))
+            description += "\nFlat Tyre";
+        if(selectedService.hasFlag(Service.KEYS_IN_CAR))
+            description += "\nKeys locked in car";
+        if(selectedService.hasFlag(Service.MECHANICAL_BREAKDOWN))
+            description += "\nMechanical Breakdown";
+        if(selectedService.hasFlag(Service.OUT_OF_FUEL))
+            description += "\nOut of Fuel";
+        line.setText(description);
     }
 
     public void cancelActiveService(View view) {
