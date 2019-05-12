@@ -87,7 +87,7 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                         currLocation.getLongitude(),
                                         new Date(),
                                         0f,
-                                        0,
+                                        Service.OPEN,
                                         (byte)0,
                                         "");
 
