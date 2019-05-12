@@ -7,12 +7,12 @@ import java.util.Date;
 
 public class Converters {
     @TypeConverter
-    public Date dateFromString(String date) {
+    public Date dateFromLong(long date) {
         return new Date(date);
     }
 
     @TypeConverter
-    public String dateToString(Date date) {
-        return date.toString();
+    public long dateToLong(Date date) {
+        return date.getTime();
     }
 }
