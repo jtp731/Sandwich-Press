@@ -197,4 +197,7 @@ public class Service implements Parcelable {
         return false;
     }
 
+    public float costToPay() {
+        return (cost - 10);
+    }
 }
