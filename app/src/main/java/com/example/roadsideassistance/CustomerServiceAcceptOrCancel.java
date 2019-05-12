@@ -29,7 +29,21 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
         activeService = getIntent().getParcelableExtra("Service");
         serviceOffers = database.serviceDao().getServiceOffers(activeService.customer_username, activeService.car_plateNum, activeService.time);
         TextView serviceDescription = findViewById(R.id.customerSelectedServiceDescription);
-        serviceDescription.setText(activeService.toString());
+        String fullDescription = "Plate Number: " + activeService.car_plateNum +
+                "\nDescription: " + activeService.description;
+        if(activeService.hasFlag(Service.CAR_STUCK))
+            fullDescription += "\nCar Stuck";
+        if(activeService.hasFlag(Service.FLAT_BATTERY))
+            fullDescription += "\nFlat Battery";
+        if(activeService.hasFlag(Service.FLAT_TYRE))
+            fullDescription += "\nFlat Tyre";
+        if(activeService.hasFlag(Service.KEYS_IN_CAR))
+            fullDescription += "\nKeys locked in car";
+        if(activeService.hasFlag(Service.MECHANICAL_BREAKDOWN))
+            fullDescription += "\nMechanical Breakdown";
+        if(activeService.hasFlag(Service.OUT_OF_FUEL))
+            fullDescription += "\nOut of Fuel";
+        serviceDescription.setText(fullDescription);
 
         View rating = findViewById(R.id.rating);
         rating.post(new Runnable() {
