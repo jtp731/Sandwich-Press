@@ -40,6 +40,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/border_no_edge"
         app:layout_constraintBottom_toTopOf="@+id/acceptServiceOffer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
             <LinearLayout
                 android:id="@+id/customerServiceOffersLayout"
@@ -62,8 +63,10 @@
         </ScrollView>
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,21 +77,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Username" />
+                android:padding="5dp"
+                android:text="Username"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cost" />
+                android:padding="5dp"
+                android:text="Cost"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rating" />
+                android:padding="5dp"
+                android:text="Rating"
+                android:textColor="@color/white" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
