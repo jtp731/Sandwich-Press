@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -55,6 +56,53 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
         if (finishedServices.size() > 0) {
             for (int i = 0; i < finishedServices.size(); i++) {
                 final int currIndex = i;
+                Car car = customer.getCar(finishedServices.get(i).car_plateNum);
+
+                final LinearLayout finishedLayout = new LinearLayout(this);
+                finishedLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                finishedLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+                TextView roadsideUsernameText = new TextView(this);
+                roadsideUsernameText.setPadding(5,5,5,5);
+                roadsideUsernameText.setWidth(findViewById(R.id.username).getWidth());
+                roadsideUsernameText.setText(finishedServices.get(i).roadside_assistant_username);
+                roadsideUsernameText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                finishedLayout.addView(roadsideUsernameText);
+
+                TextView plateNumText = new TextView(this);
+                plateNumText.setPadding(5,5,5,5);
+                plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
+                plateNumText.setText(car.plateNum);
+                plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                finishedLayout.addView(plateNumText);
+
+                TextView makeText = new TextView(this);
+                makeText.setPadding(5,5,5,5);
+                makeText.setWidth(findViewById(R.id.make).getWidth());
+                makeText.setText(car.manufacturer);
+                makeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                finishedLayout.addView(makeText);
+
+                TextView modelText = new TextView(this);
+                modelText.setPadding(5,5,5,5);
+                modelText.setWidth(findViewById(R.id.model).getWidth());
+                modelText.setText(car.model);
+                modelText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                finishedLayout.addView(modelText);
+
+                finishedLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selectedFinishedServiceIndex = currIndex;
+                        for (int j = 0; j < servicesLayout.getChildCount(); j++) {
+                            servicesLayout.getChildAt(j).setBackgroundColor(getResources().getColor(R.color.unselectedListItem));
+                        }
+                        finishedLayout.setBackgroundColor(getResources().getColor(R.color.selectedListItem));
+                    }
+                });
+                servicesLayout.addView(finishedLayout);
+
+                /*
                 final TextView serviceText = new TextView(this);
                 Car car = customer.getCar(finishedServices.get(i).car_plateNum);
                 serviceText.setText("Plate Number: " + car.plateNum + " Make: " + car.manufacturer + " Model: " + car.model);
@@ -69,6 +117,7 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
                     }
                 });
                 servicesLayout.addView(serviceText);
+                */
             }
         } else {
             TextView noServicesText = new TextView(this);
