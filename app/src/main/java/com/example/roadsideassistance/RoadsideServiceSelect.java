@@ -148,6 +148,45 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                                     //Add to distance array
                                     serviceDistances.add(LatitudeLongitude.distance(currentPosition, new LatLng(servicesInRadius.get(i).latitude, servicesInRadius.get(i).longitude)));
 
+                                    final LinearLayout servicesLayout = new LinearLayout(getContext());
+                                    servicesLayout.setOrientation(LinearLayout.HORIZONTAL);
+                                    servicesLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                                    TextView custUsernameText = new TextView(getContext());
+                                    custUsernameText.setPadding(5,5,5,5);
+                                    custUsernameText.setWidth(findViewById(R.id.username).getWidth());
+                                    custUsernameText.setText(servicesInRadius.get(i).customer_username);
+                                    custUsernameText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                                    servicesLayout.addView(custUsernameText);
+
+                                    TextView plateNumText = new TextView(getContext());
+                                    plateNumText.setPadding(5,5,5,5);
+                                    plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
+                                    plateNumText.setText(servicesInRadius.get(i).car_plateNum);
+                                    plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                                    servicesLayout.addView(plateNumText);
+
+                                    TextView distText = new TextView(getContext());
+                                    distText.setPadding(5,5,5,5);
+                                    distText.setWidth(findViewById(R.id.distance).getWidth());
+                                    distText.setText("" + serviceDistances.get(i).intValue() + "km");
+                                    distText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                                    servicesLayout.addView(distText);
+
+                                    servicesLayout.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            selectedServiceIndex = currIndex;
+                                            for (int j = 0; j < servicesListLayout.getChildCount(); j++) {
+                                                servicesListLayout.getChildAt(j).setBackgroundColor(getResources().getColor(R.color.unselectedListItem));
+                                            }
+                                            servicesLayout.setBackgroundColor(getResources().getColor(R.color.selectedListItem));
+                                        }
+                                    });
+
+                                    servicesListLayout.addView(servicesLayout);
+
+                                    /*
                                     //Create text box to add to list of services
                                     final TextView addedTextView = new TextView(getContext());
                                     addedTextView.setText(servicesInRadius.get(i).toString() +
@@ -171,6 +210,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
 
                                     //Add it to the list
                                     servicesListLayout.addView(addedTextView);
+                                    */
                                 }
                             }
                             //Show no services when there aren't any in the area
