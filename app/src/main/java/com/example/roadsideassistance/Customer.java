@@ -199,7 +199,7 @@ public class Customer extends Person{
         if(subPayments != null && cars != null && cars.size() > 0) {
             Date today = new Date();
             for(int i = 0; i < cars.size(); i++) {
-                if(cars.get(i).subType != Car.FREE_SUB && cars.get(i).renewalDate.after(today)) {
+                if(cars.get(i).subType != Car.FREE_SUB && cars.get(i).renewalDate.before(today)) {
                     if(cars.get(i).subType == Car.ONE_MONTH_SUB) {
                         if(this.removeCost(SubscriptionPayment.COST_ONE_MONTH)) {
                             SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_ONE_MONTH);
