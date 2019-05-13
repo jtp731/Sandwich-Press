@@ -2,10 +2,12 @@ package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity(inheritSuperIndices = true)
@@ -192,5 +194,55 @@ public class Customer extends Person{
         if(!hadPreviousReview)
             reviews.add(review);
     }
+
+    public void updateSubPayments(Context context){
+        if(subPayments != null && cars != null && cars.size() > 0) {
+            Date today = new Date();
+            for(int i = 0; i < cars.size(); i++) {
+                if(cars.get(i).subType != Car.FREE_SUB && cars.get(i).renewalDate.after(today)) {
+                    if(cars.get(i).subType == Car.ONE_MONTH_SUB) {
+                        if(this.removeCost(SubscriptionPayment.COST_ONE_MONTH)) {
+                            SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_ONE_MONTH);
+                            subPayments.add(payment);
+                            AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
+                            today.setMonth(today.getMonth() + 1);//Might need to change if doesn't increment year
+                            cars.get(i).renewalDate = today;
+                            AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
+                        }
+                        else {
+                            //remove sub maybe??
+                        }
+                    }
+                    if(cars.get(i).subType == Car.SIX_MONTH_SUB) {
+                        if(this.removeCost(SubscriptionPayment.COST_SIX_MONTHS)) {
+                            SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_SIX_MONTHS);
+                            subPayments.add(payment);
+                            AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
+                            today.setMonth(today.getMonth() + 6);//Might need to change if doesn't increment year
+                            cars.get(i).renewalDate = today;
+                            AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
+                        }
+                        else {
+                            //remove sub maybe??
+                        }
+                    }
+                    if(cars.get(i).subType == Car.ONE_YEAR_SUB) {
+                        if(this.removeCost(SubscriptionPayment.COST_ONE_YEAR)) {
+                            SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_ONE_YEAR);
+                            subPayments.add(payment);
+                            AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
+                            today.setYear(today.getYear() + 1);
+                            cars.get(i).renewalDate = today;
+                            AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
+                        }
+                        else {
+                            //remove sub maybe??
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 

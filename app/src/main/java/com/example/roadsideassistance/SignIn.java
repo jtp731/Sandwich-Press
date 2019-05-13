@@ -94,6 +94,8 @@ public class SignIn extends AppCompatActivity {
                 customer.cars = database.customerDao().getAllCustomerCars(customer.username);
                 customer.services = database.customerDao().getAllCustomerServices(customer.username);
                 customer.reviews = database.customerDao().getAllCustomerReviews(customer.username);
+                customer.subPayments = database.customerDao().getAllCustomerSubPayments(customer.username);
+                //customer.updateSubPayments(this);
                 Intent intent = new Intent(this, CustomerMainPage.class);
                 intent.putExtra("Customer", customer);
                 startActivity(intent);
