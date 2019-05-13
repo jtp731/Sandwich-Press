@@ -45,6 +45,8 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     private int selectedServiceIndex = 0;
     private  Vector<Service> servicesInRadius;
     private Vector<Double> serviceDistances;
+    private byte filter = 0b0;
+    private SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         else
             System.out.print("roadside is not null");
         */
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.serviceSelectMap);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.serviceSelectMap);
         mapFragment.getMapAsync(this);
     }
 
@@ -133,7 +135,8 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                             if(servicesInArea.size() > 0) {
                                 for (int i = 0; i < servicesInArea.size(); i++) {
                                     if ((LatitudeLongitude.distance(currentPosition, new LatLng(servicesInArea.get(i).latitude, servicesInArea.get(i).longitude)) <= radius)
-                                        && !database.serviceDao().madeOffer(roadsideAssistant.username, servicesInArea.get(i).customer_username, servicesInArea.get(i).car_plateNum, servicesInArea.get(i).time))
+                                        && !database.serviceDao().madeOffer(roadsideAssistant.username, servicesInArea.get(i).customer_username, servicesInArea.get(i).car_plateNum, servicesInArea.get(i).time)
+                                        && ((filter == 0) || (servicesInArea.get(i).filter == filter)))
                                         servicesInRadius.add(servicesInArea.get(i));
                                 }
                             }
@@ -242,6 +245,12 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         startActivityForResult(intent,1 );
     }
 
+    public void toSetFilter(View view) {
+        Intent intent = new Intent(this, RoadsideSetFilter.class);
+        intent.putExtra("Filter", filter);
+        startActivityForResult(intent, 2);
+    }
+
     //Used to get context while in callback
     public Context getContext() {
         return (Context)this;
@@ -252,6 +261,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         if(resultCode == RESULT_OK && requestCode == 1) {
             roadsideAssistant = data.getParcelableExtra("Roadside");
             finish();
+        }
+        if(resultCode == RESULT_OK && requestCode == 2) {
+            filter = data.getByteExtra("Filter", (byte)0);
+            mapFragment.getMapAsync(this);
         }
     }
 
