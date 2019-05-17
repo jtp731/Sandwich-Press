@@ -72,8 +72,7 @@ public class CustomerServiceRequest extends AppCompatActivity {
     public void requestService(View view) {
         String details = "";
         if (customer.cars.size() > 0) {
-            if(customer.cars.get(carSpinner.getSelectedItemPosition()).renewalDate != null &&
-                customer.bankAccount.expiryDate.before(new Date())) {
+            if(customer.cars.get(carSpinner.getSelectedItemPosition()).renewalDate != null && customer.bankAccount.expiryDate.before(new Date())) {
                 Toast.makeText(this, "Card Expired", Toast.LENGTH_LONG).show();
             }
             else if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
