@@ -13,7 +13,10 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +48,9 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     private int selectedServiceIndex = 0;
     private  Vector<Service> servicesInRadius;
     private Vector<Double> serviceDistances;
+
+    private Spinner radiusSpinner;
+    private ArrayAdapter<CharSequence> radiAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +88,33 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
         else
             System.out.print("roadside is not null");
         */
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.serviceSelectMap);
+
+        final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.serviceSelectMap);
+
+        radiusSpinner = findViewById(R.id.radiusSpinner);
+        radiAdapter = ArrayAdapter.createFromResource(this, R.array.radii, android.R.layout.simple_spinner_item);
+        radiusSpinner.setAdapter(radiAdapter);
+
+        radiusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                radius = Integer.parseInt(radiusSpinner.getItemAtPosition(position).toString());
+                mapFragment.getMapAsync(getOnMapReadyCallback());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.clear();
         map.getUiSettings().setRotateGesturesEnabled(false);
 
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -104,7 +130,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                             LatLng diffLatLng = LatitudeLongitude.getDifferences(currentPosition.latitude, currentPosition.longitude, radius);
 
                             //move the camera to current location and zoom to city level
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10));
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10 - (float)radiusSpinner.getSelectedItemPosition()/1.5f));
                             //map.addMarker(new MarkerOptions().position(currentPosition));
 
                             //Create circle to show radius of search
@@ -246,6 +272,8 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
     public Context getContext() {
         return (Context)this;
     }
+
+    public OnMapReadyCallback getOnMapReadyCallback() {return this;}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
