@@ -59,9 +59,6 @@ public class CustomerEditCar extends AppCompatActivity {
             dateOutput = DateFormat.format("dd-MMM-yyyy", car.renewalDate).toString();
         }
         sub.setText(dateOutput);
-
-        String date = DateFormat.format("dd-MM-yyyy", car.renewalDate).toString();
-        sub.setText(date);
     }
 
     public void EditCar(View view) {

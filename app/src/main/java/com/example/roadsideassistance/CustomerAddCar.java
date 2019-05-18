@@ -118,9 +118,15 @@ public class CustomerAddCar extends AppCompatActivity {
             customer.cars.add(car);
             Toast.makeText(this, "Successfully added car", Toast.LENGTH_LONG).show();
 
-            Intent intenty = new Intent(CustomerAddCar.this, CustomerManageCars.class);
-            intenty.putExtra("Customer", customer);
-            startActivity(intenty);
+            finish();
         }
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

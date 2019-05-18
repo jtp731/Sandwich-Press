@@ -123,7 +123,7 @@ public class CustomerActiveServicesSelect extends AppCompatActivity {
         if(resultCode == RESULT_OK && requestCode == 1) {
             customer = data.getParcelableExtra("Customer");
             createList();
-            //finish();
+            finish();
         }
     }
 

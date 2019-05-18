@@ -105,7 +105,7 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                     }
                                     //Store types of service
                                     if (breakdown.isChecked()){
-
+                                        //newService.filter.
                                     }
                                     if (battery.isChecked()){
 

@@ -54,15 +54,15 @@ public class CustomerManageCars extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerManageCars.this, CustomerAddCar.class);
                 intent.putExtra("Customer", customer);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }
 
     @Override
-    public void onBackPressed(){
-        Intent intent = new Intent(CustomerManageCars.this, CustomerMainPage.class);
-        intent.putExtra("Customer", customer);
-        startActivity(intent);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            customer = data.getParcelableExtra("Customer");
+        }
     }
 }
