@@ -169,6 +169,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                             }
 
                             final LinearLayout servicesListLayout = findViewById(R.id.roadsideServicesSelectList);
+                            servicesListLayout.removeViews(0, servicesListLayout.getChildCount());
                             if(servicesInRadius.size() > 0) {
                                 for (int i = 0; i < servicesInRadius.size(); i++) {
                                     final int currIndex = i;
@@ -246,12 +247,12 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                             //Show no services when there aren't any in the area
                             else {
                                 final TextView noServiceTextView = new TextView(getContext());
-                                noServiceTextView.setText("No Services in Area");
+                                noServiceTextView.setText("No Services in Area, Maybe Change your filter options");
                                 noServiceTextView.setPadding(0, 10, 0, 10);
                                 noServiceTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
                                 servicesListLayout.addView(noServiceTextView);
 
-                                //Hide button so it can't be clicked
+                                //Hide select button so it can't be clicked
                                 findViewById(R.id.roadSideSelectServiceButton).setVisibility(View.GONE);
                             }
                         }

@@ -55,32 +55,13 @@
         <activity android:name=".CustomerServiceActive" />
         <activity android:name=".CustomerServiceFinishedSelect" />
         <activity android:name=".CustomerServiceAcceptOrCancel" />
-        <activity android:name=".CustomerServiceRequest">
-
-        </activity>
-        <activity android:name=".RoadsideSelectServiceCost"
-            android:label="Set Cost">
-        </activity>
-        <activity android:name=".RoadsideServiceSelect"
-            android:label="Service Select">
-        </activity>
-        <activity android:name=".registerRoadside"
-            android:label="Register Roadside">
-
-        </activity>
-        <activity android:name=".RoadsideMainPage"></activity>
-        <activity android:name=".RoadsideSelectOffer"></activity>
-        <activity android:name=".RoadsideSelectedActiveService"></activity>
-        <activity android:name=".RoadsideSelectActiveService"></activity>
-        <activity android:name=".CustomerMainPage"></activity>
         <activity android:name=".CustomerServiceOffers"></activity>
-        <activity android:name=".CustomerServiceFinishedSelect"></activity>
-        <activity android:name=".CustomerServiceAcceptOrCancel"></activity>
         <activity android:name=".RoadsideSelectedOffer"></activity>
         <activity android:name=".CustomerActiveServicesSelect"></activity>
         <activity android:name=".CustomerSelectedActiveService"></activity>
         <activity android:name=".CustomerServiceFinish"></activity>
         <activity android:name=".CustomerLeaveReview"></activity>
+        <activity android:name=".RoadsideSetFilter"></activity>
     </application>
 
 </manifest>
