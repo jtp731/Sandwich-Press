@@ -52,7 +52,6 @@
         <activity android:name=".RoadsideSelectedActiveService" />
         <activity android:name=".RoadsideSelectActiveService" />
         <activity android:name=".CustomerMainPage" />
-        <activity android:name=".CustomerServiceActive" />
         <activity android:name=".CustomerServiceFinishedSelect" />
         <activity android:name=".CustomerServiceAcceptOrCancel" />
         <activity android:name=".CustomerServiceOffers"></activity>
