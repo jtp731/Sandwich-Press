@@ -43,7 +43,7 @@ public class SignIn extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (permission == false){
+                if (permission == false) {
                     permission = requestPermission();
                 } else {
                     Intent signupPage = new Intent(SignIn.this, register.class);
@@ -56,33 +56,33 @@ public class SignIn extends AppCompatActivity {
 
     public void SignIn(View view) {
         //Toast.makeText(this, Calendar.getInstance().toString(), Toast.LENGTH_LONG).show();
-        if (permission == false){
+        if (permission == false) {
             permission = requestPermission();
         } else {
             boolean canSignIn = true;
             EditText input = findViewById(R.id.email);
-            if(input.getText().toString() == null || input.getText().toString().trim().equals("")) {
+            if (input.getText().toString() == null || input.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Email Error", Toast.LENGTH_LONG).show();
                 canSignIn = false;
             }
             String email = input.getText().toString().trim();
 
             input = findViewById(R.id.password);
-            if(input.getText().toString() == null || input.getText().toString().trim().equals("")) {
+            if (input.getText().toString() == null || input.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Password Error", Toast.LENGTH_LONG).show();
                 canSignIn = false;
             }
             String password = input.getText().toString().trim();
 
             int people = database.personDao().checkUser(email, password);
-            if(people != 1 || !canSignIn)
+            if (people != 1 || !canSignIn)
                 Toast.makeText(this, "Bad password email combo", Toast.LENGTH_LONG).show();
             else {
-                /*
-                person = database.personDao().getUserByEmail(email);
-                String userString = "User: " + person.username;
-                Toast.makeText(this, userString, Toast.LENGTH_LONG).show();
-                */
+            /*
+            person = database.personDao().getUserByEmail(email);
+            String userString = "User: " + person.username;
+            Toast.makeText(this, userString, Toast.LENGTH_LONG).show();
+            */
                 if (database.roadsideAssistantDao().roadsideAssistantExists(email)) {
                     //Toast.makeText(this, "Roadside exists", Toast.LENGTH_LONG).show();
                     RoadsideAssistant roadsideAssistant = database.roadsideAssistantDao().getRoadsideAssistantByEmail(email);
@@ -98,6 +98,8 @@ public class SignIn extends AppCompatActivity {
                     customer.cars = database.customerDao().getAllCustomerCars(customer.username);
                     customer.services = database.customerDao().getAllCustomerServices(customer.username);
                     customer.reviews = database.customerDao().getAllCustomerReviews(customer.username);
+                    customer.subPayments = database.customerDao().getAllCustomerSubPayments(customer.username);
+                    customer.updateSubPayments(this);
                     Intent intent = new Intent(this, CustomerMainPage.class);
                     intent.putExtra("Customer", customer);
                     startActivity(intent);
@@ -111,7 +113,7 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
-    public boolean requestPermission(){
+    public boolean requestPermission() {
         final int MY_PERMISSIONS_REQUEST_LOCATION = 0;
         if (ContextCompat.checkSelfPermission(SignIn.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(SignIn.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
