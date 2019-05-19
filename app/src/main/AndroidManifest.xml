@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerAccountSettings"></activity>
-        <activity android:name=".CustomerAddCar"></activity>
+        <activity android:name=".UpdateSubscription"></activity>
+        <activity android:name=".CustomerAccountSettings" />
+        <activity android:name=".CustomerAddCar" />
         <activity android:name=".CustomerEditCar" />
         <activity android:name=".CustomerManageCars" />
 
@@ -35,6 +36,7 @@
         <activity android:name=".SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -55,13 +57,13 @@
         <activity android:name=".CustomerMainPage" />
         <activity android:name=".CustomerServiceFinishedSelect" />
         <activity android:name=".CustomerServiceAcceptOrCancel" />
-        <activity android:name=".CustomerServiceOffers"></activity>
-        <activity android:name=".RoadsideSelectedOffer"></activity>
-        <activity android:name=".CustomerActiveServicesSelect"></activity>
-        <activity android:name=".CustomerSelectedActiveService"></activity>
-        <activity android:name=".CustomerServiceFinish"></activity>
-        <activity android:name=".CustomerLeaveReview"></activity>
-        <activity android:name=".RoadsideSetFilter"></activity>
+        <activity android:name=".CustomerServiceOffers" />
+        <activity android:name=".RoadsideSelectedOffer" />
+        <activity android:name=".CustomerActiveServicesSelect" />
+        <activity android:name=".CustomerSelectedActiveService" />
+        <activity android:name=".CustomerServiceFinish" />
+        <activity android:name=".CustomerLeaveReview" />
+        <activity android:name=".RoadsideSetFilter" />
     </application>
 
 </manifest>

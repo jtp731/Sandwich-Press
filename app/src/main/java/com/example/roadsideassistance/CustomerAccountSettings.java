@@ -24,6 +24,12 @@ public class CustomerAccountSettings extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void updateSubscription(View view){
+        Intent intent = new Intent(this, UpdateSubscription.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
