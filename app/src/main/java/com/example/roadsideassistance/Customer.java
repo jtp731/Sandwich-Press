@@ -205,12 +205,12 @@ public class Customer extends Person{
                             SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_ONE_MONTH);
                             subPayments.add(payment);
                             AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
-                            today.setMonth(today.getMonth() + 1);//Might need to change if doesn't increment year
+                            today.setMonth(today.getMonth() + 1);//Does increment year
                             cars.get(i).renewalDate = today;
                             AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
                         }
                         else {
-                            //remove sub maybe??
+                            cars.get(i).subType = Car.FREE_SUB;
                         }
                     }
                     if(cars.get(i).subType == Car.SIX_MONTH_SUB) {
@@ -218,12 +218,12 @@ public class Customer extends Person{
                             SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_SIX_MONTHS);
                             subPayments.add(payment);
                             AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
-                            today.setMonth(today.getMonth() + 6);//Might need to change if doesn't increment year
+                            today.setMonth(today.getMonth() + 6);//Does increment year
                             cars.get(i).renewalDate = today;
                             AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
                         }
                         else {
-                            //remove sub maybe??
+                            cars.get(i).subType = Car.FREE_SUB;
                         }
                     }
                     if(cars.get(i).subType == Car.ONE_YEAR_SUB) {
@@ -236,7 +236,7 @@ public class Customer extends Person{
                             AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
                         }
                         else {
-                            //remove sub maybe??
+                            cars.get(i).subType = Car.FREE_SUB;
                         }
                     }
                 }

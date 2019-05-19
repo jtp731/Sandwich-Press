@@ -24,11 +24,11 @@ import java.util.Date;
         indices = {@Index(value = "customer_username")})
 public class SubscriptionPayment implements Parcelable {
         @Ignore
-        public static final float COST_ONE_MONTH = 25.50f;
+        public static final float COST_ONE_MONTH = 14.00f;
         @Ignore
-        public static final float COST_SIX_MONTHS = 50.00f;
+        public static final float COST_SIX_MONTHS = 72.00f;
         @Ignore
-        public static final float COST_ONE_YEAR = 75.00f;
+        public static final float COST_ONE_YEAR = 120.00f;
 
         @NonNull
         public String customer_username;
