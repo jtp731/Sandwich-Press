@@ -101,26 +101,26 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                 } else {
                                     final String details;
                                     if (description.length() > 0) {
-                                        details = description.getText().toString();
+                                        newService.description = description.getText().toString();
                                     }
                                     //Store types of service
                                     if (breakdown.isChecked()){
-
+                                        newService.setFlag(Service.MECHANICAL_BREAKDOWN);
                                     }
                                     if (battery.isChecked()){
-
+                                        newService.setFlag(Service.FLAT_BATTERY);
                                     }
                                     if (tyre.isChecked()){
-
+                                        newService.setFlag(Service.FLAT_TYRE);
                                     }
                                     if (keys.isChecked()){
-
+                                        newService.setFlag(Service.KEYS_IN_CAR);
                                     }
                                     if (fuel.isChecked()){
-
+                                        newService.setFlag(Service.OUT_OF_FUEL);
                                     }
                                     if (stuck.isChecked()){
-
+                                        newService.setFlag(Service.CAR_STUCK);
                                     }
                                     if (other.isChecked()){
 
