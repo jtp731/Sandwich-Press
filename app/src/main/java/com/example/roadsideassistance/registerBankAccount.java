@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -19,6 +20,7 @@ public class registerBankAccount extends AppCompatActivity {
 
     Person person;
     AppDatabase database;
+    Customer customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,29 @@ public class registerBankAccount extends AppCompatActivity {
 
         findViewById(R.id.errorCardNum).setVisibility(View.GONE);
         findViewById(R.id.errorExpiryDate).setVisibility(View.GONE);
+
+        if (getIntent().getParcelableExtra("Customer") != null){
+            customer = getIntent().getParcelableExtra("Customer");
+            setToCustomer(null);
+
+            EditText bankNum = findViewById(R.id.newBankNum);
+            bankNum.setText(Long.toString(customer.bankAccount.cardNum));
+
+            EditText month = findViewById(R.id.newExpiryDateMonth);
+            EditText year = findViewById(R.id.newExpiryDateYear);
+            Date expiry = customer.bankAccount.expiryDate;
+            Integer expMonth = expiry.getMonth() + 1;
+            String monthExpiry;
+            if (expMonth < 10){
+                monthExpiry = 0 + Integer.toString(expMonth);
+            } else {
+                monthExpiry = Integer.toString(expMonth);
+            }
+            String expYear = Integer.toString(expiry.getYear() + 1900 - 2000);
+            month.setText(monthExpiry);
+            year.setText(expYear);
+            findViewById(R.id.radioGroup).setVisibility(View.GONE);
+        }
     }
 
     public void onClick(View view) {
@@ -50,11 +75,21 @@ public class registerBankAccount extends AppCompatActivity {
             year = (currYear + year) - 1900;
 
             Date expiryDate = new Date(year, month-1, 1);
-            person.bankAccount = new BankAccount(cardNum, expiryDate);
             if (currentPersonType == CUSTOMER) {
-                database.userDao().addCustomer(new Customer(person));
-                //return to login
-                finish();
+                if (getIntent().getParcelableExtra("Customer") != null){
+                    customer.bankAccount.expiryDate = expiryDate;
+                    customer.bankAccount.cardNum = cardNum;
+
+                    finish();
+                } else {
+                    person.bankAccount = new BankAccount(cardNum, expiryDate);
+                    customer = new Customer(person);
+                    database.userDao().addCustomer(customer);
+                    Intent intent = new Intent(this, CustomerAddCar.class);
+                    intent.putExtra("Customer", customer);
+                    startActivity(intent);
+                    super.finish();
+                }
             }
 
             if (currentPersonType == ROADSIDE_ASSISTANT) {
@@ -62,7 +97,7 @@ public class registerBankAccount extends AppCompatActivity {
                 Intent roadsideIntent = new Intent(registerBankAccount.this, registerRoadside.class);
                 roadsideIntent.putExtra("Person", person);
                 startActivity(roadsideIntent);
-                finish();
+                super.finish();
             }
         }
     }
@@ -146,5 +181,13 @@ public class registerBankAccount extends AppCompatActivity {
         }
 
         return good;
+    }
+
+    @Override
+    public void finish(){
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

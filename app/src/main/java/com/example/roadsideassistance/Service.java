@@ -46,6 +46,8 @@ public class Service implements Parcelable {
         public static final byte OUT_OF_FUEL = 0b00100000;
         @Ignore
         public static final byte CAR_STUCK = 0b01000000;
+        @Ignore
+        public static final byte OTHER = (byte) 0b10000000;
 
         //Service Status Constants
         @Ignore

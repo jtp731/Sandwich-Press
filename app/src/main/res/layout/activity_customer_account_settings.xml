@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".CustomerAccountSettings">
 
+    <Button
+        android:id="@+id/editBilling"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="423dp"
+        android:layout_marginEnd="99dp"
+        android:onClick="updateBilling"
+        android:text="Update Billing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

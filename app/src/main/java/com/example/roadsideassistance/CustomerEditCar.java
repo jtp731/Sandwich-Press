@@ -63,6 +63,7 @@ public class CustomerEditCar extends AppCompatActivity {
 
     public void EditCar(View view) {
         String username = customer.username;
+        String oldPlateNum = car.plateNum;
         make = findViewById(R.id.carMake);
         model = findViewById(R.id.carModel);
         plateNum = findViewById(R.id.plateNum);
@@ -84,14 +85,12 @@ public class CustomerEditCar extends AppCompatActivity {
             findViewById(R.id.colourError).setVisibility(View.VISIBLE);
         } else if (carMake != car.manufacturer || carModel != car.model || carPlate != car.plateNum || carColour != car.colour){
             customer.cars.remove(carNum);
-            database.carDao().editCar(username, carMake, carModel, carPlate, carColour, car.renewalDate);
+            database.carDao().editCar(carMake, carModel, carPlate, carColour, car.renewalDate, oldPlateNum);
             car = database.carDao().getCar(username, carPlate);
             customer.cars.add(car);
             Toast.makeText(CustomerEditCar.this, "Success", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(CustomerEditCar.this, CustomerManageCars.class);
-            intent.putExtra("Customer", customer);
-            startActivity(intent);
+            finish();
         }
     }
 
@@ -112,5 +111,13 @@ public class CustomerEditCar extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void finish(){
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

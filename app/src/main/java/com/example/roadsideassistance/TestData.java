@@ -33,6 +33,11 @@ public class TestData {
                     "cust" + (i + 1) + "FirstName",
                     "cust" + (i + 1) + "LastName");
 
+            Integer randYear = (int)(2018 + Math.random()*(2022 - 2018) - 1900);
+            Integer randMonth = (int)(Math.random()*11);
+            Date bankDate = new Date(randYear, randMonth, 1);
+            customer.bankAccount = new BankAccount((long)(Math.random()*1e16), bankDate);
+
             database.userDao().addCustomer(customer);
 
             for(int j = 0; j < numberOfCarsPerCustomer; j++) {

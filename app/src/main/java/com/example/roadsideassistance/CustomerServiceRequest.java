@@ -102,28 +102,29 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                     final String details;
                                     if (description.length() > 0) {
                                         details = description.getText().toString();
+                                        newService.description = details;
                                     }
                                     //Store types of service
                                     if (breakdown.isChecked()){
-                                        //newService.filter.
+                                        newService.setFlag(Service.MECHANICAL_BREAKDOWN);
                                     }
                                     if (battery.isChecked()){
-
+                                        newService.setFlag(Service.FLAT_BATTERY);
                                     }
                                     if (tyre.isChecked()){
-
+                                        newService.setFlag(Service.FLAT_TYRE);
                                     }
                                     if (keys.isChecked()){
-
+                                        newService.setFlag(Service.KEYS_IN_CAR);
                                     }
                                     if (fuel.isChecked()){
-
+                                        newService.setFlag(Service.OUT_OF_FUEL);
                                     }
                                     if (stuck.isChecked()){
-
+                                        newService.setFlag(Service.CAR_STUCK);
                                     }
                                     if (other.isChecked()){
-
+                                        newService.setFlag(Service.OTHER);
                                     }
                                     //check if a service like this exists
                                     if (database.serviceDao().serviceActive(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)) {
