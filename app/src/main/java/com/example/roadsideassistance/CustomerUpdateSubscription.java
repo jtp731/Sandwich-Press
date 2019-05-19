@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-public class UpdateSubscription extends AppCompatActivity {
+public class CustomerUpdateSubscription extends AppCompatActivity {
 
     Customer customer;
     Car car;
