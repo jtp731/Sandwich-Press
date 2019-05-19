@@ -61,35 +61,10 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
 
         //get Roadside assistant
         roadsideAssistant = getIntent().getParcelableExtra("Roadside");
-        //if(roadsideAssistant != null)
-            //System.out.println("Roadside is NULL");
-            //Toast.makeText(this, "Roadside is Not NULL", Toast.LENGTH_LONG).show();
-        //roadsideAssistant = new RoadsideAssistant("road1", "123", "55554444", "road1@email", "road", "one", "MVTC12345", "Roadside Company", 11111222223L, true, 0);
 
         //delete database before use
         //this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
-
-        //Test services
-        /*
-        database.testDao().addRoadsideAssistant(new RoadsideAssistant("", "123", "00009999", "road1@email", "road", "one", true, 0));
-        database.testDao().addRoadsideAssistant(new RoadsideAssistant("road1", "123", "00009998", "road2@email", "road", "two", true, 0));
-        database.testDao().addCustomer(new Customer("cust1", "123", "33334444", "cust1@email", "customer", "one"));
-        database.testDao().addCar(new Car("cust1", "11ss33", "model", "manufacturer", "green", new Date()));
-        database.serviceDao().addService(new Service("cust1", "11ss33", -33.84, 151.2093));
-        database.serviceDao().addService(new Service("cust1", "11ss33", -33.85, 151.2090));
-        database.serviceDao().addService(new Service("cust1", "11ss33", -33.81, 151.12));
-        */
-        //End
-        /*
-        //Test getting services
-        List<Service> services = database.serviceDao().getNewServiceRequests();
-        System.out.print("Size = " + services.size() + "\n");
-        if(services.get(0).roadside_assistant_username == null)
-            System.out.print("roadside is null");
-        else
-            System.out.print("roadside is not null");
-        */
 
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.serviceSelectMap);
         mapGlobalFragment = mapFragment;
@@ -134,7 +109,6 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
 
                             //move the camera to current location and zoom to city level
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10 - (float)radiusSpinner.getSelectedItemPosition()/1.5f));
-                            //map.addMarker(new MarkerOptions().position(currentPosition));
 
                             //Create circle to show radius of search
                             map.addCircle(new CircleOptions()
@@ -143,11 +117,6 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
                                     .strokeColor(getResources().getColor(R.color.mapRadius))
                                     .strokeWidth(4)
                                     .fillColor(getResources().getColor(R.color.mapFill)));
-
-                            //map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude - diffLatLng.latitude, currentPosition.longitude - diffLatLng.longitude)));
-                            //map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude + diffLatLng.latitude, currentPosition.longitude + diffLatLng.longitude)));
-                            //map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude + diffLatLng.latitude, currentPosition.longitude - diffLatLng.longitude)));
-                            //map.addMarker(new MarkerOptions().position(new LatLng(currentPosition.latitude - diffLatLng.latitude, currentPosition.longitude + diffLatLng.longitude)));
 
                             List<Service> servicesInArea = database.serviceDao().getNewServiceRequests(
                                     currentPosition.latitude - diffLatLng.latitude,

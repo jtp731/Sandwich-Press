@@ -95,6 +95,7 @@ public class CustomerAddCar extends AppCompatActivity {
         sixMonths = findViewById(R.id.radioSix);
         twelveMonths = findViewById(R.id.radioTwelve);
         Calendar calendar = Calendar.getInstance();
+        int subType = Car.FREE_SUB;
 
         if (free.isChecked()){
             renewalDate = new Date(0);
@@ -102,18 +103,21 @@ public class CustomerAddCar extends AppCompatActivity {
             calendar.setTime(new Date());
             calendar.add(Calendar.MONTH, 1);
             renewalDate = calendar.getTime();
+            subType = Car.ONE_MONTH_SUB;
         } else if (sixMonths.isChecked()){
             calendar.setTime(new Date());
             calendar.add(Calendar.MONTH, 6);
             renewalDate = calendar.getTime();
+            subType = Car.SIX_MONTH_SUB;
         } else if (twelveMonths.isChecked()){
             calendar.setTime(new Date());
             calendar.add(Calendar.MONTH, 12);
             renewalDate = calendar.getTime();
+            subType = Car.ONE_YEAR_SUB;
         }
 
         if (empty == false) {
-            Car car = new Car(username, plate, model, make, colour, renewalDate);
+            Car car = new Car(username, plate, model, make, colour, subType, renewalDate);
             database.carDao().addCar(car);
             customer.cars.add(car);
             Toast.makeText(this, "Successfully added car", Toast.LENGTH_LONG).show();

@@ -59,7 +59,7 @@ public class BankAccount implements Parcelable {
 
     public static boolean pay(RoadsideAssistant roadsideAssistant, Customer customer, String carPlateNum, float cost) {
         boolean successful = true;
-        float pay = cost;//Change this based on pay to cost conversion;
+        float pay = cost - 10;
         successful = roadsideAssistant.addPay(pay);
         if(!customer.carCoveredBySubscription(carPlateNum))
             successful = customer.removeCost(cost);

@@ -18,6 +18,9 @@ public interface CarDao {
     @Query("update car set manufacturer = :manufacturer, model = :model, plateNum = :plateNum, colour = :colour, renewalDate = :subscription where plateNum = :oldPlateNum")
     void editCar(String manufacturer, String model, String plateNum, String colour, Date subscription, String oldPlateNum);
 
+    @Query("update car set renewalDate = :newDate where customer_username = :username and plateNum = :plateNum")
+    void updateSubDate(String username, String plateNum, Date newDate);
+
     @Delete
     void deleteCar(Car car);
 }
