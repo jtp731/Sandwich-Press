@@ -138,8 +138,8 @@ public class CustomerPaymentHistory extends AppCompatActivity {
             }
 
             TextView totalText = findViewById(R.id.paymentHistoryTotal);
-            totalText.setText(String.format("Total: $%.2f", total));
-            totalText.setTextColor(getResources().getColor(R.color.positivePayText));
+            totalText.setText(String.format("Total: -$%.2f", total));
+            totalText.setTextColor(getResources().getColor(R.color.negativePayText));
             totalText.setVisibility(View.VISIBLE);
         }
         else{
