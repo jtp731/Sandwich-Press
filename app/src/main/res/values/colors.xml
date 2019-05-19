@@ -11,6 +11,7 @@
     <color name="unselectedListItem">#ffffff</color>
     <color name="cancelButton">#BF0A00</color>
     <color name="white">#FFFFFF</color>
+    <color name="grey">#909090</color>
     <color name="positivePayText">#00B32F</color>
     <color name="negativePayText">#B30006</color>
 </resources>

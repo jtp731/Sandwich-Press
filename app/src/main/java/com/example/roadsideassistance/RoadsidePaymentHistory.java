@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,7 +50,7 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
         months.setAdapter(monthsAdapter);
         years.setAdapter(yearsAdapters);
 
-        fillLayout(currDate.getMonth(), currDate.getYear());
+
 
         months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -74,11 +75,20 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
 
             }
         });
+
+        View costLabel = findViewById(R.id.costLabel);
+        costLabel.post(new Runnable() {
+            @Override
+            public void run() {
+                Date currDate = new Date();
+                fillLayout(currDate.getMonth(), currDate.getYear());
+            }
+        });
     }
 
     private void fillLayout(int month, int year) {
-        Date firstOfMonth = new Date(year, month, 1);
-        Date lastOfMonth = new Date(year, month, 31);
+        Date firstOfMonth = new Date(year-1900, month, 1);
+        Date lastOfMonth = new Date(year-1900, month, 31);
         List<Service> servicesInMonth = database.serviceDao().getServicesInMonthRoadside(roadsideAssistant.username, firstOfMonth, lastOfMonth);
 
         float total = 0;
@@ -88,13 +98,44 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
         if(servicesInMonth != null && servicesInMonth.size() > 0) {
             for(int i = 0; i < servicesInMonth.size(); i++) {
                 total += servicesInMonth.get(i).costToPay();
+                LinearLayout outerLayout = new LinearLayout(this);
+                outerLayout.setOrientation(LinearLayout.HORIZONTAL);
+                outerLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+
+                TextView typeText = new TextView(this);
+                typeText.setText("Service");
+                typeText.setWidth(findViewById(R.id.typeLabel).getWidth());
+                typeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                typeText.setPadding(5,5,5,5);
+                outerLayout.addView(typeText);
+
+                TextView dateText = new TextView(this);
+                dateText.setText(String.format("%d/%d/%d",
+                        servicesInMonth.get(i).time.getDate(),
+                        servicesInMonth.get(i).time.getMonth() + 1,
+                        servicesInMonth.get(i).time.getYear() + 1900));
+                dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
+                dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                dateText.setPadding(5,5,5,5);
+                outerLayout.addView(dateText);
+
+                TextView costText = new TextView(this);
+                costText.setText(String.format("$%.2f", servicesInMonth.get(i).cost));
+                costText.setWidth(findViewById(R.id.costLabel).getWidth());
+                costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                costText.setPadding(5,5,5,5);
+                outerLayout.addView(costText);
+
+                /*
                 TextView service = new TextView(this);
                 service.setText(String.format("Date: %d/%d/%d     Cost: $%.2f",
                         servicesInMonth.get(i).time.getDate(),
                         servicesInMonth.get(i).time.getMonth(),
                         servicesInMonth.get(i).time.getYear() + 1900,
                         servicesInMonth.get(i).costToPay()));
-                serviceListLayout.addView(service);
+                */
+                serviceListLayout.addView(outerLayout);
             }
 
             TextView totalText = findViewById(R.id.paymentHistoryTotal);
