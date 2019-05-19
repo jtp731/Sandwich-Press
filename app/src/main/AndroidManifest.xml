@@ -32,10 +32,7 @@
             android:label="Register Bank Account"
             android:parentActivityName=".registerAddress" />
         <activity android:name=".SignIn">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".CustomerServiceRequest" />
         <activity
@@ -61,6 +58,12 @@
         <activity android:name=".CustomerServiceFinish"></activity>
         <activity android:name=".CustomerLeaveReview"></activity>
         <activity android:name=".RoadsideSetFilter"></activity>
+        <activity android:name=".CustomerPaymentHistory">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
