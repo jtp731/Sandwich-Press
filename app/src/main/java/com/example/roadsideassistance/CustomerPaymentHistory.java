@@ -183,7 +183,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     TextView dateText = new TextView(this);
                     dateText.setText(String.format("%d/%d/%d",
                             subPaymentsInMonth.get(subsIndex).time.getDate(),
-                            subPaymentsInMonth.get(subsIndex).time.getMonth(),
+                            subPaymentsInMonth.get(subsIndex).time.getMonth() + 1,
                             subPaymentsInMonth.get(subsIndex).time.getYear() + 1900));
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
@@ -221,7 +221,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     TextView dateText = new TextView(this);
                     dateText.setText(String.format("%d/%d/%d",
                             servicesInMonth.get(servicesIndex).time.getDate(),
-                            servicesInMonth.get(servicesIndex).time.getMonth(),
+                            servicesInMonth.get(servicesIndex).time.getMonth() + 1,
                             servicesInMonth.get(servicesIndex).time.getYear() + 1900));
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
@@ -258,7 +258,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     TextView dateText = new TextView(this);
                     dateText.setText(String.format("%d/%d/%d",
                             servicesInMonth.get(servicesIndex).time.getDate(),
-                            servicesInMonth.get(servicesIndex).time.getMonth(),
+                            servicesInMonth.get(servicesIndex).time.getMonth() + 1,
                             servicesInMonth.get(servicesIndex).time.getYear() + 1900));
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
@@ -295,7 +295,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     TextView dateText = new TextView(this);
                     dateText.setText(String.format("%d/%d/%d",
                             subPaymentsInMonth.get(subsIndex).time.getDate(),
-                            subPaymentsInMonth.get(subsIndex).time.getMonth(),
+                            subPaymentsInMonth.get(subsIndex).time.getMonth() + 1,
                             subPaymentsInMonth.get(subsIndex).time.getYear() + 1900));
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
