@@ -37,6 +37,8 @@ public class SignIn extends AppCompatActivity {
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
             TestData.createTestData(this, 10, 10, 3, 10);
+            database.userDao().addRoadsideAssistant(new RoadsideAssistant("aj", "123", "00000000", "a@e", "A", "L", null, null, "", "", -1, false, 0));
+
         }
 
         Button signup = findViewById(R.id.newSignup);

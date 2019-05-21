@@ -38,6 +38,12 @@ public class RoadsideMainPage extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void toMyAccount(View view) {
+        Intent intent = new Intent(this, AssistantAccount.class);
+        intent.putExtra("Roadside", roadsideAssistant);
+        startActivityForResult(intent, 1);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {

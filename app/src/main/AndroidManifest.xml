@@ -64,6 +64,13 @@
         <activity android:name=".CustomerServiceFinish" />
         <activity android:name=".CustomerLeaveReview" />
         <activity android:name=".RoadsideSetFilter" />
+        <activity android:name=".AssistantAccount" />
+        <activity android:name=".AssistantAccountSettings" />
+        <activity android:name=".AssistantDetails" />
+        <activity android:name=".AssistantHome" />
+        <activity android:name=".AssistantPaymentHistory" />
+        <activity android:name=".AssistantPaymentReport" />
+        <activity android:name=".AssistantPriceSettings" />
     </application>
 
 </manifest>

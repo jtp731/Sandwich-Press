@@ -40,4 +40,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roadsideNewServiceRequestsButton" />
+
+    <Button
+        android:id="@+id/roadsideMyAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="toMyAccount"
+        android:text="My Account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roadsideAcceptedServicesButton" />
 </android.support.constraint.ConstraintLayout>

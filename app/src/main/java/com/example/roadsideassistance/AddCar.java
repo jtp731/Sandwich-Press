@@ -86,7 +86,7 @@ public class AddCar extends AppCompatActivity {
         }
 
         if (empty == false) {
-            Car car = new Car(username, plate, model, make, colour, renewalDate);
+            Car car = new Car(username, plate, model, make, 0, renewalDate); //had to change "color" to int - caused error
             database.carDao().addCar(car);
             customer.cars.add(car);
             Toast.makeText(this, "Successfully added car", Toast.LENGTH_LONG).show();
