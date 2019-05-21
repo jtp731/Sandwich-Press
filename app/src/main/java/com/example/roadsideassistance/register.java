@@ -132,9 +132,14 @@ public class register extends AppCompatActivity {
     }
 
     boolean validPhoneNumber(String phonenumber) {
-        String patternString = "^[0-9]{8}$";
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(phonenumber);
+        String patternStringHome = "^[0-9]{8}$";
+        String patternStringMobile = "^[0-9]{10}$";
+        Pattern patternHome = Pattern.compile(patternStringHome);
+        Pattern patternMobile = Pattern.compile(patternStringMobile);
+        Matcher matcher = patternHome.matcher(phonenumber);
+        if (!matcher.matches()){
+            matcher = patternMobile.matcher(phonenumber);
+        }
         return matcher.matches();
     }
 
