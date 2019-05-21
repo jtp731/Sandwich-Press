@@ -17,7 +17,7 @@ public class CustomerServiceFinish extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_service_finished_select);
+        setContentView(R.layout.activity_customer_selected_finished_service);
         database = AppDatabase.getDatabase(this);
 
         customer = getIntent().getParcelableExtra("Customer");
@@ -45,13 +45,17 @@ public class CustomerServiceFinish extends AppCompatActivity {
     }
 
     public void finishService(View view) {
-        if(customer.bankAccount.pay(database.roadsideAssistantDao().getRoadsideAssistant(selectedService.roadside_assistant_username), customer, selectedService.car_plateNum, selectedService.cost)) {
+        if(customer.bankAccount.pay(database.roadsideAssistantDao().getRoadsideAssistantByUsername(selectedService.roadside_assistant_username), customer, selectedService.car_plateNum, selectedService.cost)) {
             customer.finishService(selectedService);
             if(customer.carCoveredBySubscription(selectedService.car_plateNum))
-                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 4);
+                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, Service.PAYED_WITH_SUB);
             else
-                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, 3);
-            finish();
+                database.serviceDao().updateServiceStatus(selectedService.roadside_assistant_username, customer.username, selectedService.car_plateNum, selectedService.time, Service.PAYED_WITH_CARD);
+
+            Intent intent = new Intent(this, CustomerLeaveReview.class);
+            intent.putExtra("Customer", customer);
+            intent.putExtra("Service", selectedService);
+            startActivityForResult(intent, 1);
         }
         else
             Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show();
@@ -63,5 +67,13 @@ public class CustomerServiceFinish extends AppCompatActivity {
         data.putExtra("Customer", customer);
         setResult(RESULT_OK, data);
         super.finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == 1) {
+            customer = data.getParcelableExtra("Customer");
+            finish();
+        }
     }
 }

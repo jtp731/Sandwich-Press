@@ -20,6 +20,15 @@ import java.util.List;
         indices = {@Index(value = "customer_username")}
 )
 public class Car implements Parcelable {
+    @Ignore
+    public static final int FREE_SUB = 0;
+    @Ignore
+    public static final int ONE_MONTH_SUB = 1;
+    @Ignore
+    public static final int SIX_MONTH_SUB = 2;
+    @Ignore
+    public static final int ONE_YEAR_SUB = 3;
+
     @NonNull
     public String customer_username;
 
@@ -29,23 +38,26 @@ public class Car implements Parcelable {
     public String model;
     public String manufacturer;
     public String colour;
+    public int subType;
     public Date renewalDate;
 
     @Ignore
-    public Car(String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
+    public Car(String plateNum, String model, String manufacturer, String colour, int subType, Date renewalDate) {
         this.plateNum = plateNum;
         this.model = model;
         this.manufacturer = manufacturer;
         this.colour = colour;
+        this.subType = subType;
         this.renewalDate = renewalDate;
     }
 
-    public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, Date renewalDate) {
+    public Car(String customer_username, String plateNum, String model, String manufacturer, String colour, int subType, Date renewalDate) {
         this.customer_username = customer_username;
         this.plateNum = plateNum;
         this.model = model;
         this.manufacturer = manufacturer;
         this.colour = colour;
+        this.subType = subType;
         this.renewalDate = renewalDate;
     }
 
@@ -60,6 +72,7 @@ public class Car implements Parcelable {
         out.writeString(model);
         out.writeString(manufacturer);
         out.writeString(colour);
+        out.writeInt(subType);
         out.writeString(renewalDate.toString());
     }
 
@@ -79,6 +92,7 @@ public class Car implements Parcelable {
         this.model = in.readString();
         this.manufacturer = in.readString();
         this.colour = in.readString();
+        this.subType = in.readInt();
         this.renewalDate = new Date(in.readString());
     }
 }

@@ -1,6 +1,8 @@
 package com.example.roadsideassistance;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
@@ -21,4 +23,10 @@ public interface CustomerDao {
 
     @Query("select * from review where customer_username = :username")
     List<Review> getAllCustomerReviews(String username);
+
+    @Query("select * from subscriptionpayment where customer_username = :username")
+    List<SubscriptionPayment> getAllCustomerSubPayments(String username);
+
+    @Insert(onConflict = OnConflictStrategy.FAIL)
+    void addSubPayment(SubscriptionPayment payment);
 }

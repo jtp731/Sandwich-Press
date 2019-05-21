@@ -11,6 +11,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,15 +20,16 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 public class CustomerServiceRequest extends AppCompatActivity {
     AppDatabase database;
     Customer customer;
     Spinner carSpinner;
+    CheckBox breakdown;
+    CheckBox battery, tyre, keys, fuel, stuck, other;
+    EditText description;
     ArrayAdapter<String> carStrings;
 
     @Override
@@ -36,25 +39,24 @@ public class CustomerServiceRequest extends AppCompatActivity {
         database = AppDatabase.getDatabase(this);
 
         customer = getIntent().getParcelableExtra("Customer");
-        /*
-        customer = new Customer("cust1", "123", "33334444", "cust1@email", "jane", "doe");
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("11ss33", "Mazda", "3", "green", new Date()));
-        cars.add(new Car("22ss33", "Mitsu", "lancer", "green", new Date()));
-        cars.add(new Car("33ss33", "BMW", "m3", "green", new Date()));
-        cars.add(new Car("44ss33", "Jaguar", "thing", "green", new Date()));
-        customer.cars = cars;
-        */
         carSpinner = findViewById(R.id.carSpinner);
+        breakdown = findViewById(R.id.breakBox);
+        battery = findViewById(R.id.batteryBox);
+        tyre = findViewById(R.id.tyreBox);
+        keys = findViewById(R.id.keysBox);
+        fuel = findViewById(R.id.fuelBox);
+        stuck = findViewById(R.id.stuckBox);
+        other = findViewById(R.id.otherBox);
+        description = findViewById(R.id.description);
 
         if(customer.cars.size() > 0) {
             Vector<String> carsAsString = new Vector<>();
             Car currCar;
             for (int i = 0; i < customer.cars.size(); i++) {
                 currCar = customer.cars.get(i);
-                carsAsString.add("Plate: " + currCar.plateNum + " Make: " + currCar.manufacturer + " Model: " + currCar.model);
+                carsAsString.add(currCar.manufacturer + " " + currCar.model + " " + currCar.plateNum);
             }
-            carStrings = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, carsAsString);
+            carStrings = new ArrayAdapter<String>(this, R.layout.activity_spinner, carsAsString);
             carSpinner.setAdapter(carStrings);
         }
         else {
@@ -69,7 +71,10 @@ public class CustomerServiceRequest extends AppCompatActivity {
 
     public void requestService(View view) {
         if (customer.cars.size() > 0) {
-            if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if(customer.cars.get(carSpinner.getSelectedItemPosition()).renewalDate != null && customer.bankAccount.expiryDate.before(new Date())) {
+                Toast.makeText(this, "Card Expired", Toast.LENGTH_LONG).show();
+            }
+            else if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 Task<Location> locationResult = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
                 locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
                     @Override
@@ -84,25 +89,59 @@ public class CustomerServiceRequest extends AppCompatActivity {
                                         currLocation.getLongitude(),
                                         new Date(),
                                         0f,
-                                        0);
-                                if(database.serviceDao().serviceExists(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)){
-                                    Toast.makeText(getContext(), "You already have a service for this car", Toast.LENGTH_LONG).show();
-                                }
-                                else {
-                                    database.serviceDao().addService(newService);
-                                    customer.services.add(newService);
-                                    finish();
+                                        Service.OPEN,
+                                        (byte)0,
+                                        "");
+
+                                if (!breakdown.isChecked() && !battery.isChecked() && !tyre.isChecked() && !keys.isChecked() && !fuel.isChecked() && !stuck.isChecked() && !other.isChecked()) {
+                                    Toast.makeText(CustomerServiceRequest.this, "Please select a service option", Toast.LENGTH_LONG).show();
+                                } else if (other.isChecked() && description.length() == 0){
+                                    Toast.makeText(CustomerServiceRequest.this, "Please enter a description", Toast.LENGTH_LONG).show();
+                                } else {
+                                    final String details;
+                                    if (description.length() > 0) {
+                                        details = description.getText().toString();
+                                        newService.description = details;
+                                    }
+                                    //Store types of service
+                                    if (breakdown.isChecked()){
+                                        newService.setFlag(Service.MECHANICAL_BREAKDOWN);
+                                    }
+                                    if (battery.isChecked()){
+                                        newService.setFlag(Service.FLAT_BATTERY);
+                                    }
+                                    if (tyre.isChecked()){
+                                        newService.setFlag(Service.FLAT_TYRE);
+                                    }
+                                    if (keys.isChecked()){
+                                        newService.setFlag(Service.KEYS_IN_CAR);
+                                    }
+                                    if (fuel.isChecked()){
+                                        newService.setFlag(Service.OUT_OF_FUEL);
+                                    }
+                                    if (stuck.isChecked()){
+                                        newService.setFlag(Service.CAR_STUCK);
+                                    }
+                                    if (other.isChecked()){
+                                        newService.setFlag(Service.OTHER);
+                                    }
+                                    //check if a service like this exists
+                                    if (database.serviceDao().serviceActive(newService.roadside_assistant_username, newService.customer_username, newService.car_plateNum, newService.time)) {
+                                        Toast.makeText(getContext(), "You already have a service for this car", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        database.serviceDao().addService(newService);
+                                        customer.services.add(newService);
+                                        finish();
+                                    }
                                 }
                             }
                         }
                     }
                 });
-            }
-            else {
+            } else {
                 Toast.makeText(this, "GPS not permitted", Toast.LENGTH_LONG).show();
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "You don't have any cars", Toast.LENGTH_LONG).show();
         }
     }
@@ -117,5 +156,18 @@ public class CustomerServiceRequest extends AppCompatActivity {
         data.putExtra("Customer", customer);
         setResult(RESULT_OK, data);
         super.finish();
+    }
+
+    //Alter description edittext hint string
+    public void otherOption(View view) {
+        other = findViewById(R.id.otherBox);
+        if (other.isChecked()){
+            description = findViewById(R.id.description);
+            description.setHint("Required description");
+        } else {
+            description = findViewById(R.id.description);
+            description.setHint("Optional description");
+        }
+
     }
 }

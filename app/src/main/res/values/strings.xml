@@ -10,5 +10,11 @@
         <item>WA</item>
         <item>TAS</item>
     </string-array>
-    <string name="title_activity_add_car">AddCar</string>
+    <string-array name="radii">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+    </string-array>
 </resources>

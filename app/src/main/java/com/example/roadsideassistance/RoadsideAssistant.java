@@ -10,6 +10,9 @@ import java.util.List;
 
 @Entity(inheritSuperIndices = true)
 public class RoadsideAssistant extends Person{
+    String licence;
+    String companyName;
+    long abn;
     boolean canTow;
     float rating;
 
@@ -20,8 +23,11 @@ public class RoadsideAssistant extends Person{
     public List<Service> services;
 
     @Ignore
-    public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, boolean canTow, float rating) {
+    public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, String licence, String companyName, long abn, boolean canTow, float rating) {
         super(username, password, phonenumber, email, firstName, lastName);
+        this.licence = licence;
+        this.companyName = companyName;
+        this.abn = abn;
         this.canTow = canTow;
         this.rating = rating;
         reviews = new ArrayList<>();
@@ -29,9 +35,14 @@ public class RoadsideAssistant extends Person{
     }
 
     @Ignore
-    public RoadsideAssistant(Person person, boolean canTow) {
+    public RoadsideAssistant(Person person, String licence, String companyName, long abn, boolean canTow, float rating) {
         super(person);
         this.canTow = canTow;
+        this.licence = licence;
+        this.companyName = companyName;
+        this.abn = abn;
+        this.canTow = canTow;
+        this.rating = rating;
     }
 
     @Ignore
@@ -39,15 +50,18 @@ public class RoadsideAssistant extends Person{
         return bankAccount.tryPay();
     }
 
-    public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount, boolean canTow, float rating) {
+    public RoadsideAssistant(String username, String password, String phonenumber, String email, String firstName, String lastName, Address address, BankAccount bankAccount, String licence, String companyName, long abn, boolean canTow, float rating) {
         super(username, password, phonenumber, email, firstName, lastName, address, bankAccount);
+        this.licence = licence;
+        this.companyName = companyName;
+        this.abn = abn;
         this.canTow = canTow;
         this.rating = rating;
 
     }
 
     public String toString() {
-        String string = super.toString() + ", CanTow = " + canTow + ", Rating = " + rating;
+        String string = super.toString() + ", Licence = " + licence + ", Company Name = " + companyName + ", ABN = " + abn + ", CanTow = " + canTow + ", Rating = " + rating;
         return string;
     }
 
@@ -58,6 +72,9 @@ public class RoadsideAssistant extends Person{
 
     public void writeToParcel(Parcel out, int flags) {
         super.writeToParcel(out, flags);
+        out.writeString(licence);
+        out.writeString(companyName);
+        out.writeLong(abn);
         out.writeInt(canTow ? 1:0);
         out.writeFloat(rating);
         out.writeList(services);
@@ -76,6 +93,9 @@ public class RoadsideAssistant extends Person{
 
     private RoadsideAssistant(Parcel in) {
         super(in);
+        this.licence = in.readString();
+        this.companyName = in.readString();
+        this.abn = in.readLong();
         this.canTow = in.readInt() == 1;
         this.rating = in.readFloat();
         services = new ArrayList<>();
@@ -85,10 +105,10 @@ public class RoadsideAssistant extends Person{
     }
 
     public ArrayList<Service> getActiveServices() {
-        ArrayList<Service> activeServices = null;
+        ArrayList<Service> activeServices = new ArrayList<>();
         if(services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
-                if(services.get(i).status == 1)
+                if(services.get(i).status == Service.ACCEPTED)
                     activeServices.add(services.get(i));
             }
         }
@@ -97,24 +117,27 @@ public class RoadsideAssistant extends Person{
 
     public void removeService(Service service) {
         if(services != null && services.size() > 0) {
-            services.remove(service);
+            for(int i = 0; i < services.size(); i++) {
+                if(services.get(i).equals(service))
+                    services.remove(i);
+            }
         }
     }
 
     public void updateService(Service service, int status) {
         if(services != null && services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
-                if(services.get(i).customer_username.equals(service.customer_username) && services.get(i).car_plateNum.equals(service.car_plateNum) && services.get(i).time.equals(service.time))
+                if(services.get(i).equals(service))
                     services.get(i).status = status;
             }
         }
     }
 
     public ArrayList<Service> getCurrentOffers() {
-        ArrayList<Service> offers = null;
+        ArrayList<Service> offers = new ArrayList<>();
         if(services != null && services.size() > 0) {
             for(int i = 0; i < services.size(); i++) {
-                if(services.get(i).status == 0)
+                if(services.get(i).status == Service.OPEN)
                     offers.add(services.get(i));
             }
         }

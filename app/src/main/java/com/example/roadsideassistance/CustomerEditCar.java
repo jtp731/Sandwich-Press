@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,17 +18,15 @@ public class CustomerEditCar extends AppCompatActivity {
     AppDatabase database;
     Customer customer;
     Car car;
-    int carNum;
-    EditText make;
-    EditText model;
-    EditText plateNum;
-    EditText colour;
+    EditText make, model, plateNum, colour;
     TextView sub;
+    int carNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_edit_car);
+
         database = AppDatabase.getDatabase(getApplicationContext());
         findViewById(R.id.makeError).setVisibility(View.GONE);
         findViewById(R.id.modelError).setVisibility(View.GONE);
@@ -52,11 +50,20 @@ public class CustomerEditCar extends AppCompatActivity {
         model.setText(car.model);
         plateNum.setText(car.plateNum);
         colour.setText(car.colour);
-        sub.setText(car.renewalDate.toString());
+
+        String dateOutput = "";
+        Date today = new Date();
+        if (car.renewalDate.before(today)){
+            dateOutput = "Not subscribed";
+        } else if (car.renewalDate.after(today)){
+            dateOutput = DateFormat.format("dd-MM-yyyy", car.renewalDate).toString();
+        }
+        sub.setText(dateOutput);
     }
 
     public void EditCar(View view) {
         String username = customer.username;
+        String oldPlateNum = car.plateNum;
         make = findViewById(R.id.carMake);
         model = findViewById(R.id.carModel);
         plateNum = findViewById(R.id.plateNum);
@@ -78,33 +85,52 @@ public class CustomerEditCar extends AppCompatActivity {
             findViewById(R.id.colourError).setVisibility(View.VISIBLE);
         } else if (carMake != car.manufacturer || carModel != car.model || carPlate != car.plateNum || carColour != car.colour){
             customer.cars.remove(carNum);
-            database.carDao().editCar(username, carMake, carModel, carPlate, carColour, car.renewalDate);
+            database.carDao().editCar(carMake, carModel, carPlate, carColour, car.renewalDate, oldPlateNum);
             car = database.carDao().getCar(username, carPlate);
             customer.cars.add(car);
             Toast.makeText(CustomerEditCar.this, "Success", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(CustomerEditCar.this, ManageCars.class);
-            intent.putExtra("Customer", customer);
-            startActivity(intent);
+            finish();
         }
     }
 
     public void RemoveCar(View view) {
-        new AlertDialog.Builder(this).setTitle("Remove Car")
-                .setMessage("Are you sure you want to remove this car?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        customer.cars.remove(carNum);
-                        database.carDao().deleteCar(car);
-                        Toast.makeText(CustomerEditCar.this, "Successfully removed car", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(CustomerEditCar.this, ManageCars.class);
-                        intent.putExtra("Customer", customer);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        if (customer.cars.size() == 1){
+            new AlertDialog.Builder(this).setTitle("Cannot Remove Car")
+                    .setMessage("You cannot remove your only car.")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        } else {
+            new AlertDialog.Builder(this).setTitle("Remove Car")
+                    .setMessage("Are you sure you want to remove this car?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            customer.cars.remove(carNum);
+                            database.carDao().deleteCar(car);
+                            Toast.makeText(CustomerEditCar.this, "Successfully removed car", Toast.LENGTH_LONG).show();
+
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+    }
+
+    @Override
+    public void finish(){
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }
