@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerUpdateSubscription"></activity>
+        <activity android:name=".RoadsideChangePassword"></activity>
+        <activity android:name=".CustomerUpdateSubscription" />
         <activity android:name=".CustomerAccountSettings" />
         <activity android:name=".CustomerAddCar" />
         <activity android:name=".CustomerEditCar" />
