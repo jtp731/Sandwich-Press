@@ -34,14 +34,5 @@ public class AssistantAccount extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button assistSettings = findViewById(R.id.button_assistant_settings);
-        assistSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(AssistantAccount.this, AssistantAccountSettings.class);
-                intent.putExtra("Roadside", roadsideAssistant);
-                startActivity(intent);
-            }
-        });
     }
 }
