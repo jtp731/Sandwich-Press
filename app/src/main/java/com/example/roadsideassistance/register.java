@@ -1,10 +1,13 @@
 package com.example.roadsideassistance;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,12 @@ import java.util.regex.Pattern;
 public class register extends AppCompatActivity {
     private AppDatabase database;
 
+    Customer customer;
+    RoadsideAssistant roadsideAssistant;
+    EditText usernameText, fNameText, lNameText, phoneNumberText, emailText, password1Text, password2Text;
+    TextView heading;
+    Switch canTowSwitch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +33,45 @@ public class register extends AppCompatActivity {
         findViewById(R.id.newEmailError).setVisibility(View.GONE);
         findViewById(R.id.newPhoneError).setVisibility(View.GONE);
         findViewById(R.id.newPasswordError).setVisibility(View.GONE);
+
+        heading = findViewById(R.id.heading);
+        usernameText = findViewById(R.id.newUsername);
+        fNameText = findViewById(R.id.newFName);
+        lNameText = findViewById(R.id.newLName);
+        phoneNumberText = findViewById(R.id.newPhone);
+        emailText = findViewById(R.id.newEmail);
+        password1Text = findViewById(R.id.newPassword);
+        password2Text = findViewById(R.id.newPConfirm);
+        canTowSwitch = findViewById(R.id.canTowSwitch);
+        canTowSwitch.setVisibility(View.GONE);
+
+        if (getIntent().getParcelableExtra("Customer") != null){
+            customer = getIntent().getParcelableExtra("Customer");
+            heading.setText("Edit Details");
+            usernameText.setEnabled(false);
+            fNameText.setEnabled(false);
+            lNameText.setEnabled(false);
+
+            usernameText.setText(customer.username);
+            fNameText.setText(customer.firstName);
+            lNameText.setText(customer.lastName);
+            phoneNumberText.setText(customer.phonenumber);
+            emailText.setText(customer.email);
+
+
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+            roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+            canTowSwitch.setVisibility(View.VISIBLE);
+            heading.setText("Edit Details");
+            usernameText.setEnabled(false);
+            fNameText.setEnabled(false);
+            lNameText.setEnabled(false);
+
+
+        }
     }
 
-    void createUser(View view) {
+    public void createUser(View view) {
         EditText input = findViewById(R.id.newUsername);
         String username = input.getText().toString();
 
