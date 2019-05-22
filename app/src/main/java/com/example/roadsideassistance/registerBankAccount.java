@@ -21,6 +21,7 @@ public class registerBankAccount extends AppCompatActivity {
     Person person;
     AppDatabase database;
     Customer customer;
+    RoadsideAssistant roadsideAssistant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class registerBankAccount extends AppCompatActivity {
         findViewById(R.id.errorExpiryDate).setVisibility(View.GONE);
 
         if (getIntent().getParcelableExtra("Customer") != null){
-            customer = getIntent().getParcelableExtra("Customer");
+            customer = getIntent().getParcelableExtra("Person");
             setToCustomer(null);
 
             EditText bankNum = findViewById(R.id.newBankNum);
@@ -54,6 +55,8 @@ public class registerBankAccount extends AppCompatActivity {
             month.setText(monthExpiry);
             year.setText(expYear);
             findViewById(R.id.radioGroup).setVisibility(View.GONE);
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+
         }
     }
 
