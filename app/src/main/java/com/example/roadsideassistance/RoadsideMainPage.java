@@ -15,7 +15,7 @@ public class RoadsideMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roadside_main_page);
 
-        roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
+        roadsideAssistant = getIntent().getParcelableExtra("Roadside");
 
         Toast.makeText(this, "" + roadsideAssistant.rating, Toast.LENGTH_SHORT).show();
     }

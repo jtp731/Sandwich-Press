@@ -37,7 +37,7 @@ public class SignIn extends AppCompatActivity {
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
             TestData.createTestData(this, 10, 10, 3, 10);
-            database.userDao().addRoadsideAssistant(new RoadsideAssistant("aj", "123", "00000000", "a@e", "A", "L", null, null, "", "", -1, false, 0));
+            database.userDao().addRoadsideAssistant(new RoadsideAssistant("aj", "123", "00000000", "a@e", "A", "L", null, null, "", "", -1, true, 0));
 
         }
 
@@ -93,7 +93,7 @@ public class SignIn extends AppCompatActivity {
                     roadsideAssistant.services = database.roadsideAssistantDao().getAllRoadsideServices(roadsideAssistant.username);
                     roadsideAssistant.reviews = database.roadsideAssistantDao().getAllRoadsideReviews(roadsideAssistant.username);
                     Intent intent = new Intent(this, RoadsideMainPage.class);
-                    intent.putExtra("RoadsideAssistant", roadsideAssistant);
+                    intent.putExtra("Roadside", roadsideAssistant);
                     startActivity(intent);
                 } else if (database.customerDao().customerExists(email)) {
                     Customer customer = database.customerDao().getCustomer(email);

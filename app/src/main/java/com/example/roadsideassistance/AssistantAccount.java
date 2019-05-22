@@ -15,7 +15,7 @@ public class AssistantAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assistant_account);
 
-        roadsideAssistant = getIntent().getParcelableExtra("RoadsideAssistant");
+        roadsideAssistant = getIntent().getParcelableExtra("Roadside");
 
         Button assistDetails = findViewById(R.id.button_assistant_details);
         assistDetails.setOnClickListener(new View.OnClickListener() {
@@ -35,4 +35,20 @@ public class AssistantAccount extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            roadsideAssistant = data.getParcelableExtra("Roadside");
+        }
+    }
+    @Override
+    public void finish(){
+        Intent data = new Intent();
+        data.putExtra("Roadside", roadsideAssistant);
+        setResult(RESULT_OK, data);
+        super.finish();
+    }
+
+
 }
