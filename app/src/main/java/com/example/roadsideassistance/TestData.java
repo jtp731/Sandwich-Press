@@ -2,6 +2,7 @@ package com.example.roadsideassistance;
 
 import android.content.Context;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,11 +19,13 @@ public class TestData {
                     "road" + (i + 1) + "FirstName",
                     "road" + (i + 1) + "LastName",
                     "MVTC" + (int)(Math.random()*1e5),
-                    "Comany" + (i + 1),
+                    "Company" + (i + 1),
                     (long)(Math.random()*1e11),
                     (Math.random() > 0.5 ? true : false),
                     0.0f));
         }
+
+        String [] states = new String[]{"NSW", "QLD", "VIC", "ACT", "NT", "SA", "WA", "TAS"};
 
         for(int i = 0; i < numberOfCustomers; i++) {
             Customer customer = new Customer(
@@ -37,6 +40,8 @@ public class TestData {
             Integer randMonth = (int)(Math.random()*11);
             Date bankDate = new Date(randYear, randMonth, 1);
             customer.bankAccount = new BankAccount((long)(Math.random()*1e16), bankDate);
+
+            customer.address = new Address(i+1, "Street Name Rd", "City" + (i+1), states[i%8]);
 
             database.userDao().addCustomer(customer);
 

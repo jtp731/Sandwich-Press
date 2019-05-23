@@ -41,7 +41,7 @@ public class registerAddress extends AppCompatActivity {
             output = findViewById(R.id.newCity);
             output.setText(customer.address.city);
 
-            int position = adapter.getPosition(customer.address.city);
+            int position = adapter.getPosition(customer.address.state);
             states.setSelection(position);
         } else if (getIntent().getParcelableExtra("Roadside") != null){
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
@@ -78,12 +78,6 @@ public class registerAddress extends AppCompatActivity {
             customer.address.street = street;
             customer.address.city = city;
             customer.address.state = state;
-
-            person = database.personDao().getUser(customer.username);
-            person.address.streetNum = streetNum;
-            person.address.street = street;
-            person.address.city = city;
-            person.address.state = state;
 
             finish();
         } else if (getIntent().getParcelableExtra("Roadside") != null){
