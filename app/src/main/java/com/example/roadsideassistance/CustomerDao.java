@@ -29,4 +29,7 @@ public interface CustomerDao {
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     void addSubPayment(SubscriptionPayment payment);
+
+    @Query("update customer set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
+    void updateCustomer(String username, String phoneNumber, String email, String password);
 }
