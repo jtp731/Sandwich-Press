@@ -13,6 +13,9 @@ public class registerAddress extends AppCompatActivity {
     Person person;
     Spinner states;
     ArrayAdapter<CharSequence> adapter;
+    Customer customer;
+    RoadsideAssistant roadsideAssistant;
+    AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,37 @@ public class registerAddress extends AppCompatActivity {
         states.setAdapter(adapter);
         Intent intent = getIntent();
         person = intent.getParcelableExtra("Person");
-        //Toast.makeText(this, person.username, Toast.LENGTH_LONG).show();
+        EditText output;
+        database = AppDatabase.getDatabase(this);
+
+        if (getIntent().getParcelableExtra("Customer") != null){
+            customer = getIntent().getParcelableExtra("Customer");
+            output = findViewById(R.id.newStreetNum);
+            output.setText(Integer.toString(customer.address.streetNum));
+
+            output = findViewById(R.id.newStreetName);
+            output.setText(customer.address.street);
+
+            output = findViewById(R.id.newCity);
+            output.setText(customer.address.city);
+
+            int position = adapter.getPosition(customer.address.city);
+            states.setSelection(position);
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+            roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+            output = findViewById(R.id.newStreetNum);
+            output.setText(roadsideAssistant.address.streetNum);
+
+            output = findViewById(R.id.newStreetName);
+            output.setText(roadsideAssistant.address.street);
+
+            output = findViewById(R.id.newCity);
+            output.setText(roadsideAssistant.address.city);
+
+
+            int position = adapter.getPosition(roadsideAssistant.address.city);
+            states.setSelection(position);
+        }
     }
 
     public void nextButton(View view) {
@@ -39,11 +72,47 @@ public class registerAddress extends AppCompatActivity {
 
         String state = states.getSelectedItem().toString();
 
-        person.address = new Address(streetNum, street, city, state);
+        if (getIntent().getParcelableExtra("Customer") != null){
+            customer = getIntent().getParcelableExtra("Customer");
+            customer.address.streetNum = streetNum;
+            customer.address.street = street;
+            customer.address.city = city;
+            customer.address.state = state;
 
-        Intent bankAccountIntent = new Intent(registerAddress.this, registerBankAccount.class);
-        bankAccountIntent.putExtra("Person", person);
-        startActivity(bankAccountIntent);
-        finish();
+            person = database.personDao().getUser(customer.username);
+            person.address.streetNum = streetNum;
+            person.address.street = street;
+            person.address.city = city;
+            person.address.state = state;
+
+            finish();
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+            roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+            roadsideAssistant.address.streetNum = streetNum;
+            roadsideAssistant.address.street = street;
+            roadsideAssistant.address.city = city;
+            roadsideAssistant.address.state = state;
+
+            finish();
+        } else {
+            person.address = new Address(streetNum, street, city, state);
+
+            Intent bankAccountIntent = new Intent(registerAddress.this, registerBankAccount.class);
+            bankAccountIntent.putExtra("Person", person);
+            startActivity(bankAccountIntent);
+            super.finish();
+        }
+    }
+
+    @Override
+    public void finish(){
+        Intent data = new Intent();
+        if (getIntent().getParcelableExtra("Customer") != null){
+            data.putExtra("Customer", customer);
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+            data.putExtra("Roadside", roadsideAssistant);
+        }
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }
