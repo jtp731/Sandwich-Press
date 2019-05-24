@@ -53,6 +53,10 @@ public class CustomerMainPage extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void toPastServices(View view){
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {
