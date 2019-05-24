@@ -54,7 +54,9 @@ public class CustomerMainPage extends AppCompatActivity {
     }
 
     public void toPastServices(View view){
-
+        Intent intent = new Intent(this, CustomerPastServices.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
     }
 
     @Override

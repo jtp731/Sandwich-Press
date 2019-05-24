@@ -81,7 +81,7 @@ public class CustomerServiceOffers extends AppCompatActivity {
 
                 TextView plateNumText = new TextView(this);
                 plateNumText.setPadding(5,5,5,5);
-                plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
+                plateNumText.setWidth(findViewById(R.id.cost).getWidth());
                 plateNumText.setText(serviceOffers.get(i).car_plateNum);
                 plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 offerLayout.addView(plateNumText);

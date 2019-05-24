@@ -6,14 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class CustomerAddCar extends AppCompatActivity {
 
@@ -81,7 +77,7 @@ public class CustomerAddCar extends AppCompatActivity {
             findViewById(R.id.colourError).setVisibility(View.VISIBLE);
         }
 
-        input = findViewById(R.id.plateNum);
+        input = findViewById(R.id.cost);
         if (!input.getText().toString().trim().isEmpty()) {
             plate = input.getText().toString();
             findViewById(R.id.plateError).setVisibility(View.GONE);

@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,9 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,10 +27,8 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -161,7 +155,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
 
                                     TextView plateNumText = new TextView(getContext());
                                     plateNumText.setPadding(5,5,5,5);
-                                    plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
+                                    plateNumText.setWidth(findViewById(R.id.cost).getWidth());
                                     plateNumText.setText(servicesInRadius.get(i).car_plateNum);
                                     plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                                     servicesLayout.addView(plateNumText);
