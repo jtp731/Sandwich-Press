@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+
 public class RoadsideSelectServiceCost extends AppCompatActivity {
     AppDatabase database;
     RoadsideAssistant roadsideAssistant;

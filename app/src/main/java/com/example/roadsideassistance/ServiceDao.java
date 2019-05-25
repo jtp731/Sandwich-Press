@@ -61,9 +61,19 @@ public interface ServiceDao {
             "and (time = :time or status = 0 or status = 1 or status = 2)) then 1 else 0 end")
     boolean serviceActive(String roadsideUsername, String customerUsername, String plateNum, Date time);
 
-    @Query("select MIN(time) from service where customer_username = :username and status = 3")
+    @Query("select MIN(time) from service where customer_username = :username and (status = 3 or status = 4)")
     Date getEarliestFinishedServiceCustomer(String username);
 
+    @Query("select MIN(time) from service where roadside_assistant_username = :username and (status = 3 or status = 4)")
+    Date getEarliestFinishedServiceRoadside(String username);
+
+    @Query("select * from service where roadside_assistant_username = :username and time >= :firstOfMonth and time <= :lastOfMonth group by time order by time desc")
+    List<Service> getServicesInMonthRoadside(String username, Date firstOfMonth, Date lastOfMonth);
+
+    /*
+    @Query("select MIN(time) from service where customer_username = :username and status = 3")
+    Date getEarliestFinishedServiceCustomer(String username);
+    */
     @Query("select * from service where customer_username = :username and time >= :firstOfMonth and time <= :lastOfMonth and status = 3 group by time order by time desc")
     List<Service> getServicesInMonthCustomer(String username, Date firstOfMonth, Date lastOfMonth);
 
