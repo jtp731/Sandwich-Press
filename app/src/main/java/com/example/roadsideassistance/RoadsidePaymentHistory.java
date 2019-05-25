@@ -37,53 +37,63 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
 
         monthsAdapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
         Date earliestDate = database.serviceDao().getEarliestFinishedServiceRoadside(roadsideAssistant.username);
-        Date currDate = new Date();
-        ArrayList<String> yearsInString = new ArrayList<>();
-        if(earliestDate != null) {
-            for (int i = currDate.getYear(); i >= earliestDate.getYear(); i--)
-                yearsInString.add("" + (i + 1900));
+        if(!earliestDate.equals(new Date(0))) {
+            Date currDate = new Date();
+            ArrayList<String> yearsInString = new ArrayList<>();
+            if (earliestDate != null) {
+                for (int i = currDate.getYear(); i >= earliestDate.getYear(); i--)
+                    yearsInString.add("" + (i + 1900));
+            } else
+                yearsInString.add("" + (currDate.getYear() + 1900));
+            yearsAdapters = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, yearsInString);
+
+            months.setAdapter(monthsAdapter);
+            years.setAdapter(yearsAdapters);
+
+
+            months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    fillLayout(position, Integer.parseInt(years.getSelectedItem().toString()));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            years.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    fillLayout(months.getSelectedItemPosition(), Integer.parseInt(years.getItemAtPosition(position).toString()));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            View costLabel = findViewById(R.id.costLabel);
+            costLabel.post(new Runnable() {
+                @Override
+                public void run() {
+                    Date currDate = new Date();
+                    fillLayout(currDate.getMonth(), currDate.getYear());
+                }
+            });
         }
-        else
-            yearsInString.add("" + (currDate.getYear() + 1900));
-        yearsAdapters = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, yearsInString);
-
-        months.setAdapter(monthsAdapter);
-        years.setAdapter(yearsAdapters);
-
-
-
-        months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fillLayout(position, Integer.parseInt(years.getSelectedItem().toString()));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        years.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fillLayout(months.getSelectedItemPosition(), Integer.parseInt(years.getItemAtPosition(position).toString()));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        View costLabel = findViewById(R.id.costLabel);
-        costLabel.post(new Runnable() {
-            @Override
-            public void run() {
-                Date currDate = new Date();
-                fillLayout(currDate.getMonth(), currDate.getYear());
-            }
-        });
+        else {
+            LinearLayout serviceListLayout = findViewById(R.id.paymentHistoryLayout);
+            TextView noHistoryText = new TextView(this);
+            noHistoryText.setText("No Payment History");
+            serviceListLayout.addView(noHistoryText);
+            TextView totalText = findViewById(R.id.paymentHistoryTotal);
+            totalText.setVisibility(View.INVISIBLE);
+            months.setVisibility(View.INVISIBLE);
+            years.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void fillLayout(int month, int year) {

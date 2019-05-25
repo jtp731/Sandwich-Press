@@ -27,72 +27,9 @@ public class CustomerPaymentHistory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_payment_history);
-        //Remove this after testing
-        this.deleteDatabase("appdatabase");
 
         database = AppDatabase.getDatabase(this);
-        //customer = getIntent().getParcelableExtra("Customer");
-        //Start test data
-        customer = new Customer("cust1",
-                "123",
-                "" + (int)(Math.random()*1e8),
-                "cust1@email",
-                "cust1FirstName",
-                "cust1LastName");
-        database.userDao().addCustomer(customer);
-        database.userDao().addRoadsideAssistant(new RoadsideAssistant(
-                "road1",
-                "123",
-                "" + (int)(Math.random()*1e8),
-                "road1@email",
-                "road1FirstName",
-                "road1LastName",
-                "MVTC" + (int)(Math.random()*1e5),
-                "Comany1",
-                (long)(Math.random()*1e11),
-                (Math.random() > 0.5 ? true : false),
-                0.0f));
-        for(int j = 0; j < 3; j++) {
-            database.carDao().addCar(new Car(
-                    customer.username,
-                    "" + (int)(Math.random()*1e6),
-                    "Model" + (j + 1),
-                    "Manufacturer" + (j + 1),
-                    "Colour" + (j + 1),
-                    (int)Math.random()*4,
-                    new Date()
-            ));
-        }
-
-        for(int i = 0; i < 10; i++) {
-            customer.cars = database.customerDao().getAllCustomerCars(customer.username);
-            Date date = new Date();
-            date.setTime(date.getTime() - (long)(i*1e10));
-            database.serviceDao().addService(new Service(
-                    "road1",
-                    customer.username,
-                    customer.cars.get((int)(Math.random()*3)).plateNum,
-                    -33.8688 ,//+ Math.random(),
-                    151.2093 ,//+ Math.random(),
-                    date,
-                    (float)(50 * Math.random() + 100),
-                    Service.PAYED_WITH_CARD,
-                    (byte)0,
-                    ""
-            ));
-        }
-
-        for(int i = 0; i < 10; i++) {
-            customer.cars = database.customerDao().getAllCustomerCars(customer.username);
-            Date date = new Date();
-            date.setTime(date.getTime() - (long)(i*1e10));
-            database.customerDao().addSubPayment(new SubscriptionPayment(
-                    "cust1",
-                    customer.cars.get((int)(Math.random()*3)).plateNum,
-                    date,
-                    50));
-        }
-        //End Test Data
+        customer = getIntent().getParcelableExtra("Customer");
 
         months = findViewById(R.id.paymentHistoryMonth);
         years = findViewById(R.id.paymentHistoryYear);
@@ -100,55 +37,67 @@ public class CustomerPaymentHistory extends AppCompatActivity {
         Date earliestServiceDate = database.serviceDao().getEarliestFinishedServiceCustomer(customer.username);
         Date earliestSubDate = database.customerDao().getEarliestSubPayment(customer.username);
         Date earliestDate = earliestServiceDate.before(earliestSubDate) ? earliestServiceDate : earliestSubDate;
-        Toast.makeText(this, "" + earliestDate.toString(), Toast.LENGTH_LONG).show();
-        Date currDate = new Date();
-        ArrayList<String> yearsInString = new ArrayList<>();
-        if(earliestDate != null && currDate.getYear() != earliestDate.getYear()) {
-            yearsInString.add("" + (currDate.getYear() + 1900));
-            for (int i = currDate.getYear() - 1; i >= earliestDate.getYear(); i--) {
-                yearsInString.add("" + (i + 1900));
+        if(!earliestDate.equals(new Date(0))) {
+            //Toast.makeText(this, "Equals Date(0)", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "" + earliestDate.toString(), Toast.LENGTH_LONG).show();
+            Date currDate = new Date();
+            ArrayList<String> yearsInString = new ArrayList<>();
+            if (earliestDate != null && currDate.getYear() != earliestDate.getYear()) {
+                yearsInString.add("" + (currDate.getYear() + 1900));
+                for (int i = currDate.getYear() - 1; i >= earliestDate.getYear(); i--) {
+                    yearsInString.add("" + (i + 1900));
+                }
+            } else {
+                yearsInString.add("" + (currDate.getYear() + 1900));
             }
+            yearsAdapters = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, yearsInString);
+
+            months.setAdapter(monthsAdapter);
+            years.setAdapter(yearsAdapters);
+
+            months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    fillLayout(position, Integer.parseInt((String) years.getSelectedItem()));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            years.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    fillLayout(months.getSelectedItemPosition(), Integer.parseInt(years.getItemAtPosition(position).toString()));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            View costLabel = findViewById(R.id.costLabel);
+            costLabel.post(new Runnable() {
+                @Override
+                public void run() {
+                    Date currDate = new Date();
+                    fillLayout(currDate.getMonth(), currDate.getYear());
+                }
+            });
         }
         else {
-            yearsInString.add("" + (currDate.getYear() + 1900));
+            LinearLayout serviceListLayout = findViewById(R.id.paymentHistoryLayout);
+            TextView noHistoryText = new TextView(this);
+            noHistoryText.setText("No Payment History");
+            serviceListLayout.addView(noHistoryText);
+            TextView totalText = findViewById(R.id.paymentHistoryTotal);
+            totalText.setVisibility(View.INVISIBLE);
+            months.setVisibility(View.INVISIBLE);
+            years.setVisibility(View.INVISIBLE);
         }
-        yearsAdapters = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, yearsInString);
-
-        months.setAdapter(monthsAdapter);
-        years.setAdapter(yearsAdapters);
-
-        months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fillLayout(position, Integer.parseInt((String)years.getSelectedItem()));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        years.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fillLayout(months.getSelectedItemPosition(), Integer.parseInt(years.getItemAtPosition(position).toString()));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        View costLabel = findViewById(R.id.costLabel);
-        costLabel.post(new Runnable() {
-            @Override
-            public void run() {
-                Date currDate = new Date();
-                fillLayout(currDate.getMonth(), currDate.getYear());
-            }
-        });
     }
 
     private void fillLayout(int month, int year) {

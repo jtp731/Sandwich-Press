@@ -23,8 +23,8 @@ public class CustomerServiceOffers extends AppCompatActivity {
 
         customer = getIntent().getParcelableExtra("Customer");
 
-        View cost = findViewById(R.id.cost);
-        cost.post(new Runnable() {
+        View time = findViewById(R.id.time);
+        time.post(new Runnable() {
             @Override
             public void run() {
                 createList();
@@ -72,26 +72,23 @@ public class CustomerServiceOffers extends AppCompatActivity {
                 offerLayout.setOrientation(LinearLayout.HORIZONTAL);
                 offerLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                TextView usernameText = new TextView(this);
-                usernameText.setPadding(5,5,5,5);
-                usernameText.setWidth(findViewById(R.id.username).getWidth());
-                usernameText.setText(serviceOffers.get(i).roadside_assistant_username);
-                usernameText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
-                offerLayout.addView(usernameText);
-
                 TextView plateNumText = new TextView(this);
                 plateNumText.setPadding(5,5,5,5);
-                plateNumText.setWidth(findViewById(R.id.cost).getWidth());
+                plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
                 plateNumText.setText(serviceOffers.get(i).car_plateNum);
                 plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 offerLayout.addView(plateNumText);
 
-                TextView costText = new TextView(this);
-                costText.setPadding(5,5,5,5);
-                costText.setWidth(findViewById(R.id.cost).getWidth());
-                costText.setText(String.format("$%.2f", serviceOffers.get(i).cost));
-                costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
-                offerLayout.addView(costText);
+                TextView dateText = new TextView(this);
+                dateText.setPadding(5,5,5,5);
+                dateText.setWidth(findViewById(R.id.time).getWidth());
+                dateText.setText(String.format("%d/%d %d:%d",
+                        serviceOffers.get(i).time.getDate(),
+                        serviceOffers.get(i).time.getMonth(),
+                        serviceOffers.get(i).time.getHours(),
+                        serviceOffers.get(i).time.getMinutes()));
+                dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                offerLayout.addView(dateText);
 
                 offerLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
