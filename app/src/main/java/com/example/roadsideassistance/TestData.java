@@ -67,8 +67,8 @@ public class TestData {
             database.serviceDao().addService(new Service(
                     customer.username,
                     customer.cars.get((int)(Math.random()*numberOfCarsPerCustomer)).plateNum,
-                    -33.8688 ,//+ Math.random(),
-                    151.2093 ,//+ Math.random(),
+                    -33.8688 + Math.random() - 0.5,
+                    151.2093 + Math.random() - 0.5,
                     date,
                     (byte)0,
                     ""
