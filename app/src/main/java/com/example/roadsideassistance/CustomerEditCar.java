@@ -42,7 +42,7 @@ public class CustomerEditCar extends AppCompatActivity {
 
         make = findViewById(R.id.carMake);
         model = findViewById(R.id.carModel);
-        plateNum = findViewById(R.id.cost);
+        plateNum = findViewById(R.id.payType);
         colour = findViewById(R.id.carColour);
         sub = findViewById(R.id.subscription);
 
@@ -66,7 +66,7 @@ public class CustomerEditCar extends AppCompatActivity {
         String oldPlateNum = car.plateNum;
         make = findViewById(R.id.carMake);
         model = findViewById(R.id.carModel);
-        plateNum = findViewById(R.id.cost);
+        plateNum = findViewById(R.id.payType);
         colour = findViewById(R.id.carColour);
         sub = findViewById(R.id.subscription);
 

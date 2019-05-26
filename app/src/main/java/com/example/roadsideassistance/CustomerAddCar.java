@@ -77,7 +77,7 @@ public class CustomerAddCar extends AppCompatActivity {
             findViewById(R.id.colourError).setVisibility(View.VISIBLE);
         }
 
-        input = findViewById(R.id.cost);
+        input = findViewById(R.id.payType);
         if (!input.getText().toString().trim().isEmpty()) {
             plate = input.getText().toString();
             findViewById(R.id.plateError).setVisibility(View.GONE);

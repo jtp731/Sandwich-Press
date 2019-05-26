@@ -155,7 +155,7 @@ public class RoadsideServiceSelect extends FragmentActivity implements OnMapRead
 
                                     TextView plateNumText = new TextView(getContext());
                                     plateNumText.setPadding(5,5,5,5);
-                                    plateNumText.setWidth(findViewById(R.id.cost).getWidth());
+                                    plateNumText.setWidth(findViewById(R.id.payType).getWidth());
                                     plateNumText.setText(servicesInRadius.get(i).car_plateNum);
                                     plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                                     servicesLayout.addView(plateNumText);

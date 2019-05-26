@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
 
                 TextView costText = new TextView(this);
                 costText.setPadding(5,5,5,5);
-                costText.setWidth(findViewById(R.id.cost).getWidth());
+                costText.setWidth(findViewById(R.id.payType).getWidth());
                 costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 if(!coveredBySubscription)
                     costText.setText(String.format("$%.2f", serviceOffers.get(i).cost));

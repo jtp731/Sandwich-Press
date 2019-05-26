@@ -51,7 +51,7 @@ public class CustomerActiveServicesSelect extends AppCompatActivity {
                 //carLayout.setPadding(5,5,5,5);
 
                 TextView plateNumberText = new TextView(this);
-                plateNumberText.setWidth(findViewById(R.id.cost).getWidth());
+                plateNumberText.setWidth(findViewById(R.id.payType).getWidth());
                 plateNumberText.setPadding(5,5,5,5);
                 plateNumberText.setText(car.plateNum);
                 plateNumberText.setBackground(getResources().getDrawable(R.drawable.border_sharp));

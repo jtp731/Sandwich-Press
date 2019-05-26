@@ -53,7 +53,7 @@ public class RoadsideSelectOffer extends AppCompatActivity {
 
                 TextView plateNumText = new TextView(this);
                 plateNumText.setPadding(5,5,5,5);
-                plateNumText.setWidth(findViewById(R.id.cost).getWidth());
+                plateNumText.setWidth(findViewById(R.id.payType).getWidth());
                 plateNumText.setText(offerList.get(i).car_plateNum);
                 plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 serviceLayout.addView(plateNumText);

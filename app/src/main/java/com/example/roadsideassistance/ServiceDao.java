@@ -77,6 +77,9 @@ public interface ServiceDao {
     @Query("select * from service where customer_username = :username and time >= :firstOfMonth and time <= :lastOfMonth and status = 3 group by time order by time desc")
     List<Service> getServicesInMonthCustomer(String username, Date firstOfMonth, Date lastOfMonth);
 
+    @Query("select * from service where customer_username = :username and (status = 3 or status = 4) group by time order by time desc")
+    List<Service> getPastCustomerServices(String username);
+
     @Delete
     void deleteService(Service service);
 }
