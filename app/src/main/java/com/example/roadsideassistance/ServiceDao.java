@@ -80,6 +80,9 @@ public interface ServiceDao {
     @Query("select * from service where customer_username = :username and (status = 3 or status = 4) group by time order by time desc")
     List<Service> getPastCustomerServices(String username);
 
+    @Query("select * from service where roadside_assistant_username = :username and (status = 3 or status = 4) group by time order by time desc")
+    List<Service> getPastRoadsideServices(String username);
+
     @Delete
     void deleteService(Service service);
 }

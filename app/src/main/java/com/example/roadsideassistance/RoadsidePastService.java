@@ -5,31 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-public class CustomerPastService extends AppCompatActivity {
-    Customer customer;
+public class RoadsidePastService extends AppCompatActivity {
+    RoadsideAssistant roadsideAssistant;
     Service service;
     AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_past_service);
+        setContentView(R.layout.activity_roadside_past_service);
 
         database = AppDatabase.getDatabase(this);
-        customer = getIntent().getParcelableExtra("Customer");
+        roadsideAssistant = getIntent().getParcelableExtra("Roadside");
         service = getIntent().getParcelableExtra("Service");
 
         TextView carDescription = findViewById(R.id.carDescription);
-        carDescription.setText("Car: " + customer.getCar(service.car_plateNum).toString());
+        carDescription.setText("Car: " + database.carDao().getCar(service.customer_username, service.car_plateNum).toString());
 
-        TextView roadsideUsername = findViewById(R.id.customerUsername);
-        roadsideUsername.setText("Roadside Usernamen: " + service.roadside_assistant_username);
+        TextView customerUsername = findViewById(R.id.customerUsername);
+        customerUsername.setText("Customer Username: " + service.customer_username);
 
-        TextView cost = findViewById(R.id.pay);
-        if(service.status == Service.PAYED_WITH_CARD)
-            cost.setText(String.format("Cost: $%.2f", service.cost));
-        else
-            cost.setText("Cost: Payed with Subscription");
+        TextView pay = findViewById(R.id.pay);
+        pay.setText(String.format("Pay: $%.2f", service.costToPay()));
 
         TextView serviceDescription = findViewById(R.id.serviceDescription);
         if(service.description != null || service.description.equals(""))

@@ -1,8 +1,8 @@
 package com.example.roadsideassistance;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -10,23 +10,24 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class CustomerPastServices extends AppCompatActivity {
+public class RoadsidePastServices extends AppCompatActivity {
+
 
     AppDatabase database;
-    Customer customer;
+    RoadsideAssistant roadsideAssistant;
     int selectedServiceIndex = -1;
     List<Service> pastServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_past_services);
+        setContentView(R.layout.activity_roadside_past_services);
 
         database = AppDatabase.getDatabase(this);
-        customer = getIntent().getParcelableExtra("Customer");
+        roadsideAssistant = getIntent().getParcelableExtra("Roadside");
 
-        View paymentType = findViewById(R.id.payType);
-        paymentType.post(new Runnable() {
+        View customerUsername = findViewById(R.id.customerUsername);
+        customerUsername.post(new Runnable() {
             @Override
             public void run() {
                 createList();
@@ -37,7 +38,7 @@ public class CustomerPastServices extends AppCompatActivity {
     private void createList() {
         final LinearLayout pastServicesLayout = findViewById(R.id.pastServicesLayout);
         pastServicesLayout.removeAllViews();
-        pastServices = database.serviceDao().getPastCustomerServices(customer.username);
+        pastServices = database.serviceDao().getPastRoadsideServices(roadsideAssistant.username);
         if(pastServices != null && pastServices.size() > 0) {
             for(int i = 0; i < pastServices.size(); i++) {
                 final LinearLayout serviceLayout = new LinearLayout(this);
@@ -51,19 +52,12 @@ public class CustomerPastServices extends AppCompatActivity {
                 plateNum.setWidth(findViewById(R.id.plateNum).getWidth());
                 serviceLayout.addView(plateNum);
 
-                TextView roadsideUsername = new TextView(this);
-                roadsideUsername.setText(pastServices.get(i).roadside_assistant_username);
-                roadsideUsername.setPadding(5,5,5,5);
-                roadsideUsername.setBackground(getResources().getDrawable(R.drawable.border_sharp));
-                roadsideUsername.setWidth(findViewById(R.id.customerUsername).getWidth());
-                serviceLayout.addView(roadsideUsername);
-
-                TextView payType = new TextView(this);
-                payType.setText(pastServices.get(i).status == Service.PAYED_WITH_CARD ? "CARD" : "SUB");
-                payType.setPadding(5,5,5,5);
-                payType.setBackground(getResources().getDrawable(R.drawable.border_sharp));
-                payType.setWidth(findViewById(R.id.payType).getWidth());
-                serviceLayout.addView(payType);
+                TextView customerUsername = new TextView(this);
+                customerUsername.setText(pastServices.get(i).customer_username);
+                customerUsername.setPadding(5,5,5,5);
+                customerUsername.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                customerUsername.setWidth(findViewById(R.id.customerUsername).getWidth());
+                serviceLayout.addView(customerUsername);
 
                 final int currIndex = i;
                 serviceLayout.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +85,7 @@ public class CustomerPastServices extends AppCompatActivity {
     public void toSelectedPastService(View view) {
         if(selectedServiceIndex >= 0) {
             Intent intent = new Intent(this, CustomerPastService.class);
-            intent.putExtra("Customer", customer);
+            intent.putExtra("Roadside", roadsideAssistant);
             intent.putExtra("Service", pastServices.get(selectedServiceIndex));
             startActivity(intent);
         }

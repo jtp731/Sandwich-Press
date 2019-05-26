@@ -67,7 +67,7 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
 
                 TextView usernameText = new TextView(this);
                 usernameText.setPadding(5,5,5,5);
-                usernameText.setWidth(findViewById(R.id.roadsideUsername).getWidth());
+                usernameText.setWidth(findViewById(R.id.customerUsername).getWidth());
                 usernameText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 usernameText.setText(offerer.username);
                 offerLayout.addView(usernameText);
