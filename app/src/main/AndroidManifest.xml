@@ -17,6 +17,18 @@
         <activity android:name=".CustomerAddCar" />
         <activity android:name=".CustomerEditCar" />
         <activity android:name=".CustomerManageCars" />
+        <activity android:name=".CustomerPastServices"
+            android:label="Past Services"></activity>
+        <activity android:name=".CustomerUpdateSubscription"
+            android:label="Update Subscription"/>
+        <activity android:name=".CustomerAccountSettings"
+            android:label="Account Settings"/>
+        <activity android:name=".CustomerAddCar"
+            android:label="Add Car"/>
+        <activity android:name=".CustomerEditCar"
+            android:label="Edit Car"/>
+        <activity android:name=".CustomerManageCars"
+            android:label="Manage Cars"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -34,14 +46,16 @@
             android:name=".registerBankAccount"
             android:label="Register Bank Account"
             android:parentActivityName=".registerAddress" />
-        <activity android:name=".SignIn">
+        <activity android:name=".SignIn"
+            android:label="Roadside App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerServiceRequest" />
+        <activity android:name=".CustomerServiceRequest"
+            android:label="Request Service"/>
         <activity
             android:name=".RoadsideSelectServiceCost"
             android:label="Set Cost" />
@@ -72,6 +86,44 @@
         <activity android:name=".AssistantPaymentHistory" />
         <activity android:name=".AssistantPaymentReport" />
         <activity android:name=".AssistantPriceSettings" />
+        <activity android:name=".RoadsideMainPage"
+            android:label="Main Page"/>
+        <activity android:name=".RoadsideSelectOffer"
+            android:label="Select Offer Made"/>
+        <activity android:name=".RoadsideSelectedActiveService"
+            android:label="Active Service"/>
+        <activity android:name=".RoadsideSelectActiveService"
+            android:label="Select Active Service"/>
+        <activity android:name=".CustomerMainPage"
+            android:label="Main Page"/>
+        <activity android:name=".CustomerServiceFinishedSelect"
+            android:label="Finished Services"/>
+        <activity android:name=".CustomerServiceAcceptOrCancel"
+            android:label="Requested Service"/>
+        <activity android:name=".CustomerServiceOffers"
+            android:label="Select Requested Service"></activity>
+        <activity android:name=".RoadsideSelectedOffer"
+            android:label="Offer Made"></activity>
+        <activity android:name=".CustomerActiveServicesSelect"
+            android:label="Select Active Service"></activity>
+        <activity android:name=".CustomerSelectedActiveService"
+            android:label="Active Service"></activity>
+        <activity android:name=".CustomerServiceFinish"
+            android:label="Finished Service"></activity>
+        <activity android:name=".CustomerLeaveReview"
+            android:label="Leave Review"></activity>
+        <activity android:name=".RoadsideSetFilter"
+            android:label="Set Filter"></activity>
+        <activity android:name=".CustomerPaymentHistory"
+            android:label="Payment History"></activity>
+        <activity android:name=".RoadsidePaymentHistory"
+            android:label="Payment History"></activity>
+        <activity android:name=".CustomerPastService"
+            android:label="Past Service"></activity>
+        <activity android:name=".RoadsidePastServices"
+            android:label="Past Services"></activity>
+        <activity android:name=".RoadsidePastService"
+            android:label="Past Service"></activity>
     </application>
 
 </manifest>

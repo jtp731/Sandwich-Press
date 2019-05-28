@@ -1,10 +1,14 @@
 package com.example.roadsideassistance;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,13 @@ import java.util.regex.Pattern;
 public class register extends AppCompatActivity {
     private AppDatabase database;
 
+    Customer customer;
+    RoadsideAssistant roadsideAssistant;
+    EditText usernameText, fNameText, lNameText, phoneNumberText, emailText, password1Text, password2Text;
+    TextView heading;
+    Switch canTowSwitch;
+    Button next;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +35,97 @@ public class register extends AppCompatActivity {
         findViewById(R.id.newEmailError).setVisibility(View.GONE);
         findViewById(R.id.newPhoneError).setVisibility(View.GONE);
         findViewById(R.id.newPasswordError).setVisibility(View.GONE);
+
+        heading = findViewById(R.id.heading);
+        usernameText = findViewById(R.id.newUsername);
+        fNameText = findViewById(R.id.newFName);
+        lNameText = findViewById(R.id.newLName);
+        phoneNumberText = findViewById(R.id.newPhone);
+        emailText = findViewById(R.id.newEmail);
+        password1Text = findViewById(R.id.newPassword);
+        password2Text = findViewById(R.id.newPConfirm);
+        canTowSwitch = findViewById(R.id.canTowSwitch);
+        canTowSwitch.setVisibility(View.GONE);
+        next = findViewById(R.id.newSignup);
+
+        if (getIntent().getParcelableExtra("Customer") != null){
+            customer = getIntent().getParcelableExtra("Customer");
+            heading.setText("Edit Details");
+            usernameText.setEnabled(false);
+            fNameText.setEnabled(false);
+            lNameText.setEnabled(false);
+            usernameText.setText(customer.username);
+            fNameText.setText(customer.firstName);
+            lNameText.setText(customer.lastName);
+            phoneNumberText.setText(customer.phonenumber);
+            emailText.setText(customer.email);
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Boolean success = true;
+                    String phonenumber = phoneNumberText.getText().toString();
+                    String email = emailText.getText().toString();
+                    String password = password1Text.getText().toString();
+                    String confirmPass = password2Text.getText().toString();
+                    TextView errorMsg;
+
+                    if (!validPhoneNumber(phonenumber) && phonenumber != customer.phonenumber){
+                        errorMsg = findViewById(R.id.newPhoneError);
+                        errorMsg.setText("Invalid phonenumber");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    }
+                    if (!email.equals(customer.email) && emailTaken(email)){
+                        errorMsg = findViewById(R.id.newEmailError);
+                        errorMsg.setText("Email already in use");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    } else if (!validEmail(email)){
+                        errorMsg = findViewById(R.id.newEmailError);
+                        errorMsg.setText("Invalid mail");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    }
+                    if (!password.equals(confirmPass)){
+                        errorMsg = findViewById(R.id.newPasswordError);
+                        errorMsg.setText("Passwords do not match");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    }
+
+                    if (success){
+                        if (password.matches("")){
+                            password = customer.password;
+
+                        }
+                        database.personDao().updatePerson(customer.username, phonenumber, email, password);
+                        database.customerDao().updateCustomer(customer.username, phonenumber, email, password);
+                        customer.phonenumber = phonenumber;
+                        customer.email = email;
+                        customer.password = password;
+                        Toast.makeText(register.this, customer.email, Toast.LENGTH_LONG).show();
+                        Customer cust = database.customerDao().getCustomer(email);
+                        Toast.makeText(register.this, cust.password, Toast.LENGTH_LONG).show();
+
+                        finish();
+                    }
+                }
+            });
+
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+            roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+            canTowSwitch.setVisibility(View.VISIBLE);
+            heading.setText("Edit Details");
+            usernameText.setEnabled(false);
+            fNameText.setEnabled(false);
+            lNameText.setEnabled(false);
+
+
+        }
     }
 
-    void createUser(View view) {
+    public void createUser(View view) {
         EditText input = findViewById(R.id.newUsername);
         String username = input.getText().toString();
 
@@ -116,7 +215,7 @@ public class register extends AppCompatActivity {
             Intent signupAddress = new Intent(register.this, registerAddress.class);
             signupAddress.putExtra("Person", new Person(username, password, phonenumber, email, firstName, lastName));
             startActivity(signupAddress);
-            finish();
+            super.finish();
         }
     }
 
@@ -132,13 +231,26 @@ public class register extends AppCompatActivity {
     }
 
     boolean validPhoneNumber(String phonenumber) {
-        String patternString = "^[0-9]{8}$";
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(phonenumber);
+        String patternStringHome = "^[0-9]{8}$";
+        String patternStringMobile = "^[0-9]{10}$";
+        Pattern patternHome = Pattern.compile(patternStringHome);
+        Pattern patternMobile = Pattern.compile(patternStringMobile);
+        Matcher matcher = patternHome.matcher(phonenumber);
+        if (!matcher.matches()){
+            matcher = patternMobile.matcher(phonenumber);
+        }
         return matcher.matches();
     }
 
     boolean userExists(String username) {
         return database.personDao().usernameTaken(username);
+    }
+
+    @Override
+    public void finish(){
+        Intent data = new Intent();
+        data.putExtra("Customer", customer);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }

@@ -6,14 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class CustomerAddCar extends AppCompatActivity {
 
@@ -81,7 +77,7 @@ public class CustomerAddCar extends AppCompatActivity {
             findViewById(R.id.colourError).setVisibility(View.VISIBLE);
         }
 
-        input = findViewById(R.id.plateNum);
+        input = findViewById(R.id.payType);
         if (!input.getText().toString().trim().isEmpty()) {
             plate = input.getText().toString();
             findViewById(R.id.plateError).setVisibility(View.GONE);
@@ -91,15 +87,15 @@ public class CustomerAddCar extends AppCompatActivity {
         }
 
         free = findViewById(R.id.radioFree);
-        oneMonth = findViewById(R.id.radioOne);
-        sixMonths = findViewById(R.id.radioSix);
+ //       oneMonth = findViewById(R.id.radioOne);
+ //       sixMonths = findViewById(R.id.radioSix);
         twelveMonths = findViewById(R.id.radioTwelve);
         Calendar calendar = Calendar.getInstance();
         int subType = Car.FREE_SUB;
 
         if (free.isChecked()){
             renewalDate = new Date(0);
-        } else if (oneMonth.isChecked()){
+/*        } else if (oneMonth.isChecked()){
             calendar.setTime(new Date());
             calendar.add(Calendar.MONTH, 1);
             renewalDate = calendar.getTime();
@@ -109,7 +105,7 @@ public class CustomerAddCar extends AppCompatActivity {
             calendar.add(Calendar.MONTH, 6);
             renewalDate = calendar.getTime();
             subType = Car.SIX_MONTH_SUB;
-        } else if (twelveMonths.isChecked()){
+*/        } else if (twelveMonths.isChecked()){
             calendar.setTime(new Date());
             calendar.add(Calendar.MONTH, 12);
             renewalDate = calendar.getTime();

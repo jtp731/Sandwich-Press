@@ -129,7 +129,7 @@ public class Service implements Parcelable {
             this.time = date;
             cost = 0;
             roadside_assistant_username = "";
-            status = 0;
+            status = OPEN;
         }
 
     @Override
@@ -144,7 +144,7 @@ public class Service implements Parcelable {
 
     public void writeToParcel(Parcel out, int flags) {
         out.writeFloat(cost);
-        out.writeString(time.toString());
+        out.writeLong(time.getTime());
         out.writeDouble(latitude);
         out.writeDouble(longitude);
         out.writeInt(status);
@@ -167,7 +167,7 @@ public class Service implements Parcelable {
 
     private Service(Parcel in) {
         this.cost = in.readFloat();
-        this.time = new Date(in.readString());
+        this.time = new Date(in.readLong());
         this.latitude = in.readDouble();
         this.longitude = in.readDouble();
         this.status = in.readInt();

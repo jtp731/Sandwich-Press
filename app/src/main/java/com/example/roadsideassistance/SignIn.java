@@ -39,6 +39,12 @@ public class SignIn extends AppCompatActivity {
             TestData.createTestData(this, 10, 10, 3, 10);
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("aj", "123", "00000000", "a@e", "A", "L", null, null, "", "", -1, true, 0));
 
+            TestData.createTestData(this, 10, 10, 3);
+            TestData.createRequests(50);
+            TestData.createOffers(20);
+            TestData.createActive(10);
+            TestData.createPastServices(100);
+            //TestData.createSubPayHistory(10);
         }
 
         Button signup = findViewById(R.id.newSignup);

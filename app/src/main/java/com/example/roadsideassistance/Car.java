@@ -95,4 +95,11 @@ public class Car implements Parcelable {
         this.subType = in.readInt();
         this.renewalDate = new Date(in.readString());
     }
+
+    @Override
+    @Ignore
+    public String toString() {
+        String car = "" + plateNum + ", " + manufacturer + ", " + model + ", " + colour;
+        return car;
+    }
 }

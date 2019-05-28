@@ -29,6 +29,18 @@ public class CustomerAccountSettings extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void updateAddress(View view){
+        Intent intent = new Intent(this, registerAddress.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
+    }
+
+    public void updateDetails(View view){
+        Intent intent = new Intent(this, register.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {

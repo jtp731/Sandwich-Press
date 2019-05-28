@@ -7,9 +7,11 @@
 
     <Button
         android:id="@+id/roadsideNewServiceRequestsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="99dp"
         android:onClick="toNewServices"
         android:text="New Service Requests"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,9 +21,11 @@
 
     <Button
         android:id="@+id/roadsideAcceptedServicesButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="99dp"
         android:onClick="toAcceptedServices"
         android:text="Accepted Services"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,9 +35,11 @@
 
     <Button
         android:id="@+id/roadsideServiceOffersButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="99dp"
         android:onClick="toServiceOffers"
         android:text="Service Offers"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +55,33 @@
         android:onClick="toMyAccount"
         android:text="My Account"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roadsideAcceptedServicesButton" />
+
+    <Button
+        android:id="@+id/payHistory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="99dp"
+        android:onClick="toPaymentHistory"
+        android:text="Payment History"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toPastServices" />
+
+    <Button
+        android:id="@+id/toPastServices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="99dp"
+        android:onClick="toPastServices"
+        android:text="Past Services"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roadsideAcceptedServicesButton" />
 </android.support.constraint.ConstraintLayout>

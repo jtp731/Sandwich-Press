@@ -2,13 +2,11 @@ package com.example.roadsideassistance;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,7 +53,7 @@ public class RoadsideSelectOffer extends AppCompatActivity {
 
                 TextView plateNumText = new TextView(this);
                 plateNumText.setPadding(5,5,5,5);
-                plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
+                plateNumText.setWidth(findViewById(R.id.payType).getWidth());
                 plateNumText.setText(offerList.get(i).car_plateNum);
                 plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 serviceLayout.addView(plateNumText);

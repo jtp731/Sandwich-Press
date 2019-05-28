@@ -21,7 +21,7 @@ import java.util.Date;
                 onDelete = ForeignKey.CASCADE)
         },
         primaryKeys = {"customer_username", "plate_num", "time"},
-        indices = {@Index(value = "customer_username")})
+        indices = {@Index(value = "customer_username"), @Index(value = "plate_num")})
 public class SubscriptionPayment implements Parcelable {
         @Ignore
         public static final float COST_ONE_MONTH = 14.00f;
