@@ -104,9 +104,6 @@ public class register extends AppCompatActivity {
                         customer.phonenumber = phonenumber;
                         customer.email = email;
                         customer.password = password;
-                        Toast.makeText(register.this, customer.email, Toast.LENGTH_LONG).show();
-                        Customer cust = database.customerDao().getCustomer(email);
-                        Toast.makeText(register.this, cust.password, Toast.LENGTH_LONG).show();
 
                         finish();
                     }
@@ -120,6 +117,63 @@ public class register extends AppCompatActivity {
             usernameText.setEnabled(false);
             fNameText.setEnabled(false);
             lNameText.setEnabled(false);
+            usernameText.setText(roadsideAssistant.username);
+            fNameText.setText(roadsideAssistant.firstName);
+            lNameText.setText(roadsideAssistant.lastName);
+            phoneNumberText.setText(roadsideAssistant.phonenumber);
+            emailText.setText(roadsideAssistant.email);
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Boolean success = true;
+                    String phonenumber = phoneNumberText.getText().toString();
+                    String email = emailText.getText().toString();
+                    String password = password1Text.getText().toString();
+                    String confirmPass = password2Text.getText().toString();
+                    TextView errorMsg;
+
+                    if (!validPhoneNumber(phonenumber) && phonenumber != roadsideAssistant.phonenumber){
+                        errorMsg = findViewById(R.id.newPhoneError);
+                        errorMsg.setText("Invalid phonenumber");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    }
+                    if (!email.equals(roadsideAssistant.email) && emailTaken(email)){
+                        errorMsg = findViewById(R.id.newEmailError);
+                        errorMsg.setText("Email already in use");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    } else if (!validEmail(email)){
+                        errorMsg = findViewById(R.id.newEmailError);
+                        errorMsg.setText("Invalid mail");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    }
+                    if (!password.equals(confirmPass)){
+                        errorMsg = findViewById(R.id.newPasswordError);
+                        errorMsg.setText("Passwords do not match");
+                        errorMsg.setVisibility(View.VISIBLE);
+                        success = false;
+                    }
+
+                    if (success){
+                        if (password.matches("")){
+                            password = roadsideAssistant.password;
+
+                        }
+                        database.personDao().updatePerson(roadsideAssistant.username, phonenumber, email, password);
+                        database.roadsideAssistantDao().updateDetails(roadsideAssistant.username, password, phonenumber, email);
+                        roadsideAssistant.phonenumber = phonenumber;
+                        roadsideAssistant.email = email;
+                        roadsideAssistant.password = password;
+
+                        finish();
+                    }
+                }
+
+
+            });
 
 
         }
@@ -249,7 +303,11 @@ public class register extends AppCompatActivity {
     @Override
     public void finish(){
         Intent data = new Intent();
-        data.putExtra("Customer", customer);
+        if (getIntent().getParcelableExtra("Customer") !=null){
+            data.putExtra("Customer", customer);
+        } else if (getIntent().getParcelableExtra("Roadside") !=null){
+            data.putExtra("Roadside", roadsideAssistant);
+        }
         setResult(RESULT_OK, data);
         super.finish();
     }

@@ -39,7 +39,7 @@ public class RoadsideMainPage extends AppCompatActivity {
     }
 
     public void toMyAccount(View view) {
-        Intent intent = new Intent(this, AssistantAccount.class);
+        Intent intent = new Intent(this, RoadsideAccountSettings.class);
         intent.putExtra("Roadside", roadsideAssistant);
         startActivityForResult(intent, 1);
     }
