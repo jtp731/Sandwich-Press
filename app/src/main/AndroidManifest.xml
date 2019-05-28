@@ -12,11 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RoadsideChangePassword"></activity>
-        <activity android:name=".CustomerUpdateSubscription" />
-        <activity android:name=".CustomerAccountSettings" />
-        <activity android:name=".CustomerAddCar" />
-        <activity android:name=".CustomerEditCar" />
-        <activity android:name=".CustomerManageCars" />
         <activity android:name=".CustomerPastServices"
             android:label="Past Services"></activity>
         <activity android:name=".CustomerUpdateSubscription"
@@ -65,20 +60,6 @@
         <activity
             android:name=".registerRoadside"
             android:label="Register Roadside" />
-        <activity android:name=".RoadsideMainPage" />
-        <activity android:name=".RoadsideSelectOffer" />
-        <activity android:name=".RoadsideSelectedActiveService" />
-        <activity android:name=".RoadsideSelectActiveService" />
-        <activity android:name=".CustomerMainPage" />
-        <activity android:name=".CustomerServiceFinishedSelect" />
-        <activity android:name=".CustomerServiceAcceptOrCancel" />
-        <activity android:name=".CustomerServiceOffers" />
-        <activity android:name=".RoadsideSelectedOffer" />
-        <activity android:name=".CustomerActiveServicesSelect" />
-        <activity android:name=".CustomerSelectedActiveService" />
-        <activity android:name=".CustomerServiceFinish" />
-        <activity android:name=".CustomerLeaveReview" />
-        <activity android:name=".RoadsideSetFilter" />
         <activity android:name=".AssistantAccount" />
         <activity android:name=".AssistantAccountSettings" />
         <activity android:name=".AssistantDetails" />
