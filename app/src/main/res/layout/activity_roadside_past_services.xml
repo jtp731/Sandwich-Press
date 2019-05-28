@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:onClick="toSelectedPastService"
         android:text="Select"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -40,7 +41,7 @@
 
             <TextView
                 android:id="@+id/plateNum"
-                android:layout_width="wrap_content"
+                android:layout_width="74dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
@@ -49,11 +50,19 @@
 
             <TextView
                 android:id="@+id/customerUsername"
-                android:layout_width="wrap_content"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:text="Customer Username"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -67,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
             <LinearLayout
-                android:id="@+id/servicesLayout"
+                android:id="@+id/pastServicesLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />

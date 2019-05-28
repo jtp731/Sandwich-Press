@@ -23,7 +23,7 @@ public class CustomerPastService extends AppCompatActivity {
         carDescription.setText("Car: " + customer.getCar(service.car_plateNum).toString());
 
         TextView roadsideUsername = findViewById(R.id.customerUsername);
-        roadsideUsername.setText("Roadside Usernamen: " + service.roadside_assistant_username);
+        roadsideUsername.setText("Roadside Username: " + service.roadside_assistant_username);
 
         TextView cost = findViewById(R.id.pay);
         if(service.status == Service.PAYED_WITH_CARD)
@@ -32,7 +32,7 @@ public class CustomerPastService extends AppCompatActivity {
             cost.setText("Cost: Payed with Subscription");
 
         TextView serviceDescription = findViewById(R.id.serviceDescription);
-        if(service.description != null || service.description.equals(""))
+        if(service.description != null && !service.description.trim().equals(""))
             serviceDescription.setText("Description: " + service.description);
         else
             serviceDescription.setVisibility(View.GONE);

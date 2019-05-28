@@ -72,7 +72,7 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/costLabel"
+                android:id="@+id/payLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

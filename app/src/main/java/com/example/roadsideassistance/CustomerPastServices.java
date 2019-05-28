@@ -58,6 +58,16 @@ public class CustomerPastServices extends AppCompatActivity {
                 roadsideUsername.setWidth(findViewById(R.id.customerUsername).getWidth());
                 serviceLayout.addView(roadsideUsername);
 
+                TextView date = new TextView(this);
+                date.setText(String.format("%d/%d/%d",
+                        pastServices.get(i).time.getDate(),
+                        pastServices.get(i).time.getMonth(),
+                        pastServices.get(i).time.getYear() + 1900));
+                date.setPadding(5,5,5,5);
+                date.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                date.setWidth(findViewById(R.id.date).getWidth());
+                serviceLayout.addView(date);
+
                 TextView payType = new TextView(this);
                 payType.setText(pastServices.get(i).status == Service.PAYED_WITH_CARD ? "CARD" : "SUB");
                 payType.setPadding(5,5,5,5);
@@ -84,7 +94,7 @@ public class CustomerPastServices extends AppCompatActivity {
             TextView noPastServices = new TextView(this);
             noPastServices.setText("No Past Services");
             pastServicesLayout.addView(noPastServices);
-            findViewById(R.id.selectPastServiceButton);
+            findViewById(R.id.selectPastServiceButton).setVisibility(View.GONE);
         }
     }
 

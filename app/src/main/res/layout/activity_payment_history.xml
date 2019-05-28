@@ -54,15 +54,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/typeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Type"
-                android:textColor="@color/white" />
-
-            <TextView
                 android:id="@+id/dateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,12 +63,12 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/costLabel"
+                android:id="@+id/payLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text="Cost"
+                android:text="Pay"
                 android:textColor="@color/white" />
         </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -26,10 +27,11 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
         database = AppDatabase.getDatabase(this);
         customer = getIntent().getParcelableExtra("Customer");
         activeService = getIntent().getParcelableExtra("Service");
-        serviceOffers = database.serviceDao().getServiceOffers(activeService.customer_username, activeService.car_plateNum, activeService.time);
+        //Toast.makeText(this, activeService.toString(), Toast.LENGTH_SHORT).show();
         TextView serviceDescription = findViewById(R.id.customerSelectedServiceDescription);
-        String fullDescription = "Plate Number: " + activeService.car_plateNum +
-                "\nDescription: " + activeService.description;
+        String fullDescription = "Plate Number: " + activeService.car_plateNum;
+        if(activeService.description.trim().length() != 0)
+            fullDescription += "\nDescription: " + activeService.description;
         if(activeService.hasFlag(Service.CAR_STUCK))
             fullDescription += "\nCar Stuck";
         if(activeService.hasFlag(Service.FLAT_BATTERY))
@@ -51,11 +53,13 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
                 createOfferList();
             }
         });
+        findViewById(R.id.acceptServiceOffer).setVisibility(View.VISIBLE);
     }
 
     private void createOfferList() {
         final LinearLayout serviceOffersLayout = findViewById(R.id.customerServiceOffersLayout);
         boolean coveredBySubscription = customer.carCoveredBySubscription(activeService.car_plateNum);
+        serviceOffers = database.serviceDao().getServiceOffers(activeService.customer_username, activeService.car_plateNum, activeService.time);
         if(serviceOffers.size() > 0) {
             for(int i = 0; i < serviceOffers.size(); i++) {
                 final int currIndex = i;
@@ -135,6 +139,7 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
             TextView noOffersTextView = new TextView(this);
             noOffersTextView.setText("NO OFFERS MADE");
             serviceOffersLayout.addView(noOffersTextView);
+            findViewById(R.id.acceptServiceOffer).setVisibility(View.GONE);
         }
     }
 
@@ -152,7 +157,7 @@ public class CustomerServiceAcceptOrCancel extends AppCompatActivity {
             //Update customer list
             customer.updateServiceToAccepted(service);
             //Update database
-            database.serviceDao().updateServiceStatus(service.roadside_assistant_username, service.customer_username, service.car_plateNum, service.time, 1);
+            database.serviceDao().updateServiceStatus(service.roadside_assistant_username, service.customer_username, service.car_plateNum, service.time, Service.ACCEPTED);
             finish();
         }
     }

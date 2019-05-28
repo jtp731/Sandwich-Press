@@ -29,7 +29,7 @@ public class RoadsidePastService extends AppCompatActivity {
         pay.setText(String.format("Pay: $%.2f", service.costToPay()));
 
         TextView serviceDescription = findViewById(R.id.serviceDescription);
-        if(service.description != null || service.description.equals(""))
+        if(service.description != null && !service.description.trim().equals(""))
             serviceDescription.setText("Description: " + service.description);
         else
             serviceDescription.setVisibility(View.GONE);

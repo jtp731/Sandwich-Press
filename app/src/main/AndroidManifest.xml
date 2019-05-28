@@ -11,12 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerPastServices"></activity>
-        <activity android:name=".CustomerUpdateSubscription" />
-        <activity android:name=".CustomerAccountSettings" />
-        <activity android:name=".CustomerAddCar" />
-        <activity android:name=".CustomerEditCar" />
-        <activity android:name=".CustomerManageCars" />
+        <activity android:name=".CustomerPastServices"
+            android:label="Past Services"></activity>
+        <activity android:name=".CustomerUpdateSubscription"
+            android:label="Update Subscription"/>
+        <activity android:name=".CustomerAccountSettings"
+            android:label="Account Settings"/>
+        <activity android:name=".CustomerAddCar"
+            android:label="Add Car"/>
+        <activity android:name=".CustomerEditCar"
+            android:label="Edit Car"/>
+        <activity android:name=".CustomerManageCars"
+            android:label="Manage Cars"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -85,6 +91,12 @@
             android:label="Payment History"></activity>
         <activity android:name=".RoadsidePaymentHistory"
             android:label="Payment History"></activity>
+        <activity android:name=".CustomerPastService"
+            android:label="Past Service"></activity>
+        <activity android:name=".RoadsidePastServices"
+            android:label="Past Services"></activity>
+        <activity android:name=".RoadsidePastService"
+            android:label="Past Service"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,9 @@
 package com.example.roadsideassistance;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -75,7 +72,7 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
                 }
             });
 
-            View costLabel = findViewById(R.id.costLabel);
+            View costLabel = findViewById(R.id.payLabel);
             costLabel.post(new Runnable() {
                 @Override
                 public void run() {
@@ -112,14 +109,6 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
                 outerLayout.setOrientation(LinearLayout.HORIZONTAL);
                 outerLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-
-                TextView typeText = new TextView(this);
-                typeText.setText("Service");
-                typeText.setWidth(findViewById(R.id.typeLabel).getWidth());
-                typeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
-                typeText.setPadding(5,5,5,5);
-                outerLayout.addView(typeText);
-
                 TextView dateText = new TextView(this);
                 dateText.setText(String.format("%d/%d/%d",
                         servicesInMonth.get(i).time.getDate(),
@@ -130,12 +119,12 @@ public class RoadsidePaymentHistory extends AppCompatActivity {
                 dateText.setPadding(5,5,5,5);
                 outerLayout.addView(dateText);
 
-                TextView costText = new TextView(this);
-                costText.setText(String.format("$%.2f", servicesInMonth.get(i).cost));
-                costText.setWidth(findViewById(R.id.costLabel).getWidth());
-                costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
-                costText.setPadding(5,5,5,5);
-                outerLayout.addView(costText);
+                TextView payText = new TextView(this);
+                payText.setText(String.format("$%.2f", servicesInMonth.get(i).costToPay()));
+                payText.setWidth(findViewById(R.id.payLabel).getWidth());
+                payText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                payText.setPadding(5,5,5,5);
+                outerLayout.addView(payText);
 
                 /*
                 TextView service = new TextView(this);

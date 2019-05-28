@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,7 +78,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                 }
             });
 
-            View costLabel = findViewById(R.id.costLabel);
+            View costLabel = findViewById(R.id.payLabel);
             costLabel.post(new Runnable() {
                 @Override
                 public void run() {
@@ -141,7 +140,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
 
                     TextView costText = new TextView(this);
                     costText.setText(String.format("$%.2f", subPaymentsInMonth.get(subsIndex).amount));
-                    costText.setWidth(findViewById(R.id.costLabel).getWidth());
+                    costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
                     outerLayout.addView(costText);
@@ -179,7 +178,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
 
                     TextView costText = new TextView(this);
                     costText.setText(String.format("$%.2f", servicesInMonth.get(servicesIndex).cost));
-                    costText.setWidth(findViewById(R.id.costLabel).getWidth());
+                    costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
                     outerLayout.addView(costText);
@@ -216,7 +215,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
 
                     TextView costText = new TextView(this);
                     costText.setText(String.format("$%.2f", servicesInMonth.get(servicesIndex).cost));
-                    costText.setWidth(findViewById(R.id.costLabel).getWidth());
+                    costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
                     outerLayout.addView(costText);
@@ -253,7 +252,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
 
                     TextView costText = new TextView(this);
                     costText.setText(String.format("$%.2f", subPaymentsInMonth.get(subsIndex).amount));
-                    costText.setWidth(findViewById(R.id.costLabel).getWidth());
+                    costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
                     outerLayout.addView(costText);
