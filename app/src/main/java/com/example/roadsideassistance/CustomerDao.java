@@ -39,4 +39,5 @@ public interface CustomerDao {
 
     @Query("update customer set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
     void updateCustomer(String username, String phoneNumber, String email, String password);
+
 }
