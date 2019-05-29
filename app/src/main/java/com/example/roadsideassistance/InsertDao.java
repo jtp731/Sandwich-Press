@@ -80,7 +80,8 @@ public abstract class InsertDao {
         updateRoadsideDetails(updatedRoadside.username,
                 updatedRoadside.phonenumber,
                 updatedRoadside.email,
-                updatedRoadside.password);
+                updatedRoadside.password,
+                updatedRoadside.canTow);
         updatePersonDetails(updatedRoadside.username,
                 updatedRoadside.phonenumber,
                 updatedRoadside.email,
@@ -124,8 +125,8 @@ public abstract class InsertDao {
     @Query("update customer set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
     abstract void updateCustomerDetails(String username, String phoneNumber, String email, String password);
 
-    @Query("update roadsideassistant set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
-    abstract void updateRoadsideDetails(String username, String phoneNumber, String email, String password);
+    @Query("update roadsideassistant set phonenumber = :phoneNumber, email = :email, password = :password, canTow = :canTow where username = :username")
+    abstract void updateRoadsideDetails(String username, String phoneNumber, String email, String password, boolean canTow);
 
     @Query("update person set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
     abstract void updatePersonDetails(String username, String phoneNumber, String email, String password);

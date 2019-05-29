@@ -180,6 +180,7 @@ public class register extends AppCompatActivity {
                         roadsideAssistant.phonenumber = phonenumber;
                         roadsideAssistant.email = email;
                         roadsideAssistant.password = password;
+                        roadsideAssistant.canTow = canTow;
 
                         database.userDao().updateRoadside(roadsideAssistant);
 
