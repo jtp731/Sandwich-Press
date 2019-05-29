@@ -113,6 +113,9 @@ public class register extends AppCompatActivity {
         } else if (getIntent().getParcelableExtra("Roadside") != null){
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             canTowSwitch.setVisibility(View.VISIBLE);
+            if (roadsideAssistant.canTow == true){
+                canTowSwitch.setChecked(true);
+            }
             heading.setText("Edit Details");
             usernameText.setEnabled(false);
             fNameText.setEnabled(false);
@@ -127,6 +130,10 @@ public class register extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Boolean success = true;
+                    Boolean canTow = false;
+                    if (canTowSwitch.isChecked()){
+                        canTow = true;
+                    }
                     String phonenumber = phoneNumberText.getText().toString();
                     String email = emailText.getText().toString();
                     String password = password1Text.getText().toString();
@@ -163,7 +170,7 @@ public class register extends AppCompatActivity {
 
                         }
                         database.personDao().updatePerson(roadsideAssistant.username, phonenumber, email, password);
-                        database.roadsideAssistantDao().updateDetails(roadsideAssistant.username, password, phonenumber, email);
+                        database.roadsideAssistantDao().updateDetails(roadsideAssistant.username, password, phonenumber, email, canTow);
                         roadsideAssistant.phonenumber = phonenumber;
                         roadsideAssistant.email = email;
                         roadsideAssistant.password = password;
