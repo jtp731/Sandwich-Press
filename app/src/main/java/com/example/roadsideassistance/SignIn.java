@@ -32,6 +32,7 @@ public class SignIn extends AppCompatActivity {
 
         permission = requestPermission();
 
+        //Comment this out to keep database info
         this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {

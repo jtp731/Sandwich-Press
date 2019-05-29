@@ -79,6 +79,9 @@ public class registerAddress extends AppCompatActivity {
             customer.address.city = city;
             customer.address.state = state;
 
+            //update customer address in database
+            database.userDao().updateCustomerAddress(customer);
+
             finish();
         } else if (getIntent().getParcelableExtra("Roadside") != null){
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");

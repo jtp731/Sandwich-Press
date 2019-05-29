@@ -84,6 +84,9 @@ public class registerBankAccount extends AppCompatActivity {
                     customer.bankAccount.expiryDate = expiryDate;
                     customer.bankAccount.cardNum = cardNum;
 
+                    //update customer in database here
+                    database.userDao().updateCustomerBankDetails(customer);
+
                     finish();
                 } else {
                     person.bankAccount = new BankAccount(cardNum, expiryDate);
