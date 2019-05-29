@@ -133,6 +133,8 @@ public class register extends AppCompatActivity {
                     Boolean canTow = false;
                     if (canTowSwitch.isChecked()){
                         canTow = true;
+                    }else if(!canTowSwitch.isChecked()){
+                        canTow = false;
                     }
                     String phonenumber = phoneNumberText.getText().toString();
                     String email = emailText.getText().toString();
