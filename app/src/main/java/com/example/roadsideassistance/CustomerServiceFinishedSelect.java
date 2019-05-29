@@ -21,7 +21,13 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
         setContentView(R.layout.activity_customer_service_finished_select);
         customer = getIntent().getParcelableExtra("Customer");
 
-        createList();
+        TextView model = findViewById(R.id.model);
+        model.post(new Runnable() {
+            @Override
+            public void run() {
+                createList();
+            }
+        });
     }
 
     public void selectFinishedServiceButton(View view) {

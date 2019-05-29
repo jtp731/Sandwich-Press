@@ -123,6 +123,8 @@ public class registerBankAccount extends AppCompatActivity {
                     roadsideAssistant.bankAccount.expiryDate = expiryDate;
                     roadsideAssistant.bankAccount.cardNum = cardNum;
 
+                    database.userDao().updateRoadsideBankDetails(roadsideAssistant);
+
                     finish();
                 } else {
                     person.bankAccount = new BankAccount(cardNum, expiryDate);

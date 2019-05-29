@@ -90,6 +90,7 @@ public class registerAddress extends AppCompatActivity {
             roadsideAssistant.address.city = city;
             roadsideAssistant.address.state = state;
 
+            database.userDao().updateRoadsideAddress(roadsideAssistant);
 
             finish();
         } else {

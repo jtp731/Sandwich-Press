@@ -99,11 +99,13 @@ public class register extends AppCompatActivity {
                             password = customer.password;
 
                         }
-                        database.personDao().updatePerson(customer.username, phonenumber, email, password);
-                        database.customerDao().updateCustomer(customer.username, phonenumber, email, password);
+
                         customer.phonenumber = phonenumber;
                         customer.email = email;
                         customer.password = password;
+
+                        database.userDao().updateCustomer(customer);
+
 
                         finish();
                     }
@@ -174,11 +176,12 @@ public class register extends AppCompatActivity {
                             password = roadsideAssistant.password;
 
                         }
-                        database.personDao().updatePerson(roadsideAssistant.username, phonenumber, email, password);
-                        database.roadsideAssistantDao().updateDetails(roadsideAssistant.username, password, phonenumber, email, canTow);
+
                         roadsideAssistant.phonenumber = phonenumber;
                         roadsideAssistant.email = email;
                         roadsideAssistant.password = password;
+
+                        database.userDao().updateRoadside(roadsideAssistant);
 
                         finish();
                     }

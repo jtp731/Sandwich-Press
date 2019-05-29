@@ -45,7 +45,4 @@ public interface PersonDao {
 
     @Query("select case when exists(select * from person where email = :email) then 1 else 0 end")
     boolean emailTaken(String email);
-
-    @Query("update person set phonenumber = :phonenumber, email = :email, password = :password where username = :username")
-    void updatePerson(String username, String phonenumber, String email, String password);
 }

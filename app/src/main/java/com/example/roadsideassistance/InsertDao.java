@@ -46,6 +46,47 @@ public abstract class InsertDao {
                 updatedCustomer.address.state);
     }
 
+    void updateRoadsideBankDetails(RoadsideAssistant updatedRoadside){
+        updateRoadsideBankDetails(updatedRoadside.username, updatedRoadside.bankAccount.expiryDate, updatedRoadside.bankAccount.cardNum);
+        updatePersonBankDetails(updatedRoadside.username, updatedRoadside.bankAccount.expiryDate, updatedRoadside.bankAccount.cardNum);
+
+    }
+
+    void updateRoadsideAddress(RoadsideAssistant updatedRoadside) {
+        updateRoadsideAddress(updatedRoadside.username,
+                updatedRoadside.address.streetNum,
+                updatedRoadside.address.street,
+                updatedRoadside.address.city,
+                updatedRoadside.address.state);
+        updatePersonAddress(updatedRoadside.username,
+                updatedRoadside.address.streetNum,
+                updatedRoadside.address.street,
+                updatedRoadside.address.city,
+                updatedRoadside.address.state);
+    }
+
+    void updateCustomer(Customer updatedCustomer){
+        updateCustomerDetails(updatedCustomer.username,
+                updatedCustomer.phonenumber,
+                updatedCustomer.email,
+                updatedCustomer.password);
+        updatePersonDetails(updatedCustomer.username,
+                updatedCustomer.phonenumber,
+                updatedCustomer.email,
+                updatedCustomer.password);
+    }
+
+    void updateRoadside(RoadsideAssistant updatedRoadside){
+        updateRoadsideDetails(updatedRoadside.username,
+                updatedRoadside.phonenumber,
+                updatedRoadside.email,
+                updatedRoadside.password);
+        updatePersonDetails(updatedRoadside.username,
+                updatedRoadside.phonenumber,
+                updatedRoadside.email,
+                updatedRoadside.password);
+    }
+
     void addPerson(Person person) {
         insertPerson(person);
     }
@@ -65,12 +106,27 @@ public abstract class InsertDao {
     @Query("update customer set expiryDate = :expiryDate, cardNum = :cardNum where username = :username")
     abstract void updateCustomerBankDetails(String username, Date expiryDate, long cardNum);
 
+    @Query("update roadsideassistant set expiryDate = :expiryDate, cardNum = :cardNum where username = :username")
+    abstract void updateRoadsideBankDetails(String username, Date expiryDate, long cardNum);
+
     @Query("update person set expiryDate = :expiryDate, cardNum = :cardNum where username = :username")
     abstract void updatePersonBankDetails(String username, Date expiryDate, long cardNum);
 
     @Query("update customer set streetNum = :streetNum, street = :street, city = :city, state = :state where username = :username")
     abstract void updateCustomerAddress(String username, int streetNum, String street, String city, String state);
 
+    @Query("update roadsideassistant set streetNum = :streetNum, street = :street, city = :city, state = :state where username = :username")
+    abstract void updateRoadsideAddress(String username, int streetNum, String street, String city, String state);
+
     @Query("update person set streetNum = :streetNum, street = :street, city = :city, state = :state where username = :username")
     abstract void updatePersonAddress(String username, int streetNum, String street, String city, String state);
+
+    @Query("update customer set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
+    abstract void updateCustomerDetails(String username, String phoneNumber, String email, String password);
+
+    @Query("update roadsideassistant set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
+    abstract void updateRoadsideDetails(String username, String phoneNumber, String email, String password);
+
+    @Query("update person set phonenumber = :phoneNumber, email = :email, password = :password where username = :username")
+    abstract void updatePersonDetails(String username, String phoneNumber, String email, String password);
 }
