@@ -56,6 +56,12 @@ public class RoadsideMainPage extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void logout(View view){
+        Intent intent = new Intent(this, SignIn.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1) {

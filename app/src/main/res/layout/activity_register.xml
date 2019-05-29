@@ -28,11 +28,11 @@
 
         <EditText
             android:id="@+id/newFName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="First Name"
             android:inputType="textPersonName"
@@ -42,11 +42,11 @@
 
         <EditText
             android:id="@+id/newLName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="Last Name"
             android:inputType="textPersonName"
@@ -56,11 +56,11 @@
 
         <EditText
             android:id="@+id/newEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -70,11 +70,11 @@
 
         <EditText
             android:id="@+id/newPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -84,11 +84,11 @@
 
         <EditText
             android:id="@+id/newPConfirm"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="Confirm Password"
             android:inputType="textPassword"
@@ -98,11 +98,11 @@
 
         <EditText
             android:id="@+id/newPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="Phone Number"
             android:inputType="phone"
@@ -125,9 +125,11 @@
 
         <EditText
             android:id="@+id/newUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="27dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:hint="User name"
             android:inputType="textPersonName"
