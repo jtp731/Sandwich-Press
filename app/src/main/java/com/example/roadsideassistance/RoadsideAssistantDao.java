@@ -30,6 +30,6 @@ public interface RoadsideAssistantDao {
     @Query("update roadsideassistant set rating = (select AVG(rating) from review where roadside_assistant_username = :username) where username = :username")
     void updateRating(String username);
 
-    @Query("update roadsideassistant set password = :password, phonenumber = :phonenumber, email = :email where username = :username")
-    void updateDetails(String username, String password, String phonenumber, String email);
+    @Query("update roadsideassistant set password = :password, phonenumber = :phonenumber, email = :email, canTow = :canTow where username = :username")
+    void updateDetails(String username, String password, String phonenumber, String email, boolean canTow);
 }

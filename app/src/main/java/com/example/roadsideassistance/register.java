@@ -36,7 +36,7 @@ public class register extends AppCompatActivity {
         findViewById(R.id.newPhoneError).setVisibility(View.GONE);
         findViewById(R.id.newPasswordError).setVisibility(View.GONE);
 
-        //heading = findViewById(R.id.heading);
+        heading = findViewById(R.id.heading);
         usernameText = findViewById(R.id.newUsername);
         fNameText = findViewById(R.id.newFName);
         lNameText = findViewById(R.id.newLName);
@@ -44,8 +44,8 @@ public class register extends AppCompatActivity {
         emailText = findViewById(R.id.newEmail);
         password1Text = findViewById(R.id.newPassword);
         password2Text = findViewById(R.id.newPConfirm);
-        //canTowSwitch = findViewById(R.id.canTowSwitch);
-        //canTowSwitch.setVisibility(View.GONE);
+        canTowSwitch = findViewById(R.id.canTowSwitch);
+        canTowSwitch.setVisibility(View.GONE);
         next = findViewById(R.id.newSignup);
 
         if (getIntent().getParcelableExtra("Customer") != null){
@@ -113,6 +113,11 @@ public class register extends AppCompatActivity {
         } else if (getIntent().getParcelableExtra("Roadside") != null){
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             canTowSwitch.setVisibility(View.VISIBLE);
+            if (roadsideAssistant.canTow == true){
+                canTowSwitch.setChecked(true);
+            }else if (roadsideAssistant.canTow == false){
+                canTowSwitch.setChecked(false);
+            }
             //setTitle("Edit Details");//Maybe this instead
             heading.setText("Edit Details");
             usernameText.setEnabled(false);
@@ -128,6 +133,12 @@ public class register extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Boolean success = true;
+                    Boolean canTow = false;
+                    if (canTowSwitch.isChecked()){
+                        canTow = true;
+                    }else if(!canTowSwitch.isChecked()){
+                        canTow = false;
+                    }
                     String phonenumber = phoneNumberText.getText().toString();
                     String email = emailText.getText().toString();
                     String password = password1Text.getText().toString();
@@ -164,7 +175,7 @@ public class register extends AppCompatActivity {
 
                         }
                         database.personDao().updatePerson(roadsideAssistant.username, phonenumber, email, password);
-                        database.roadsideAssistantDao().updateDetails(roadsideAssistant.username, password, phonenumber, email);
+                        database.roadsideAssistantDao().updateDetails(roadsideAssistant.username, password, phonenumber, email, canTow);
                         roadsideAssistant.phonenumber = phonenumber;
                         roadsideAssistant.email = email;
                         roadsideAssistant.password = password;

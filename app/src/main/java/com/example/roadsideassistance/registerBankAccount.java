@@ -57,6 +57,25 @@ public class registerBankAccount extends AppCompatActivity {
             findViewById(R.id.radioGroup).setVisibility(View.GONE);
         } else if (getIntent().getParcelableExtra("Roadside") != null){
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+            setToRoadsideAssistant(null);
+
+            EditText bankNum = findViewById(R.id.newBankNum);
+            bankNum.setText(Long.toString(roadsideAssistant.bankAccount.cardNum));
+
+            EditText month = findViewById(R.id.newExpiryDateMonth);
+            EditText year = findViewById(R.id.newExpiryDateYear);
+            Date expiry = roadsideAssistant.bankAccount.expiryDate;
+            Integer expMonth = expiry.getMonth() + 1;
+            String monthExpiry;
+            if (expMonth < 10){
+                monthExpiry = 0 + Integer.toString(expMonth);
+            } else {
+                monthExpiry = Integer.toString(expMonth);
+            }
+            String expYear = Integer.toString(expiry.getYear() + 1900 - 2000);
+            month.setText(monthExpiry);
+            year.setText(expYear);
+            findViewById(R.id.radioGroup).setVisibility(View.GONE);
 
         }
     }
@@ -100,11 +119,18 @@ public class registerBankAccount extends AppCompatActivity {
             }
 
             if (currentPersonType == ROADSIDE_ASSISTANT) {
-                //go to roadside page
-                Intent roadsideIntent = new Intent(registerBankAccount.this, registerRoadside.class);
-                roadsideIntent.putExtra("Person", person);
-                startActivity(roadsideIntent);
-                super.finish();
+                if (getIntent().getParcelableExtra("Roadside") != null){
+                    roadsideAssistant.bankAccount.expiryDate = expiryDate;
+                    roadsideAssistant.bankAccount.cardNum = cardNum;
+
+                    finish();
+                } else {
+                    person.bankAccount = new BankAccount(cardNum, expiryDate);
+                    Intent roadsideIntent = new Intent(registerBankAccount.this, registerRoadside.class);
+                    roadsideIntent.putExtra("Person", person);
+                    startActivity(roadsideIntent);
+                    super.finish();
+                }
             }
         }
     }
@@ -193,7 +219,11 @@ public class registerBankAccount extends AppCompatActivity {
     @Override
     public void finish(){
         Intent data = new Intent();
-        data.putExtra("Customer", customer);
+        if (getIntent().getParcelableExtra("Customer") != null){
+            data.putExtra("Customer", customer);
+        } else if (getIntent().getParcelableExtra("Roadside") != null){
+            data.putExtra("Roadside", roadsideAssistant);
+        }
         setResult(RESULT_OK, data);
         super.finish();
     }
