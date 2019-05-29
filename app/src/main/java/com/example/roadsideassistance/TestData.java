@@ -33,8 +33,9 @@ public class TestData {
         lng = 151.2093;
 
         database = AppDatabase.getDatabase(context);
+        String [] states = new String[]{"NSW", "QLD", "VIC", "ACT", "NT", "SA", "WA", "TAS"};
         for(int i = 0; i < numberOfRoadsideassistants; i++) {
-            database.userDao().addRoadsideAssistant(new RoadsideAssistant(
+            RoadsideAssistant roadsideAssistant = new RoadsideAssistant(
                     "road" + (i + 1),
                     "123",
                     "" + (int)(Math.random()*1e8),
@@ -45,10 +46,18 @@ public class TestData {
                     "Company" + (i + 1),
                     (long)(Math.random()*1e11),
                     (Math.random() > 0.5 ? true : false),
-                    0.0f));
+                    0.0f);
+            Integer randYear = (int)(2018 + Math.random()*(2022 - 2018) - 1900);
+            Integer randMonth = (int)(Math.random()*11);
+            Date bankDate = new Date(randYear, randMonth, 1);
+            roadsideAssistant.bankAccount = new BankAccount((long)(Math.random()*1e16), bankDate);
+
+            roadsideAssistant.address = new Address(i+1, "Street Name Rd", "City" + (i+1), states[i%8]);
+            database.userDao().addRoadsideAssistant(roadsideAssistant);
+
         }
 
-        String [] states = new String[]{"NSW", "QLD", "VIC", "ACT", "NT", "SA", "WA", "TAS"};
+
 
         for(int i = 0; i < numberOfCustomers; i++) {
             Customer customer = new Customer(

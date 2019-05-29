@@ -115,6 +115,8 @@ public class register extends AppCompatActivity {
             canTowSwitch.setVisibility(View.VISIBLE);
             if (roadsideAssistant.canTow == true){
                 canTowSwitch.setChecked(true);
+            }else if (roadsideAssistant.canTow == false){
+                canTowSwitch.setChecked(false);
             }
             heading.setText("Edit Details");
             usernameText.setEnabled(false);
