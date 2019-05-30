@@ -186,6 +186,14 @@ public class registerBankAccount extends AppCompatActivity {
             errorExpiryDate.setText("Invalid Date");
             errorExpiryDate.setVisibility(View.VISIBLE);
         }
+
+        pattern = Pattern.compile(expiryDateYearPattern);
+        matcher = pattern.matcher(expiryDateYear);
+        if (!matcher.matches()) {
+            good = false;
+            errorExpiryDate.setText("Invalid Date");
+            errorExpiryDate.setVisibility(View.VISIBLE);
+        }
         else {
             input = findViewById(R.id.newExpiryDateMonth);
             int month = Integer.parseInt(input.getText().toString().trim());
@@ -205,14 +213,6 @@ public class registerBankAccount extends AppCompatActivity {
                 errorExpiryDate.setText("Card Already Expired");
                 errorExpiryDate.setVisibility(View.VISIBLE);
             }
-        }
-
-        pattern = Pattern.compile(expiryDateYearPattern);
-        matcher = pattern.matcher(expiryDateYear);
-        if (!matcher.matches()) {
-            good = false;
-            errorExpiryDate.setText("Invalid Date");
-            errorExpiryDate.setVisibility(View.VISIBLE);
         }
 
         return good;
