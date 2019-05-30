@@ -46,7 +46,7 @@ public class registerAddress extends AppCompatActivity {
         } else if (getIntent().getParcelableExtra("Roadside") != null){
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             output = findViewById(R.id.newStreetNum);
-            output.setText(roadsideAssistant.address.streetNum);
+            output.setText(Integer.toString(roadsideAssistant.address.streetNum));
 
             output = findViewById(R.id.newStreetName);
             output.setText(roadsideAssistant.address.street);
