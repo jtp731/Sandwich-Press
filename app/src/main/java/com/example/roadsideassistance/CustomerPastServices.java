@@ -49,6 +49,7 @@ public class CustomerPastServices extends AppCompatActivity {
                 plateNum.setPadding(5,5,5,5);
                 plateNum.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 plateNum.setWidth(findViewById(R.id.plateNum).getWidth());
+                plateNum.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 serviceLayout.addView(plateNum);
 
                 TextView roadsideUsername = new TextView(this);
@@ -56,6 +57,7 @@ public class CustomerPastServices extends AppCompatActivity {
                 roadsideUsername.setPadding(5,5,5,5);
                 roadsideUsername.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 roadsideUsername.setWidth(findViewById(R.id.customerUsername).getWidth());
+                roadsideUsername.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 serviceLayout.addView(roadsideUsername);
 
                 TextView date = new TextView(this);
@@ -66,6 +68,7 @@ public class CustomerPastServices extends AppCompatActivity {
                 date.setPadding(5,5,5,5);
                 date.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 date.setWidth(findViewById(R.id.date).getWidth());
+                date.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 serviceLayout.addView(date);
 
                 TextView payType = new TextView(this);
@@ -73,6 +76,7 @@ public class CustomerPastServices extends AppCompatActivity {
                 payType.setPadding(5,5,5,5);
                 payType.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                 payType.setWidth(findViewById(R.id.payType).getWidth());
+                payType.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 serviceLayout.addView(payType);
 
                 final int currIndex = i;

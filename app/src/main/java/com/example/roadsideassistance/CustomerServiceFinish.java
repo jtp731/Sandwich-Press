@@ -57,8 +57,9 @@ public class CustomerServiceFinish extends AppCompatActivity {
             intent.putExtra("Service", selectedService);
             startActivityForResult(intent, 1);
         }
-        else
+        else {
             Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

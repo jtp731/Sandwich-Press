@@ -55,6 +55,7 @@ public class CustomerActiveServicesSelect extends AppCompatActivity {
                 plateNumberText.setPadding(5,5,5,5);
                 plateNumberText.setText(car.plateNum);
                 plateNumberText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                plateNumberText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 carLayout.addView(plateNumberText);
 
                 TextView makeText = new TextView(this);
@@ -62,6 +63,7 @@ public class CustomerActiveServicesSelect extends AppCompatActivity {
                 makeText.setPadding(5,5,5,5);
                 makeText.setText(car.manufacturer);
                 makeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                makeText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 carLayout.addView(makeText);
 
                 TextView modelText = new TextView(this);
@@ -69,6 +71,7 @@ public class CustomerActiveServicesSelect extends AppCompatActivity {
                 modelText.setPadding(5,5,5,5);
                 modelText.setText(car.model);
                 modelText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                modelText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 carLayout.addView(modelText);
 
                 carLayout.setOnClickListener(new View.OnClickListener() {

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
                 roadsideUsernameText.setWidth(findViewById(R.id.username).getWidth());
                 roadsideUsernameText.setText(finishedServices.get(i).roadside_assistant_username);
                 roadsideUsernameText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                roadsideUsernameText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 finishedLayout.addView(roadsideUsernameText);
 
                 TextView plateNumText = new TextView(this);
@@ -80,6 +82,7 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
                 plateNumText.setWidth(findViewById(R.id.payType).getWidth());
                 plateNumText.setText(car.plateNum);
                 plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                plateNumText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 finishedLayout.addView(plateNumText);
 
                 TextView makeText = new TextView(this);
@@ -87,6 +90,7 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
                 makeText.setWidth(findViewById(R.id.make).getWidth());
                 makeText.setText(car.manufacturer);
                 makeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                makeText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 finishedLayout.addView(makeText);
 
                 TextView modelText = new TextView(this);
@@ -94,8 +98,27 @@ public class CustomerServiceFinishedSelect extends AppCompatActivity {
                 modelText.setWidth(findViewById(R.id.model).getWidth());
                 modelText.setText(car.model);
                 modelText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                modelText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 finishedLayout.addView(modelText);
 
+                /*
+                int maxHeight = roadsideUsernameText.getHeight();
+                maxHeight = Math.max(maxHeight, plateNumText.getHeight());
+                maxHeight = Math.max(maxHeight, makeText.getHeight());
+                maxHeight = Math.max(maxHeight, modelText.getHeight());
+
+                Toast.makeText(this, "Max Height " + maxHeight, Toast.LENGTH_SHORT).show();
+
+                roadsideUsernameText.setHeight(maxHeight);
+                plateNumText.setHeight(maxHeight);
+                makeText.setHeight(maxHeight);
+                modelText.setHeight(maxHeight);
+
+                finishedLayout.addView(roadsideUsernameText);
+                finishedLayout.addView(plateNumText);
+                finishedLayout.addView(makeText);
+                finishedLayout.addView(modelText);
+                */
                 finishedLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

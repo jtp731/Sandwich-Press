@@ -126,6 +126,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     typeText.setWidth(findViewById(R.id.typeLabel).getWidth());
                     typeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     typeText.setPadding(5,5,5,5);
+                    typeText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(typeText);
 
                     TextView dateText = new TextView(this);
@@ -136,6 +137,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     dateText.setPadding(5,5,5,5);
+                    dateText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(dateText);
 
                     TextView costText = new TextView(this);
@@ -143,6 +145,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
+                    costText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(costText);
 
                     /*
@@ -164,6 +167,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     typeText.setWidth(findViewById(R.id.typeLabel).getWidth());
                     typeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     typeText.setPadding(5,5,5,5);
+                    typeText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(typeText);
 
                     TextView dateText = new TextView(this);
@@ -174,6 +178,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     dateText.setPadding(5,5,5,5);
+                    dateText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(dateText);
 
                     TextView costText = new TextView(this);
@@ -181,6 +186,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
+                    costText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(costText);
 
                     /*
@@ -201,6 +207,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     typeText.setWidth(findViewById(R.id.typeLabel).getWidth());
                     typeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     typeText.setPadding(5,5,5,5);
+                    typeText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(typeText);
 
                     TextView dateText = new TextView(this);
@@ -211,6 +218,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     dateText.setPadding(5,5,5,5);
+                    dateText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(dateText);
 
                     TextView costText = new TextView(this);
@@ -218,6 +226,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
+                    costText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(costText);
 
                     /*
@@ -238,6 +247,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     typeText.setWidth(findViewById(R.id.typeLabel).getWidth());
                     typeText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     typeText.setPadding(5,5,5,5);
+                    typeText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(typeText);
 
                     TextView dateText = new TextView(this);
@@ -248,6 +258,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     dateText.setWidth(findViewById(R.id.dateLabel).getWidth());
                     dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     dateText.setPadding(5,5,5,5);
+                    dateText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(dateText);
 
                     TextView costText = new TextView(this);
@@ -255,6 +266,7 @@ public class CustomerPaymentHistory extends AppCompatActivity {
                     costText.setWidth(findViewById(R.id.payLabel).getWidth());
                     costText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
                     costText.setPadding(5,5,5,5);
+                    costText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     outerLayout.addView(costText);
 
                     /*

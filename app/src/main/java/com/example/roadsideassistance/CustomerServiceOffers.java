@@ -77,6 +77,7 @@ public class CustomerServiceOffers extends AppCompatActivity {
                 plateNumText.setWidth(findViewById(R.id.plateNum).getWidth());
                 plateNumText.setText(serviceOffers.get(i).car_plateNum);
                 plateNumText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                plateNumText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 offerLayout.addView(plateNumText);
 
                 TextView dateText = new TextView(this);
@@ -88,6 +89,7 @@ public class CustomerServiceOffers extends AppCompatActivity {
                         serviceOffers.get(i).time.getHours(),
                         serviceOffers.get(i).time.getMinutes()));
                 dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));
+                dateText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 offerLayout.addView(dateText);
 
                 offerLayout.setOnClickListener(new View.OnClickListener() {
