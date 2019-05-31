@@ -12,6 +12,7 @@ public class TestData {
     static int numOfRoadside;
     static int numOfCustomers;
     static int numOfCarsPer;
+    static int numOfManagers;
 
     static double lat;
     static double lng;
@@ -23,11 +24,12 @@ public class TestData {
 
     static Context context;
 
-    public static void createTestData(Context createContext, int numberOfRoadsideassistants, int numberOfCustomers, int numberOfCarsPerCustomer) {
+    public static void createTestData(Context createContext, int numberOfRoadsideassistants, int numberOfCustomers, int numberOfCarsPerCustomer, int numberOfManagers) {
         context = createContext;
         numOfRoadside = numberOfRoadsideassistants;
         numOfCustomers = numberOfCustomers;
         numOfCarsPer = numberOfCarsPerCustomer;
+        numOfManagers = numberOfManagers;
 
         lat = -33.8688;
         lng = 151.2093;
@@ -88,6 +90,20 @@ public class TestData {
                         new Date()
                 ));
             }
+        }
+
+        for (int k = 0; k < numOfManagers; k++){
+            Manager manager = new Manager(
+                    "manager" + (k + 1),
+                    "123",
+                    "" + (int)(Math.random()*1e8),
+                    "manager" + (k + 1) + "@email",
+                    "manager" + (k + 1) + "FirstName",
+                    "manager"  + (k + 1) + "LastName",
+                    1
+            );
+
+            database.userDao().addManager(manager);
         }
     }
 

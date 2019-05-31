@@ -38,7 +38,7 @@ public class SignIn extends AppCompatActivity {
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
 
-            TestData.createTestData(this, 10, 10, 3);
+            TestData.createTestData(this, 10, 10, 3, 10);
             TestData.createRequests(50);
             TestData.createOffers(20);
             TestData.createActive(10);
