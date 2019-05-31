@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.Button;
 
 public class registerAddress extends AppCompatActivity {
     Person person;
@@ -31,6 +31,8 @@ public class registerAddress extends AppCompatActivity {
         database = AppDatabase.getDatabase(this);
 
         if (getIntent().getParcelableExtra("Customer") != null){
+            Button btn = (Button) findViewById(R.id.toRegisterBankAccount);
+            btn.setText("Save");
             customer = getIntent().getParcelableExtra("Customer");
             output = findViewById(R.id.newStreetNum);
             output.setText(Integer.toString(customer.address.streetNum));
@@ -44,6 +46,8 @@ public class registerAddress extends AppCompatActivity {
             int position = adapter.getPosition(customer.address.state);
             states.setSelection(position);
         } else if (getIntent().getParcelableExtra("Roadside") != null){
+            Button btn = (Button) findViewById(R.id.toRegisterBankAccount);
+            btn.setText("Save");
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             output = findViewById(R.id.newStreetNum);
             output.setText(Integer.toString(roadsideAssistant.address.streetNum));

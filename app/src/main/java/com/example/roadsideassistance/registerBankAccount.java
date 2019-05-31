@@ -35,6 +35,8 @@ public class registerBankAccount extends AppCompatActivity {
         findViewById(R.id.errorExpiryDate).setVisibility(View.GONE);
 
         if (getIntent().getParcelableExtra("Customer") != null){
+            Button btn = (Button) findViewById(R.id.bankNextButton);
+            btn.setText("Save");
             customer = getIntent().getParcelableExtra("Customer");
             setToCustomer(null);
 
@@ -56,6 +58,8 @@ public class registerBankAccount extends AppCompatActivity {
             year.setText(expYear);
             findViewById(R.id.radioGroup).setVisibility(View.GONE);
         } else if (getIntent().getParcelableExtra("Roadside") != null){
+            Button btn = (Button) findViewById(R.id.bankNextButton);
+            btn.setText("Save");
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             setToRoadsideAssistant(null);
 

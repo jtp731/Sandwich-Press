@@ -49,6 +49,8 @@ public class register extends AppCompatActivity {
         next = findViewById(R.id.newSignup);
 
         if (getIntent().getParcelableExtra("Customer") != null){
+            Button btn = (Button) findViewById(R.id.newSignup);
+            btn.setText("Save");
             customer = getIntent().getParcelableExtra("Customer");
             heading.setText("Edit Details");
             usernameText.setEnabled(false);
@@ -113,6 +115,8 @@ public class register extends AppCompatActivity {
             });
 
         } else if (getIntent().getParcelableExtra("Roadside") != null){
+            Button btn = (Button) findViewById(R.id.newSignup);
+            btn.setText("Save");
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             canTowSwitch.setVisibility(View.VISIBLE);
             if (roadsideAssistant.canTow == true){
