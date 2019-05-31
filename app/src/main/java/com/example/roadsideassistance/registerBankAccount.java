@@ -35,8 +35,6 @@ public class registerBankAccount extends AppCompatActivity {
         findViewById(R.id.errorExpiryDate).setVisibility(View.GONE);
 
         if (getIntent().getParcelableExtra("Customer") != null){
-            Button btn = (Button) findViewById(R.id.bankNextButton);
-            btn.setText("Save");
             customer = getIntent().getParcelableExtra("Customer");
             setToCustomer(null);
 
@@ -58,8 +56,6 @@ public class registerBankAccount extends AppCompatActivity {
             year.setText(expYear);
             findViewById(R.id.radioGroup).setVisibility(View.GONE);
         } else if (getIntent().getParcelableExtra("Roadside") != null){
-            Button btn = (Button) findViewById(R.id.bankNextButton);
-            btn.setText("Save");
             roadsideAssistant = getIntent().getParcelableExtra("Roadside");
             setToRoadsideAssistant(null);
 
@@ -82,6 +78,7 @@ public class registerBankAccount extends AppCompatActivity {
             findViewById(R.id.radioGroup).setVisibility(View.GONE);
 
         }
+
     }
 
     public void onClick(View view) {
@@ -142,15 +139,25 @@ public class registerBankAccount extends AppCompatActivity {
     }
 
     public void setToCustomer(View view) {
-        currentPersonType = CUSTOMER;
-        Button button = findViewById(R.id.bankNextButton);
-        button.setText("Finish");
+        if (getIntent().getParcelableExtra("Customer") !=null){
+            Button btn = (Button) findViewById(R.id.bankNextButton);
+            btn.setText("Save");
+        }else {
+            currentPersonType = CUSTOMER;
+            Button button = findViewById(R.id.bankNextButton);
+            button.setText("Finish");
+        }
     }
 
     public void setToRoadsideAssistant(View view) {
-        currentPersonType = ROADSIDE_ASSISTANT;
-        Button button = findViewById(R.id.bankNextButton);
-        button.setText("Next");
+        if (getIntent().getParcelableExtra("Roadside") !=null){
+            Button btn = (Button) findViewById(R.id.bankNextButton);
+            btn.setText("Save");
+        }else {
+            currentPersonType = ROADSIDE_ASSISTANT;
+            Button button = findViewById(R.id.bankNextButton);
+            button.setText("Next");
+        }
     }
 
     private boolean verify() {
