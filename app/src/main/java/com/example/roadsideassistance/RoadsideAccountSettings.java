@@ -41,6 +41,12 @@ public class RoadsideAccountSettings extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void toPaymentHistory(View view) {
+        Intent intent = new Intent(this, RoadsidePaymentHistory.class);
+        intent.putExtra("Roadside", roadsideAssistant);
+        startActivityForResult(intent, 1);
+    }
+
     @Override
     public void finish(){
         Intent data = new Intent();
