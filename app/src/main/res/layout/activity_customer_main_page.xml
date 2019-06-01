@@ -28,13 +28,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
                     android:onClick="toManageCars"
                     android:text="Manage Cars"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="592dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/accountDetails" />
 
                 <Button
                     android:id="@+id/customerCreateServiceButton"
@@ -60,9 +61,9 @@
                     android:onClick="toAccountSettings"
                     android:text="Account Settings"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/paymentHist" />
+                    app:layout_constraintTop_toBottomOf="@+id/pastServices" />
 
                 <Button
                     android:id="@+id/customerServiceOffers"
@@ -116,6 +117,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/customerFinishedServicesButton" />
+
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
