@@ -41,6 +41,12 @@ public class CustomerAccountSettings extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void toManageCars(View view) {
+        Intent intent = new Intent(this, CustomerManageCars.class);
+        intent.putExtra("Customer", customer);
+        startActivityForResult(intent, 1);
+    }
+
     public void toPayHistory(View view) {
         Intent intent = new Intent(this, CustomerPaymentHistory.class);
         intent.putExtra("Customer", customer);

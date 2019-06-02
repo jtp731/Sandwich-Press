@@ -22,12 +22,7 @@ import java.util.List;
 public class Car implements Parcelable {
     @Ignore
     public static final int FREE_SUB = 0;
-    @Ignore
-    public static final int ONE_MONTH_SUB = 1;
-    @Ignore
-    public static final int SIX_MONTH_SUB = 2;
-    @Ignore
-    public static final int ONE_YEAR_SUB = 3;
+    public static final int ONE_YEAR_SUB = 1;
 
     @NonNull
     public String customer_username;

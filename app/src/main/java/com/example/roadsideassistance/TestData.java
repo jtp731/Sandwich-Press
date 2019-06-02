@@ -86,7 +86,7 @@ public class TestData {
                         "Model" + (j + 1),
                         "Manufacturer" + (j + 1),
                         "Colour" + (j + 1),
-                        (int)Math.random()*4,
+                        (int)(Math.random()*2),
                         new Date()
                 ));
             }

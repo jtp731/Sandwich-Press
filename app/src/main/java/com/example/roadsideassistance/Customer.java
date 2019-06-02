@@ -200,32 +200,6 @@ public class Customer extends Person{
             Date today = new Date();
             for(int i = 0; i < cars.size(); i++) {
                 if(cars.get(i).subType != Car.FREE_SUB && cars.get(i).renewalDate.before(today)) {
-                    if(cars.get(i).subType == Car.ONE_MONTH_SUB) {
-                        if(this.removeCost(SubscriptionPayment.COST_ONE_MONTH)) {
-                            SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_ONE_MONTH);
-                            subPayments.add(payment);
-                            AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
-                            today.setMonth(today.getMonth() + 1);//Does increment year
-                            cars.get(i).renewalDate = today;
-                            AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
-                        }
-                        else {
-                            cars.get(i).subType = Car.FREE_SUB;
-                        }
-                    }
-                    if(cars.get(i).subType == Car.SIX_MONTH_SUB) {
-                        if(this.removeCost(SubscriptionPayment.COST_SIX_MONTHS)) {
-                            SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_SIX_MONTHS);
-                            subPayments.add(payment);
-                            AppDatabase.getDatabase(context).customerDao().addSubPayment(payment);
-                            today.setMonth(today.getMonth() + 6);//Does increment year
-                            cars.get(i).renewalDate = today;
-                            AppDatabase.getDatabase(context).carDao().updateSubDate(this.username, cars.get(i).plateNum, cars.get(i).renewalDate);
-                        }
-                        else {
-                            cars.get(i).subType = Car.FREE_SUB;
-                        }
-                    }
                     if(cars.get(i).subType == Car.ONE_YEAR_SUB) {
                         if(this.removeCost(SubscriptionPayment.COST_ONE_YEAR)) {
                             SubscriptionPayment payment = new SubscriptionPayment(this.username, cars.get(i).plateNum, today, SubscriptionPayment.COST_ONE_YEAR);

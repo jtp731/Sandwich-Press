@@ -41,12 +41,6 @@ public class CustomerMainPage extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    public void toManageCars(View view) {
-        Intent intent = new Intent(this, CustomerManageCars.class);
-        intent.putExtra("Customer", customer);
-        startActivityForResult(intent, 1);
-    }
-
     public void toAccountSettings(View view){
         Intent intent = new Intent(this, CustomerAccountSettings.class);
         intent.putExtra("Customer", customer);

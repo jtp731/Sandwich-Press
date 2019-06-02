@@ -63,12 +63,12 @@
         android:id="@+id/toRegisterBankAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:onClick="nextButton"
         android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="nextButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/newState" />
 </android.support.constraint.ConstraintLayout>

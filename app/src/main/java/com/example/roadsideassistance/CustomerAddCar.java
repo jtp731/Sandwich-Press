@@ -16,8 +16,6 @@ public class CustomerAddCar extends AppCompatActivity {
     Customer customer;
     AppDatabase database;
     RadioButton free;
-    RadioButton oneMonth;
-    RadioButton sixMonths;
     RadioButton twelveMonths;
 
     @Override
@@ -87,25 +85,13 @@ public class CustomerAddCar extends AppCompatActivity {
         }
 
         free = findViewById(R.id.radioFree);
- //       oneMonth = findViewById(R.id.radioOne);
- //       sixMonths = findViewById(R.id.radioSix);
         twelveMonths = findViewById(R.id.radioTwelve);
         Calendar calendar = Calendar.getInstance();
         int subType = Car.FREE_SUB;
 
         if (free.isChecked()){
             renewalDate = new Date(0);
-/*        } else if (oneMonth.isChecked()){
-            calendar.setTime(new Date());
-            calendar.add(Calendar.MONTH, 1);
-            renewalDate = calendar.getTime();
-            subType = Car.ONE_MONTH_SUB;
-        } else if (sixMonths.isChecked()){
-            calendar.setTime(new Date());
-            calendar.add(Calendar.MONTH, 6);
-            renewalDate = calendar.getTime();
-            subType = Car.SIX_MONTH_SUB;
-*/        } else if (twelveMonths.isChecked()){
+        } else if (twelveMonths.isChecked()){
             calendar.setTime(new Date());
             calendar.add(Calendar.MONTH, 12);
             renewalDate = calendar.getTime();
