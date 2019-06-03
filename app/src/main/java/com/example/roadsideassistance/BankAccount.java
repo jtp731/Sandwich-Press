@@ -52,7 +52,7 @@ public class BankAccount implements Parcelable {
     }
 
     public static boolean tryPay() {
-        if(Math.random() > 0.1)
+        if(Math.random() > 0.05)
             return true;
         return false;
     }
@@ -63,8 +63,6 @@ public class BankAccount implements Parcelable {
         successful = roadsideAssistant.addPay(pay);
         if(!customer.carCoveredBySubscription(carPlateNum))
             successful = customer.removeCost(cost);
-        else
-            successful = true;
         return successful;
     }
 }
