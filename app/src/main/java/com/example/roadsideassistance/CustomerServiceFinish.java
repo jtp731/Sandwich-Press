@@ -59,7 +59,7 @@ public class CustomerServiceFinish extends AppCompatActivity {
         }
         else {
             if(customer.carCoveredBySubscription(selectedService.car_plateNum))
-                Toast.makeText(this, "Unable to finish payment", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Unable to finish service", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show();
         }
