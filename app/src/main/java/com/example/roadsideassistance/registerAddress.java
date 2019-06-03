@@ -29,6 +29,7 @@ public class registerAddress extends AppCompatActivity {
         person = intent.getParcelableExtra("Person");
         EditText output;
         database = AppDatabase.getDatabase(this);
+        findViewById(R.id.streetNumError).setVisibility(View.GONE);
 
         if (getIntent().getParcelableExtra("Customer") != null){
             Button btn = (Button) findViewById(R.id.toRegisterBankAccount);
@@ -65,45 +66,51 @@ public class registerAddress extends AppCompatActivity {
     }
 
     public void nextButton(View view) {
+        findViewById(R.id.streetNumError).setVisibility(View.GONE);
         EditText input = findViewById(R.id.newStreetNum);
         int streetNum = Integer.parseInt(input.getText().toString());
 
-        input = findViewById(R.id.newStreetName);
-        String street = input.getText().toString();
+        if(streetNum > 0) {
+            input = findViewById(R.id.newStreetName);
+            String street = input.getText().toString();
 
-        input = findViewById(R.id.newCity);
-        String city = input.getText().toString();
+            input = findViewById(R.id.newCity);
+            String city = input.getText().toString();
 
-        String state = states.getSelectedItem().toString();
+            String state = states.getSelectedItem().toString();
 
-        if (getIntent().getParcelableExtra("Customer") != null){
-            customer = getIntent().getParcelableExtra("Customer");
-            customer.address.streetNum = streetNum;
-            customer.address.street = street;
-            customer.address.city = city;
-            customer.address.state = state;
+            if (getIntent().getParcelableExtra("Customer") != null) {
+                customer = getIntent().getParcelableExtra("Customer");
+                customer.address.streetNum = streetNum;
+                customer.address.street = street;
+                customer.address.city = city;
+                customer.address.state = state;
 
-            //update customer address in database
-            database.userDao().updateCustomerAddress(customer);
+                //update customer address in database
+                database.userDao().updateCustomerAddress(customer);
 
-            finish();
-        } else if (getIntent().getParcelableExtra("Roadside") != null){
-            roadsideAssistant = getIntent().getParcelableExtra("Roadside");
-            roadsideAssistant.address.streetNum = streetNum;
-            roadsideAssistant.address.street = street;
-            roadsideAssistant.address.city = city;
-            roadsideAssistant.address.state = state;
+                finish();
+            } else if (getIntent().getParcelableExtra("Roadside") != null) {
+                roadsideAssistant = getIntent().getParcelableExtra("Roadside");
+                roadsideAssistant.address.streetNum = streetNum;
+                roadsideAssistant.address.street = street;
+                roadsideAssistant.address.city = city;
+                roadsideAssistant.address.state = state;
 
-            database.userDao().updateRoadsideAddress(roadsideAssistant);
+                database.userDao().updateRoadsideAddress(roadsideAssistant);
 
-            finish();
-        } else {
-            person.address = new Address(streetNum, street, city, state);
+                finish();
+            } else {
+                person.address = new Address(streetNum, street, city, state);
 
-            Intent bankAccountIntent = new Intent(registerAddress.this, registerBankAccount.class);
-            bankAccountIntent.putExtra("Person", person);
-            startActivity(bankAccountIntent);
-            super.finish();
+                Intent bankAccountIntent = new Intent(registerAddress.this, registerBankAccount.class);
+                bankAccountIntent.putExtra("Person", person);
+                startActivity(bankAccountIntent);
+                super.finish();
+            }
+        }
+        else {
+            findViewById(R.id.streetNumError).setVisibility(View.VISIBLE);
         }
     }
 
