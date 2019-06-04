@@ -178,6 +178,9 @@ public class Customer extends Person{
 
     @Ignore
     public boolean removeCost(float cost) {
+        Date today = new Date();
+        if(bankAccount.expiryDate.before(today))
+            return false;
         return bankAccount.tryPay();
     }
 
