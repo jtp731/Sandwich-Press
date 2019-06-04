@@ -38,6 +38,7 @@ public class register extends AppCompatActivity {
         findViewById(R.id.newPasswordError).setVisibility(View.GONE);
         findViewById(R.id.accessLevelError).setVisibility(View.GONE);
         findViewById(R.id.accessLevel).setVisibility(View.GONE);
+        findViewById(R.id.accessLevelLabel).setVisibility(View.GONE);
 
         heading = findViewById(R.id.heading);
         usernameText = findViewById(R.id.newUsername);
@@ -202,7 +203,9 @@ public class register extends AppCompatActivity {
 
         }
         else if (getIntent().getParcelableExtra("Manager") != null) {
+            manager = getIntent().getParcelableExtra("Manager");
             heading.setText("Create A Manager");
+            findViewById(R.id.accessLevelLabel).setVisibility(View.VISIBLE);
             accessLevel.setVisibility(View.VISIBLE);
             Button create = findViewById(R.id.newSignup);
             create.setText("Create Manager");
@@ -243,6 +246,12 @@ public class register extends AppCompatActivity {
             //Toast.makeText(this, "passwords not the same", Toast.LENGTH_LONG).show();
             canCreateUser = false;
         }
+        if(password.trim().length() <= 0) {
+            error.setText("Password wrong length");
+            error.setVisibility(View.VISIBLE);
+
+            canCreateUser = false;
+        }
         else {
             error.setVisibility(View.GONE);
         }
@@ -254,6 +263,12 @@ public class register extends AppCompatActivity {
             error.setVisibility(View.VISIBLE);
 
             //Toast.makeText(this, "username taken", Toast.LENGTH_LONG).show();
+            canCreateUser = false;
+        }
+        if(username.trim().equals("")) {
+            error.setText("Need to enter a username");
+            error.setVisibility(View.VISIBLE);
+
             canCreateUser = false;
         }
         else {

@@ -36,6 +36,7 @@ public class SignIn extends AppCompatActivity {
         this.deleteDatabase("appdatabase");
         database = AppDatabase.getDatabase(getApplicationContext());
         if (!database.roadsideAssistantDao().baseRoadsideExists()) {
+            //database.userDao().addManager(new Manager("manager1", "123", "00009999", "mang1@email", "Manager1", "LastName", 10));
             database.userDao().addRoadsideAssistant(new RoadsideAssistant("", "", "", "", "", "", null, null, "", "", -1, false, 0));
 
             TestData.createTestData(this, 10, 10, 3, 10);
