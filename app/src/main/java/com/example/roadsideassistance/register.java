@@ -79,14 +79,17 @@ public class register extends AppCompatActivity {
                     String confirmPass = password2Text.getText().toString();
                     TextView errorMsg;
 
+                    errorMsg = findViewById(R.id.newPhoneError);
                     if (!validPhoneNumber(phonenumber) && phonenumber != customer.phonenumber){
-                        errorMsg = findViewById(R.id.newPhoneError);
                         errorMsg.setText("Invalid phonenumber");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
+                    else
+                        errorMsg.setVisibility(View.GONE);
+
+                    errorMsg = findViewById(R.id.newEmailError);
                     if (!email.equals(customer.email) && emailTaken(email)){
-                        errorMsg = findViewById(R.id.newEmailError);
                         errorMsg.setText("Email already in use");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
@@ -96,18 +99,22 @@ public class register extends AppCompatActivity {
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
+                    else
+                        errorMsg.setVisibility(View.GONE);
+
+                    errorMsg = findViewById(R.id.newPasswordError);
                     if (!password.equals(confirmPass)){
-                        errorMsg = findViewById(R.id.newPasswordError);
                         errorMsg.setText("Passwords do not match");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
                     else if(!password.matches("") && (password.trim().length() < 8 || password.trim().length() > 10)) {
-                        errorMsg = findViewById(R.id.newPasswordError);
                         errorMsg.setText("Password needs to be between 8 and 10 characters");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
+                    else
+                        errorMsg.setVisibility(View.GONE);
 
                     if (success){
                         if (password.matches("")){
@@ -164,14 +171,17 @@ public class register extends AppCompatActivity {
                     String confirmPass = password2Text.getText().toString();
                     TextView errorMsg;
 
+                    errorMsg = findViewById(R.id.newPhoneError);
                     if (!validPhoneNumber(phonenumber) && phonenumber != roadsideAssistant.phonenumber){
-                        errorMsg = findViewById(R.id.newPhoneError);
                         errorMsg.setText("Invalid phonenumber");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
+                    else
+                        errorMsg.setVisibility(View.GONE);
+
+                    errorMsg = findViewById(R.id.newEmailError);
                     if (!email.equals(roadsideAssistant.email) && emailTaken(email)){
-                        errorMsg = findViewById(R.id.newEmailError);
                         errorMsg.setText("Email already in use");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
@@ -181,18 +191,22 @@ public class register extends AppCompatActivity {
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
+                    else
+                        errorMsg.setVisibility(View.GONE);
+
+                    errorMsg = findViewById(R.id.newPasswordError);
                     if (!password.equals(confirmPass)){
-                        errorMsg = findViewById(R.id.newPasswordError);
                         errorMsg.setText("Passwords do not match");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
                     else if(!password.matches("") && (password.trim().length() < 8 || password.trim().length() > 10)) {
-                        errorMsg = findViewById(R.id.newPasswordError);
                         errorMsg.setText("Password needs to be between 8 and 10 characters");
                         errorMsg.setVisibility(View.VISIBLE);
                         success = false;
                     }
+                    else
+                        errorMsg.setVisibility(View.GONE);
 
                     if (success){
                         if (password.matches("")){
