@@ -39,6 +39,8 @@ public class register extends AppCompatActivity {
         findViewById(R.id.accessLevelError).setVisibility(View.GONE);
         findViewById(R.id.accessLevel).setVisibility(View.GONE);
         findViewById(R.id.accessLevelLabel).setVisibility(View.GONE);
+        findViewById(R.id.firstNameError).setVisibility(View.GONE);
+        findViewById(R.id.lastNameError).setVisibility(View.GONE);
 
         heading = findViewById(R.id.heading);
         usernameText = findViewById(R.id.newUsername);
@@ -246,8 +248,30 @@ public class register extends AppCompatActivity {
             //Toast.makeText(this, "passwords not the same", Toast.LENGTH_LONG).show();
             canCreateUser = false;
         }
-        if(password.trim().length() <= 0) {
-            error.setText("Password wrong length");
+        if(password.trim().length() < 8 || password.trim().length() > 10) {
+            error.setText("Password must be between 8 and 10 characters");
+            error.setVisibility(View.VISIBLE);
+
+            canCreateUser = false;
+        }
+        else {
+            error.setVisibility(View.GONE);
+        }
+
+        error = findViewById(R.id.firstNameError);
+        if(firstName.trim().length() <= 0) {
+            error.setText("First Name cannot be empty");
+            error.setVisibility(View.VISIBLE);
+
+            canCreateUser = false;
+        }
+        else {
+            error.setVisibility(View.GONE);
+        }
+
+        error = findViewById(R.id.lastNameError);
+        if(lastName.trim().length() <= 0) {
+            error.setText("Last Name cannot be empty");
             error.setVisibility(View.VISIBLE);
 
             canCreateUser = false;
@@ -265,8 +289,8 @@ public class register extends AppCompatActivity {
             //Toast.makeText(this, "username taken", Toast.LENGTH_LONG).show();
             canCreateUser = false;
         }
-        if(username.trim().equals("")) {
-            error.setText("Need to enter a username");
+        if(username.trim().length() < 4 || username.trim().length() > 10) {
+            error.setText("Username must be between 4 and 10 characters");
             error.setVisibility(View.VISIBLE);
 
             canCreateUser = false;
@@ -316,16 +340,27 @@ public class register extends AppCompatActivity {
             startActivity(signupAddress);
             super.finish();
         }
-        else {
-            int accLvl = Integer.parseInt(accessLevel.getText().toString().trim());
-            if(validAccessLevel(accLvl)) {
-                database.userDao().addManager(new Manager(username, password, phonenumber,  email, firstName, lastName, accLvl));
-                finish();
+        else if(manager != null){
+            int accLvl = 0;
+            if(accessLevel.getText().toString().trim().length() <= 0) {
+                TextView accessLevelError = findViewById(R.id.accessLevelError);
+                accessLevelError.setText("Access Level cannot be empty");
+                accessLevelError.setVisibility(View.VISIBLE);
+                canCreateUser = false;
             }
             else {
-                TextView accessLevelError = findViewById(R.id.accessLevelError);
-                accessLevelError.setText("Access Level needs to be less than " + manager.accessLevel);
-                accessLevelError.setVisibility(View.VISIBLE);
+                accLvl = Integer.parseInt(accessLevel.getText().toString().trim());
+                if (!validAccessLevel(accLvl)) {
+                    TextView accessLevelError = findViewById(R.id.accessLevelError);
+                    accessLevelError.setText("Access Level needs to be less than " + manager.accessLevel);
+                    accessLevelError.setVisibility(View.VISIBLE);
+                    canCreateUser = false;
+                }
+            }
+
+            if(canCreateUser) {
+                database.userDao().addManager(new Manager(username, password, phonenumber, email, firstName, lastName, accLvl));
+                finish();
             }
         }
     }

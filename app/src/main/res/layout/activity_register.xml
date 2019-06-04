@@ -6,277 +6,315 @@
     android:layout_height="match_parent"
     tools:context=".register">
 
-    <EditText
-        android:id="@+id/accessLevel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/accessLevelLabel"
-        app:layout_constraintTop_toBottomOf="@+id/newPasswordError" />
-
-    <TextView
-        android:id="@+id/newEmailError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Error"
-        android:textColor="@color/errorText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newEmail" />
-
-    <TextView
-        android:id="@+id/newPasswordError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password Error"
-        android:textColor="@color/errorText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newPConfirm" />
-
-    <EditText
-        android:id="@+id/newEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/newPhone" />
-
-    <TextView
-        android:id="@+id/newUsernameError"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="Username Error"
-        android:textColor="@color/errorText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newUsername" />
-
-    <EditText
-        android:id="@+id/newPConfirm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/newPassword" />
-
-    <TextView
-        android:id="@+id/newPhoneError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone Number Error"
-        android:textColor="@color/errorText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newPhone" />
-
-    <EditText
-        android:id="@+id/newUsername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/usernameLabel"
-        app:layout_constraintTop_toBottomOf="@+id/heading" />
-
-    <EditText
-        android:id="@+id/newPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/newEmail" />
-
-    <Switch
-        android:id="@+id/canTowSwitch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="128dp"
-        android:text="Can Tow"
-        android:textOff="NO"
-        android:textOn="YES"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accessLevelError"
-        tools:visibility="visible" />
-
-    <EditText
-        android:id="@+id/newPhone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/newLName" />
-
-    <EditText
-        android:id="@+id/newFName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/firstNameText"
-        app:layout_constraintTop_toBottomOf="@+id/newUsername" />
-
-    <EditText
-        android:id="@+id/newLName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/newFName" />
-
-    <Button
-        android:id="@+id/newSignup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:onClick="createUser"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/canTowSwitch" />
-
     <TextView
         android:id="@+id/heading"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:text="Create Account"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/usernameLabel"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Username:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newUsername" />
-
-    <TextView
-        android:id="@+id/firstNameText"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="First Name:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newFName" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Last Name:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newLName" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Phone Number:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newPhone" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="E-mail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newEmail" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Password:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newPassword" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Confirm Password:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newPConfirm" />
-
-    <TextView
-        android:id="@+id/accessLevelLabel"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Access Level:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/accessLevel" />
-
-    <TextView
-        android:id="@+id/accessLevelError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Access Level Error"
-        android:textColor="@color/errorText"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accessLevel" />
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/newUsernameError"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="Username Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newUsername" />
+
+            <EditText
+                android:id="@+id/newPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/newEmailError" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Last Name:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newLName" />
+
+            <TextView
+                android:id="@+id/accessLevelLabel"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Access Level:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/accessLevel" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Password:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newPassword" />
+
+            <EditText
+                android:id="@+id/newFName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/firstNameText"
+                app:layout_constraintTop_toBottomOf="@+id/newUsernameError" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="E-mail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newEmail" />
+
+            <Button
+                android:id="@+id/newSignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="createUser"
+                android:text="Next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/canTowSwitch" />
+
+            <EditText
+                android:id="@+id/newUsername"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/usernameLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/newLName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/firstNameError" />
+
+            <EditText
+                android:id="@+id/newPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameError" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Confirm Password:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newPConfirm" />
+
+            <TextView
+                android:id="@+id/accessLevelError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Access Level Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accessLevel" />
+
+            <TextView
+                android:id="@+id/firstNameError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newFName" />
+
+            <EditText
+                android:id="@+id/accessLevel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/accessLevelLabel"
+                app:layout_constraintTop_toBottomOf="@+id/newPasswordError" />
+
+            <TextView
+                android:id="@+id/newPasswordError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newPConfirm" />
+
+            <TextView
+                android:id="@+id/newPhoneError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newPhone" />
+
+            <TextView
+                android:id="@+id/usernameLabel"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Username:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newUsername" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Phone Number:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newPhone" />
+
+            <Switch
+                android:id="@+id/canTowSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Can Tow"
+                android:textOff="NO"
+                android:textOn="YES"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accessLevelError"
+                tools:visibility="visible" />
+
+            <EditText
+                android:id="@+id/newPConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/newPassword" />
+
+            <TextView
+                android:id="@+id/firstNameText"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="First Name:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/newFName" />
+
+            <TextView
+                android:id="@+id/newEmailError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newEmail" />
+
+            <EditText
+                android:id="@+id/newEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/newPhoneError" />
+
+            <TextView
+                android:id="@+id/lastNameError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name Error"
+                android:textColor="@color/errorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newLName" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
