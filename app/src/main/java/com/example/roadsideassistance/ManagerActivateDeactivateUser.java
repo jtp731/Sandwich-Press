@@ -16,6 +16,7 @@ import android.widget.Button;
 public class ManagerActivateDeactivateUser extends AppCompatActivity {
     Manager manager;
     AppDatabase database;
+    String sfirstName, slastName;
     EditText firstName, lastName;
     Button searchButton, activateButton;
 
@@ -36,6 +37,8 @@ public class ManagerActivateDeactivateUser extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sfirstName = firstName.getText().toString();
+                slastName = lastName.getText().toString();
 
             }
         });
