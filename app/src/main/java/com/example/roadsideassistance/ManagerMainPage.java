@@ -17,6 +17,8 @@ public class ManagerMainPage extends AppCompatActivity {
         setContentView(R.layout.activity_manager_main_page);
 
         manager = getIntent().getParcelableExtra("Manager");
+        if(manager.accessLevel <= 0)
+            findViewById(R.id.createManagerButton).setVisibility(View.GONE);
     }
 
     public void toActivateDeactivateUser(View view) {
