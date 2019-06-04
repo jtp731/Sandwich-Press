@@ -47,22 +47,7 @@ public class RoadsideSelectServiceCost extends AppCompatActivity {
         distanceTextView.setText("Distance: " + String.format("%.2f Km", distance));
 
         TextView descriptionText = findViewById(R.id.description);
-        String descriptionString = "";
-        if(service.description.trim().length() > 0)
-            descriptionString = "Description : " + service.description.trim();
-        if(service.hasFlag(Service.OUT_OF_FUEL))
-            descriptionString += "\nOut of fuel";
-        if(service.hasFlag(Service.CAR_STUCK))
-            descriptionString += "\nCar stuck";
-        if(service.hasFlag(Service.KEYS_IN_CAR))
-            descriptionString += "\nKeys locked in car";
-        if(service.hasFlag(Service.FLAT_BATTERY))
-            descriptionString += "\nFlat battery";
-        if(service.hasFlag(Service.FLAT_TYRE))
-            descriptionString += "\nFlat tyre";
-        if(service.hasFlag(Service.MECHANICAL_BREAKDOWN))
-            descriptionString += "\nMechanical breakdown";
-        descriptionText.setText(descriptionString);
+        descriptionText.setText(service.descriptionString());
 
         EditText payText = findViewById(R.id.roadsidePayText);
         payText.addTextChangedListener(new TextWatcher() {

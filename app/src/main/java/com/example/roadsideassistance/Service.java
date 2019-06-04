@@ -137,6 +137,26 @@ public class Service implements Parcelable {
             return ("User: " + customer_username + " Plate Number: " + car_plateNum);
     }
 
+    @Ignore
+    public String descriptionString() {
+        String descriptionString = "";
+        if(description.trim().length() > 0)
+            descriptionString = "Description : " + this.description.trim();
+        if(this.hasFlag(Service.OUT_OF_FUEL))
+            descriptionString += "\nOut of fuel";
+        if(this.hasFlag(Service.CAR_STUCK))
+            descriptionString += "\nCar stuck";
+        if(this.hasFlag(Service.KEYS_IN_CAR))
+            descriptionString += "\nKeys locked in car";
+        if(this.hasFlag(Service.FLAT_BATTERY))
+            descriptionString += "\nFlat battery";
+        if(this.hasFlag(Service.FLAT_TYRE))
+            descriptionString += "\nFlat tyre";
+        if(this.hasFlag(Service.MECHANICAL_BREAKDOWN))
+            descriptionString += "\nMechanical breakdown";
+        return descriptionString;
+    }
+
     @Override
     public int describeContents() {
         return 0;

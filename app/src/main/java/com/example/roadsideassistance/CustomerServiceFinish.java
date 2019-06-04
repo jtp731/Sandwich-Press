@@ -42,6 +42,9 @@ public class CustomerServiceFinish extends AppCompatActivity {
             Button payButton = findViewById(R.id.customerFinishServiceButton);
             payButton.setText("Finish");
         }
+
+        displayLine = findViewById(R.id.description);
+        displayLine.setText(selectedService.descriptionString());
     }
 
     public void finishService(View view) {

@@ -26,10 +26,13 @@ public class RoadsideSelectedActiveService extends AppCompatActivity {
         TextView customerTextView = findViewById(R.id.roadsideSelectedActiveServiceCutomer);
         TextView carTextView = findViewById(R.id.roadsideSelectedActiveServiceCar);
         TextView costTextView = findViewById(R.id.roadsideSelectedActiveServiceCost);
+        TextView descriptionView = findViewById(R.id.description);
 
-        customerTextView.setText(activeService.customer_username);
-        carTextView.setText(activeService.car_plateNum);
-        costTextView.setText("" + activeService.cost);
+        customerTextView.setText("Username: " + activeService.customer_username);
+        carTextView.setText("Plate Number: " + activeService.car_plateNum);
+        costTextView.setText("Pay: "+ activeService.costToPay());
+
+        descriptionView.setText(activeService.descriptionString());
     }
 
     public void cancelService(View view) {
