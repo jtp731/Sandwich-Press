@@ -85,7 +85,7 @@ public class CustomerServiceOffers extends AppCompatActivity {
                 dateText.setWidth(findViewById(R.id.time).getWidth());
                 dateText.setText(String.format("%d/%d %d:%d",
                         serviceOffers.get(i).time.getDate(),
-                        serviceOffers.get(i).time.getMonth(),
+                        serviceOffers.get(i).time.getMonth() + 1,
                         serviceOffers.get(i).time.getHours(),
                         serviceOffers.get(i).time.getMinutes()));
                 dateText.setBackground(getResources().getDrawable(R.drawable.border_sharp));

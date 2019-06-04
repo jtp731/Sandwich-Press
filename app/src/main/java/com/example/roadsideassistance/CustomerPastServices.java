@@ -63,7 +63,7 @@ public class CustomerPastServices extends AppCompatActivity {
                 TextView date = new TextView(this);
                 date.setText(String.format("%d/%d/%d",
                         pastServices.get(i).time.getDate(),
-                        pastServices.get(i).time.getMonth(),
+                        pastServices.get(i).time.getMonth() + 1,
                         pastServices.get(i).time.getYear() + 1900));
                 date.setPadding(5,5,5,5);
                 date.setBackground(getResources().getDrawable(R.drawable.border_sharp));
