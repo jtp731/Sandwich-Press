@@ -10,4 +10,5 @@ public interface ManagerDao {
 
     @Query("select * from manager where email = :email")
     Manager getManager(String email);
+
 }
