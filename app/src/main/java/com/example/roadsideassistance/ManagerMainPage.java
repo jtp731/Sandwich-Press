@@ -31,6 +31,12 @@ public class ManagerMainPage extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void toCreateManager(View view) {
+        Intent intent = new Intent(this, register.class);
+        intent.putExtra("Manager", manager);
+        startActivityForResult(intent, 1);
+    }
+
     public void logout(View view){
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);

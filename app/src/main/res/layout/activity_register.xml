@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".register">
 
+    <EditText
+        android:id="@+id/accessLevel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/newPasswordError" />
+
     <TextView
         android:id="@+id/newEmailError"
         android:layout_width="wrap_content"
@@ -42,15 +53,15 @@
         app:layout_constraintTop_toBottomOf="@+id/newPhone" />
 
     <TextView
-            android:id="@+id/newUsernameError"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="Username Error"
-            android:textColor="@color/errorText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newUsername" />
+        android:id="@+id/newUsernameError"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Username Error"
+        android:textColor="@color/errorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newUsername" />
 
     <EditText
         android:id="@+id/newPConfirm"
@@ -115,7 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newPasswordError"
+        app:layout_constraintTop_toBottomOf="@+id/accessLevelError"
         tools:visibility="visible" />
 
     <EditText
@@ -161,12 +172,12 @@
         android:id="@+id/newSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:onClick="createUser"
         android:text="Next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newPasswordError" />
+        app:layout_constraintTop_toBottomOf="@+id/canTowSwitch" />
 
     <TextView
         android:id="@+id/heading"
@@ -247,5 +258,25 @@
         android:text="Confirm Password:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/newPConfirm" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="121dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Access Level:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/accessLevel" />
+
+    <TextView
+        android:id="@+id/accessLevelError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Access Level Error"
+        android:textColor="@color/errorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accessLevel" />
 
 </android.support.constraint.ConstraintLayout>

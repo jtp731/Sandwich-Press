@@ -21,7 +21,8 @@ public class register extends AppCompatActivity {
 
     Customer customer;
     RoadsideAssistant roadsideAssistant;
-    EditText usernameText, fNameText, lNameText, phoneNumberText, emailText, password1Text, password2Text;
+    Manager manager;
+    EditText usernameText, fNameText, lNameText, phoneNumberText, emailText, password1Text, password2Text, accessLevel;
     TextView heading;
     Switch canTowSwitch;
     Button next;
@@ -35,6 +36,8 @@ public class register extends AppCompatActivity {
         findViewById(R.id.newEmailError).setVisibility(View.GONE);
         findViewById(R.id.newPhoneError).setVisibility(View.GONE);
         findViewById(R.id.newPasswordError).setVisibility(View.GONE);
+        findViewById(R.id.accessLevelError).setVisibility(View.GONE);
+        findViewById(R.id.accessLevel).setVisibility(View.GONE);
 
         heading = findViewById(R.id.heading);
         usernameText = findViewById(R.id.newUsername);
@@ -44,6 +47,7 @@ public class register extends AppCompatActivity {
         emailText = findViewById(R.id.newEmail);
         password1Text = findViewById(R.id.newPassword);
         password2Text = findViewById(R.id.newPConfirm);
+        accessLevel = findViewById(R.id.accessLevel);
         canTowSwitch = findViewById(R.id.canTowSwitch);
         canTowSwitch.setVisibility(View.GONE);
         next = findViewById(R.id.newSignup);
@@ -197,6 +201,12 @@ public class register extends AppCompatActivity {
 
 
         }
+        else if (getIntent().getParcelableExtra("Manager") != null) {
+            heading.setText("Create A Manager");
+            accessLevel.setVisibility(View.VISIBLE);
+            Button create = findViewById(R.id.newSignup);
+            create.setText("Create Manager");
+        }
     }
 
     public void createUser(View view) {
@@ -282,14 +292,26 @@ public class register extends AppCompatActivity {
             error.setVisibility(View.GONE);
         }
 
-        if(canCreateUser) {
+        if(canCreateUser && manager == null) {
             //database.personDao().addPerson(new Person(username, password, phonenumber, email, firstName, lastName));
-            Toast.makeText(this, "Creating new user", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Creating new user", Toast.LENGTH_LONG).show();
    
             Intent signupAddress = new Intent(register.this, registerAddress.class);
             signupAddress.putExtra("Person", new Person(username, password, phonenumber, email, firstName, lastName));
             startActivity(signupAddress);
             super.finish();
+        }
+        else {
+            int accLvl = Integer.parseInt(accessLevel.getText().toString().trim());
+            if(validAccessLevel(accLvl)) {
+                database.userDao().addManager(new Manager(username, password, phonenumber,  email, firstName, lastName, accLvl));
+                finish();
+            }
+            else {
+                TextView accessLevelError = findViewById(R.id.accessLevelError);
+                accessLevelError.setText("Access Level needs to be less than " + manager.accessLevel);
+                accessLevelError.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -320,6 +342,13 @@ public class register extends AppCompatActivity {
         return database.personDao().usernameTaken(username);
     }
 
+    boolean validAccessLevel(int accessLevel) {
+        if(manager.accessLevel > accessLevel)
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public void finish(){
         Intent data = new Intent();
@@ -327,6 +356,9 @@ public class register extends AppCompatActivity {
             data.putExtra("Customer", customer);
         } else if (getIntent().getParcelableExtra("Roadside") !=null){
             data.putExtra("Roadside", roadsideAssistant);
+        }
+        else if (getIntent().getParcelableExtra("Manager") != null) {
+            data.putExtra("Manager", manager);
         }
         setResult(RESULT_OK, data);
         super.finish();

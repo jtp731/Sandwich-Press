@@ -24,6 +24,7 @@ public class Person implements Parcelable {
     public String email;
     public String firstName;
     public String lastName;
+    public boolean activated;
 
     @Embedded//This makes the address and embedded part of the person table meaning all the variables in address are in the person table
     public Address address;
@@ -68,6 +69,7 @@ public class Person implements Parcelable {
         out.writeString(lastName);
         out.writeParcelable(address, 0);
         out.writeParcelable(bankAccount, 0);
+        out.writeInt(activated ? 1 : 0);
     }
 
     //Used by parcelable
@@ -91,6 +93,7 @@ public class Person implements Parcelable {
         this.lastName = in.readString();
         this.address = in.readParcelable(Address.class.getClassLoader());
         this.bankAccount = in.readParcelable(BankAccount.class.getClassLoader());
+        this.activated = in.readInt() == 1 ? true : false;
     }
 
     @Ignore
@@ -103,6 +106,7 @@ public class Person implements Parcelable {
         this.lastName = person.lastName;
         this.address = person.address;
         this.bankAccount = person.bankAccount;
+        this.activated = person.activated;
     }
 
     public String toString() {
