@@ -126,6 +126,12 @@
         <activity
             android:name=".RoadsidePastService"
             android:label="Past Service" />
+        <activity
+            android:name=".ManagerActivateDeactivateUser"
+            android:label="Activate/Deactivate Users"/>
+        <activity
+            android:name=".ManagerAppStats"
+            android:label="App Statisitics"/>
     </application>
 
 </manifest>

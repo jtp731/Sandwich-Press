@@ -15,4 +15,8 @@
     <color name="grey">#909090</color>
     <color name="positivePayText">#00B32F</color>
     <color name="negativePayText">#B30006</color>
+
+    <color name="button_pressed">#ff8a00</color>
+    <color name="button_focused">#ff8a00</color>
+    <color name="button_default">#FFFFFF</color>
 </resources>

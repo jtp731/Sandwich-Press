@@ -45,6 +45,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
+
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -70,8 +72,276 @@
                 android:id="@+id/userListLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust1                        Active"
+                    android:textIsSelectable="false" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust2                        Active" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust3                        Active" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust4                        Active" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust5                        Active" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust6                        Active" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust7                        Active" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust8                        Active" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust9                        Active" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust10                      Active" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust11                      Active" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:text="Customer                           cust12                      Active" />
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust13                      Active" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust14                      Active" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust15                      Active" />
+            </LinearLayout>
         </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="1112dp">
+
+            <LinearLayout
+                android:id="@+id/userListLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust35                        Active"
+                    android:textIsSelectable="false" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="1112dp">
+
+            <LinearLayout
+                android:id="@+id/userListLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/text_background"
+                    android:clickable="true"
+                    android:text="Customer                           cust35                      Deactive"
+                    android:textIsSelectable="false" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!--<ScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout12"-->
+            <!--app:layout_constraintVertical_bias="1.0"-->
+            <!--tools:layout_editor_absoluteX="1112dp">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/userListLayout3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="invisible">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/textView35"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/text_background"-->
+                    <!--android:clickable="true"-->
+                    <!--android:text="Customer                           manager35                     Active"-->
+                    <!--android:textIsSelectable="false" />-->
+
+            <!--</LinearLayout>-->
+        <!--</ScrollView>-->
+
+        <!--<ScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout12"-->
+            <!--app:layout_constraintVertical_bias="1.0"-->
+            <!--tools:layout_editor_absoluteX="1112dp">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/userListLayout4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="invisible">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/textView36"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/text_background"-->
+                    <!--android:clickable="true"-->
+                    <!--android:text="Customer                           road35                        Active"-->
+                    <!--android:textIsSelectable="false" />-->
+
+            <!--</LinearLayout>-->
+        <!--</ScrollView>-->
 
         <LinearLayout
             android:id="@+id/linearLayout12"
@@ -113,19 +383,32 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
+
     </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/activateButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:text="Activate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/deactivateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:text="Deactivate"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
